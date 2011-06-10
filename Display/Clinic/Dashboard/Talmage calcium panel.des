@@ -23,7 +23,7 @@ Solver : Digital Human (V1.0)
   <row> 0.5 </row><col> 1.0 </col>
 </showpanelname>
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Clinic\Dashboard\ ?>
+<?path Display\Clinic\Dashboard\ ?>
 
 <!--<?include Pools.DES ?>
 <?include Bone.DES ?>

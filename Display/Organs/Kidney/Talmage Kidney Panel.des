@@ -15,7 +15,7 @@ Solver : Digital Human (V1.0)
   <row> 0.5 </row><col> 1.0 </col>
 </showpanelname>
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Organs\Kidney\ ?>
+<?path Display\Organs\Kidney\ ?>
 
 <?include Excretion.DES ?>
 <?include PTH-Effect.DES ?>

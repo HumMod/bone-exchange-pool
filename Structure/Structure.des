@@ -6,7 +6,7 @@ Author : Tom Coleman
 Copyright : 2008-2010
 By : University of Mississippi Medical Center
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Structure ?>
+<?path Structure\ ?>
 
 <?include Gut\TalmageSimpleGut.DES ?>
 <?include Calcium\TalmageCaPool.DES ?>

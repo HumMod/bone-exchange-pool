@@ -22,7 +22,7 @@ Solver : Digital Human (V1.0)
    <days/>
 </showclock>
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\ ?>
+<?path Display\ ?>
 
 <?include Physiology\Hormones\Parathyroid.DES ?>
 <?include Physiology\Hormones\Calcitonin.DES ?>

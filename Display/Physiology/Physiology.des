@@ -7,7 +7,7 @@ Copyright : 2011-2011
 By : University of Mississippi Medical Center
 Schema : DES V1.0
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Physiology\ ?>
+<?path Display\Physiology\ ?>
 
 <?include Hormones\Talmage PTH Panel.DES ?>
 <?include Vitamin D\TalmageVitD Panel.DES ?>

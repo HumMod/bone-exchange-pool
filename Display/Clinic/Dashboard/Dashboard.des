@@ -7,7 +7,7 @@ Copyright : 2011-2011
 By : University of Mississippi Medical Center
 Schema : DES V1.0
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Clinic\Dashboard ?>
+<?path Display\Clinic\Dashboard ?>
 
 <?include Talmage calcium panel.DES ?>
 <?include Talmage bolus.DES ?>

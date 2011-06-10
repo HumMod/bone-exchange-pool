@@ -10,7 +10,7 @@ Schema : 2005.0
 
 <control>
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Control ?>
+<?path Control ?>
 
 <?include GoFor.DES ?>
 

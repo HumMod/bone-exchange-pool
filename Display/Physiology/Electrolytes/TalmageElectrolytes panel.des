@@ -22,7 +22,7 @@ Solver : Digital Human (V1.0)
    <days/>
 </showclock>
 
-<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Physiology\Electrolytes\ ?>
+<?path Display\Physiology\Electrolytes\ ?>
 <?include Calcium.DES ?>
 <?include Phosphate.DES ?>
 

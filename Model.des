@@ -16,7 +16,7 @@ Schema : DES V1.0
    <navigator> DigitalHuman - Integrative Biomedicine </navigator>
 </title>
 
-<?include C:\Users\Drew\Desktop\TalmageCaHomeostasis\Structure\Structure.DES ?>
+<?include Structure\Structure.DES ?>
 
 <math>
 
