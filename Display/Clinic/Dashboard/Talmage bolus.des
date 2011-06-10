@@ -1,0 +1,325 @@
+ HumMod / Bolus
+
+Created : 1-Nov-10
+Last Modified : 1-Nov-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University of Mississippi Medical Center
+Solver : DES 2005
+Schema : 
+
+<panel><name> TalmageBolus </name>
+
+<structurename> TalmageBolus </structurename>
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+ <showvalue>
+   <row> .5 </row><col> 20. </col>
+   <name> TalmageCaPool.CalciumDripStart </name>
+   <format><decimal> 0 </decimal></format>
+   <label> system.x </label>
+ </showvalue>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Calcium </title>
+
+ <editbox>
+   <row> 1 </row><col> 1 </col>
+   <name> TalmageCaPool.CalciumBolusValue </name>
+   <label> CalciumBolusValue </label>
+ </editbox>
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  mg </line>
+ </infobutton>
+
+ <editbox>
+   <row> 2.5 </row><col> 1 </col>
+   <name> TalmageCaPool.CalciumDripValue </name>
+   <label> CalciumDripValue </label>
+ </editbox>
+ <infobutton>
+  <row> 2.5 </row><col> 30 </col>
+  <line>  mg/min </line>
+ </infobutton>
+
+ <editbox>
+   <row> 3.5 </row><col> 1 </col>
+   <name> TalmageCaPool.CalciumDripTime </name>
+   <label> CalciumDripTime </label>
+ </editbox>
+ <infobutton>
+  <row> 3.5 </row><col> 30 </col>
+  <line>  min </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 5.0 </row><col> 1 </col>
+   <name> TalmageCaPool.CalciumDripStart </name>
+   <format><decimal> 0 </decimal></format>
+   <label> drip start </label>
+ </showvalue>
+ <infobutton>
+  <row> 5.0 </row><col> 30 </col>
+  <line>  Time </line>
+ </infobutton>
+
+ <radiobuttons>
+  <row> 6.0 </row><col> 1.0 </col>
+  <name> TalmageCaPool.AccelSwitch </name>
+  <listname> Common.Switch </listname>
+  <label> Accelerate </label>
+ </radiobuttons>
+
+
+</groupbox>
+
+<groupbox>
+   <row> 10.0 </row>
+   <col> 2.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Phosphates </title>
+
+ <editbox>
+   <row> 1 </row><col> 1 </col>
+   <name> TalmagePO4Pool.PO4DripValue </name>
+   <label> PO4DripValue </label>
+ </editbox>
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  mg </line>
+ </infobutton>
+
+ <editbox>
+   <row> 2 </row><col> 1 </col>
+   <name> TalmagePO4Pool.PO4DripTime </name>
+   <label> PO4DripTime </label>s
+ </editbox>
+ <infobutton>
+  <row> 2.0 </row><col> 30 </col>
+  <line>  mg/min </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 4. </row><col> 1 </col>
+   <name> TalmagePO4Pool.PO4DripStart </name>
+   <format><decimal> 0 </decimal></format>
+   <label> drip start </label>
+ </showvalue>
+ <infobutton>
+  <row> 4.0 </row><col> 30 </col>
+  <line>  Time </line>
+ </infobutton>
+
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 40.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> PTH </title>
+
+ <editbox>
+   <row> 1 </row><col> 1 </col>
+   <name> TalmagePTHormone.PTHBolusValue </name>
+   <label> PTHBolusValue </label>
+ </editbox>
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  ng </line>
+ </infobutton>
+
+ <editbox>
+   <row> 3 </row><col> 1 </col>
+   <name> TalmagePTHormone.PTHDripValue </name>
+   <label> PTHDripValue </label>
+ </editbox>
+ <infobutton>
+  <row> 3.0 </row><col> 30 </col>
+  <line>  ng/min </line>
+ </infobutton>
+
+ <editbox>
+   <row> 4 </row><col> 1 </col>
+   <name> TalmagePTHormone.PTHDripTime </name>
+   <label> PTHDripTime </label>
+ </editbox>
+ <infobutton>
+  <row> 4.0 </row><col> 30 </col>
+  <line> min </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 6. </row><col> 1 </col>
+   <name> TalmagePTHormone.PTHDripStart </name>
+   <format><decimal> 0 </decimal></format>
+   <label> drip start </label>
+ </showvalue>
+ <infobutton>
+  <row> 6.0 </row><col> 30 </col>
+  <line>  </line>
+  <line>  Time </line>
+ </infobutton>
+ </groupbox>
+
+<groupbox>
+   <row> 10.0 </row>
+   <col> 40.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Calcitonin </title>
+
+ <editbox>
+   <row> 1 </row><col> 1 </col>
+   <name> TalmageCalcitonin.CTBolusValue </name>
+   <label> CTBolusValue </label>
+ </editbox>
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  </line>
+  <line>  ng </line>
+ </infobutton>
+
+ <editbox>
+   <row> 2.5 </row><col> 1 </col>
+   <name> TalmageCalcitonin.CTDripValue </name>
+   <label> Calcitonin DripValue </label>
+ </editbox>
+ <infobutton>
+  <row> 2.5 </row><col> 30 </col>
+  <line>  mg/min </line>
+ </infobutton>
+
+ <editbox>
+   <row> 3.5 </row><col> 1 </col>
+   <name> TalmageCalcitonin.CTDripTime </name>
+   <label> Calcitonin DripTime </label>
+ </editbox>
+ <infobutton>
+  <row> 3.5 </row><col> 30 </col>
+  <line>  min </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 5.0 </row><col> 1 </col>
+   <name> TalmageCalcitonin.CTDripStart </name>
+   <format><decimal> 0 </decimal></format>
+   <label> drip start </label>
+ </showvalue>
+ <infobutton>
+  <row> 5.0 </row><col> 30 </col>
+  <line>  Time </line>
+ </infobutton>
+</groupbox>
+
+<groupbox>
+   <row> 18.0 </row>
+   <col> 2.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Vitamin D </title>
+
+
+<repeatlist>
+  <name> Dose </name>
+  <repeat>
+    <reps> 4 </reps>
+    <stepsize> 250 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 1.0 </row><col> 1 </col>
+  <name> TalmageVitD.DDose </name>
+  <listname> Dose </listname>
+  <label> Dose </label>
+</slidebar>
+
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  </line>
+  <line>  ng </line>
+ </infobutton>
+
+<repeatlist>
+  <name> TimesDay </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 3.0 </row><col> 1 </col>
+  <name> TalmageVitD.TimesDay </name>
+  <listname> TimesDay </listname>
+  <label> Times / Day </label>
+</slidebar>
+</groupbox>
+
+
+<groupbox>
+   <row> 18.0 </row>
+   <col> 42.0 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Vitamin D </title>
+
+
+<repeatlist>
+  <name> CaDose </name>
+  <repeat>
+    <reps> 25 </reps>
+    <stepsize> 50 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 1.0 </row><col> 1 </col>
+  <name> CaSupplement.Dose </name>
+  <listname> CaDose </listname>
+  <label> CaDose </label>
+</slidebar>
+
+ <infobutton>
+  <row> 1.0 </row><col> 30 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+<repeatlist>
+  <name> CaSupplement.TimesDay </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 3.0 </row><col> 1 </col>
+  <name> CaSupplement.TimesDay </name>
+  <listname> TimesDay </listname>
+  <label> Times / Day </label>
+</slidebar>
+
+
+</groupbox>
+
+
+</panel>
+
+
+
+End
+                                     
+ 
+                      

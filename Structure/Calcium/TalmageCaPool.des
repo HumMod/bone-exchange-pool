@@ -1,0 +1,155 @@
+ HumMod / CaPool
+
+Created : 10-Sep-10
+Last Modified : 29-Oct-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> TalmageCaPool </name>
+
+<variables>
+
+  <parm><name> CalciumBolusValue </name><val>0</val></parm>
+  <parm><name> CalciumDripValue </name><val>0</val></parm>
+  <parm><name> CalciumDripTime </name><val>0</val></parm>
+  <parm><name> CalciumDripStart </name><val>0</val></parm>
+  <parm><name> AccelSwitch </name><val>0</val></parm>
+  <parm><name> AbTime </name><val>330</val></parm>
+
+  <var><name>Test</name><val>1</val></var>
+  <var><name>TestDrip</name><val>1</val></var>
+  <var><name>Gain</name></var>
+  <var><name>Loss</name></var>
+
+  <var><name>[Ca]</name><val> 2.5 </val></var> <!-- mmol/L-->
+  <var><name>[CaMass]</name><val>10</val></var><!--mg/dL-->
+  <var><name>[CaComp]</name><val>.25</val></var>
+  <var><name>[CaBound]</name><val> 1 </val></var>
+  <var><name>[Ca++]</name><val>1.25</val></var><!--mmol/L-->
+
+  <var><name>[ECa]</name><val>1.5</val></var><!--mmol/L-->
+  <var><name>[ECa++]</name><val>1.25</val></var><!--mmol/L-->
+  <var><name>[ECaComp]</name><val>.25</val></var>
+
+  <var><name> EMass </name><val> 634 </val></var><!-- mg -->
+  <var><name> E+Mass </name><val> 528 </val></var><!-- mg -->
+  <var><name> ECompMass </name><val> 106 </val></var><!-- mg -->
+  <var><name> CExch </name><val> 0 </val></var><!-- mmol -->
+
+  <parm><name>Dose</name><val> 0 </val></parm>
+  <parm><name>TimesDay</name><val>0</val></parm>
+  <var><name>Interval</name><val>INFINITE</val></var>
+  <var><name>LastDose</name><val>0</val></var>
+  <var><name>PartialDose</name><val>0</val></var>
+  <parm><name>SuppAbs</name><val>0</val></parm>
+</variables>
+
+<equations>
+ <diffeq>
+   <name> Mass </name>
+   <integralname> Mass </integralname>
+   <initialval> 300 </initialval>
+   <dervname> Change </dervname>
+   <errorlim> 0.3 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+
+ <block>
+    <name> Parms </name>
+      <if><test> CalciumBolusValue NE 0 </test>
+        <true>
+          <def><name> Mass </name><val> Mass + CalciumBolusValue </val></def>
+          <def><name>CalciumBolusValue</name><val> 0 </val></def>
+        </true>
+      </if>    
+
+
+  </block>
+      
+ <block>
+    <name> Dervs </name>
+
+      <def><name> Gain </name><val> DistalSmallIntestine.Absorption + PartialDose</val></def>
+      <if><test> ( ( System.X - CalciumDripStart ) - 1 LT CalciumDripTime ) AND TestDrip</test>
+        <true>
+          <def><name> Gain </name><val> Gain + ( CalciumDripValue ) + ( AccelSwitch * CalciumDripValue * ( System.X - CalciumDripStart ) ) </val></def>
+        </true>
+        <false>
+          <def><name>CalciumDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+          <def><name>CalciumDripValue</name><val> 0 </val></def>
+          <def><name>CalciumDripTime</name><val> 0 </val></def>
+        </false>
+      </if>    
+      <def><name> Loss </name><val> RenalCa.Excretion + DistalSmallIntestine.Slough</val></def>
+      <def><name> Change </name><val> Gain - Loss + TalmageBone.CaChange  </val></def><!--TalmageBone.CaChange can be either positive or negative-->
+
+ </block>
+
+ <block>
+    <name> CalcConc </name>
+
+
+
+     <def>
+	<name> CExch </name>
+	<val> .4 * ( [ECa] - [Ca++] - [CaComp] ) </val>
+     </def><!--mMol-->
+     <def>
+	<name> Mass </name>
+	<val> Mass + ( 40 * CExch ) </val>
+     </def>
+     <def>
+	<name> EMass </name>
+	<val> EMass - ( 40 * CExch )</val>
+     </def>
+
+     <def>
+	<name> [ECa] </name>
+	<val> EMass / ( 40 * 11 ) </val>
+     </def><!--mMol-->
+
+     <def>
+	<name> [ECa++] </name>
+	<val> .8 * EMass / ( 40 * 11 ) </val>
+     </def><!--mMol-->
+     <def>
+	<name> [ECaComp] </name>
+	<val> .2 * EMass / ( 40 * 11 ) </val>
+     </def><!--mMol-->
+
+     <def>
+        <name> [Ca++] </name>
+        <val> .5 * Mass / ( 40 * 3 ) </val>
+     </def><!--mMol-->
+     <def>
+        <name> [CaComp] </name>
+        <val> .1 * Mass / ( 40 * 3 ) </val>
+     </def><!--mMol-->
+     <def>
+        <name> [CaBound] </name>
+        <val> .4 * Mass / ( 40 * 3 ) </val>
+     </def><!--mMol-->
+     <def>
+        <name> [CaMass] </name>
+        <val> Mass / ( 10 * 3 ) </val> <!-- 30 dL in serum -->
+     </def><!--mg/dL-->
+
+     <def>
+        <name> [Ca] </name>
+        <val> [CaMass] / 4 </val> 
+     </def><!--mmol/L-->
+
+  </block>
+
+
+</definitions>
+</structure>
+
+End                                                                                                                                                                                                                                                                                                                               
+   
+                                                          

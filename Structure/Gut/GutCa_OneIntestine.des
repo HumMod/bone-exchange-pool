@@ -1,0 +1,154 @@
+ HumMod / Gut
+
+Created : 27-Oct-10
+Last Modified : 28-feb-11
+Author : W Pruett
+Copyright : 2010-2010//
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name> GutCa </name>
+
+<variables>
+<!-- D parms -->
+  <parm><name> Slope25 </name><val> .000299 </val></parm><!-- /ng : Heaney 97 --> 
+  <parm><name> Slope125 </name><val> .00141 </val></parm><!-- /pg :Heaney 97 -->
+
+
+<!-- Absorption parameters -->
+  <var><name> Common </name><val> .03 </val></var>.003
+  <parm><name> a </name><val> .68 </val></parm>
+  <parm><name> b </name><val> .1  </val></parm>
+  <parm><name> WashOut </name><val> .0142 </val></parm>.0025
+
+<!-- passive factors -->
+  <parm><name>Slough</name><val>.14</val></parm><!-- 200 mg/day through sloughing of lumenal enterocytes,ionized-->
+  <parm><name>PassiveFactor</name><val>.14 </val></parm><!-- passive calcium absorption factor of 20%; this may be a little high; I have references for 13-16%-->
+  <parm><name> Intake </name><val> 800 </val></parm>
+  <var><name> PM </name><val> .66 </val> </var><!--per minute intake-->
+
+<!-- active factors -->
+  <var><name> FracAbsorb </name></var>
+  <var><name> AbsFrac </name></var>
+
+<!-- Total effect -->
+  <var><name> Absorption </name></var>
+  <var><name>NetIntake</name></var>
+
+<!-- timer vars -->
+  <var><name> ModTime </name></var>
+  <var><name> CaIn </name></var>
+  <var><name> StomachTransitTime </name><val> 120 </val></var>
+  
+  <parm><name> AbTime </name><val>180</val></parm>
+  <parm><name>Dose</name><val> 0 </val></parm>
+  <parm><name>TimesDay</name><val>0</val></parm>
+  <var><name>Interval</name><val>INFINITE</val></var>
+  <var><name>LastDose</name><val>0</val></var>
+  <var><name>PartialDose</name><val>0</val></var>
+  <parm><name>SuppAbs</name><val>0</val></parm>
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> Mass </name>  
+     <integralname> Mass </integralname>
+     <initialval> .1 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> .01 </errorlim>
+ </diffeq>
+
+</equations>
+
+
+<definitions>
+ <block>
+ <name>Parms</name>
+
+   <def><name>PM</name><val> Intake / ( 2 * StomachTransitTime ) </val></def>
+
+   <if>
+    <test> TimesDay GT 0 </test>
+    <true>
+      <def>
+	<name> Interval </name>
+	<val> 1440 / TimesDay </val>
+      </def>
+      <def>
+        <name> LastDose </name>
+        <val> System.X </val>
+      </def>
+    </true>
+    <false>
+       <def>
+	<name> Interval </name>
+	<val> INFINITE </val>
+      </def>
+    </false>
+    </if>
+ </block>
+
+ <block>
+ <name>Dervs </name>
+
+<if>
+ <test> System.X LE ( LastDose + AbTime ) </test>
+ <true> 
+  <def>
+    <name> PartialDose </name>
+    <val> Dose / AbTime </val>
+  </def>
+ </true>
+ <false>
+  <def>
+   <name> PartialDose</name>
+   <val> 0 </val>
+  </def>
+ </false>
+</if>
+
+<def><name> ModTime </name><val> ( FRACTPART ( System.X / 1440 ) ) * 1440 </val></def>
+
+<testcase>
+ <case>
+  <test> ( 360 LE ModTime ) AND ( ModTime LE ( 360 + StomachTransitTime ) ) </test>
+   <def><name> CaIn </name><val> PM + PartialDose </val></def>
+ </case>
+ <case>
+  <test> ( 1080 LE ModTime ) AND ( ModTime LE ( 1080 + StomachTransitTime ) ) </test>
+   <def><name> CaIn </name><val> PM + PartialDose  </val></def>
+ </case>
+ <case>
+  <test> TRUE </test>
+   <def><name> CaIn </name><val> PartialDose </val></def>
+ </case>
+</testcase>
+
+   <def><name> AbsFrac </name><val> Common * ( a - ( b * ( LOG Mass ) ) )</val></def> 
+   <def><name> Absorption </name> <val> Mass * AbsFrac </val></def>
+   <def><name> NetIntake </name><val> Absorption - Slough </val></def>
+
+  <def><name> Change </name><val> CaIn - Absorption - ( WashOut * Mass ) </val></def>
+ </block>
+
+<block>
+ <name> Wrapup </name>
+
+ <if>
+  <test> System.X GE ( LastDose + Interval ) </test>
+  <true>
+    <def>
+      <name> LastDose </name>
+      <val> LastDose + Interval </val>
+    </def>
+
+  </true>
+</if>
+
+</block>
+</definitions>  
+
+</structure>                                                                                                                                                  
+   
+                                                                               

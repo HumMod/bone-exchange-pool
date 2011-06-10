@@ -1,0 +1,75 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 26.5 </row>
+   <col> 2.0 </col>
+   <high> 22.0 </high>
+   <wide> 45.0 </wide>
+   <title> Bone balance </title>
+
+<showvalue>
+  <row> 1 </row><col> 1 </col>
+  <name> TalmageBone.BoneX </name>
+  <label> Bone Exchange pool size (mg ) </label>
+</showvalue>
+
+ <showgraph>
+  <row> 2.5 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 15 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+  <yvar>
+      <name> TalmageBone.Target</name>
+      <label> Target </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+  <yvar>
+      <name> TalmageBone.Product</name>
+      <label> Molar Product </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+  <scale><min> .4</min><max> .6 </max></scale>
+  </yaxis>
+ </showgraph>
+
+
+
+ <showgraph>
+  <row> 12.5 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 15 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+  <yvar>
+      <name> TalmageBone.BoneX</name>
+      <label> Exchange Pool </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+
+  <scale><min> 2950 </min><max> 3050 </max></scale>
+  </yaxis>
+ </showgraph>
+
+</groupbox>
+
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

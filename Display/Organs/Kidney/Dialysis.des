@@ -1,0 +1,62 @@
+Dialysis
+
+Created : 29-Oct-10
+Last Modified : 19-Feb-11
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 24.0 </row>
+   <col> 2.0 </col>
+   <high> 8.0 </high>
+   <wide> 45.0 </wide>
+   <title> Dialysis </title>
+
+ <radiobuttons>
+  <row> 1.0 </row><col> 1.0 </col>
+  <name> RenalCa.dialyze </name>
+  <listname> Common.Switch </listname>
+  <label> Dialysis? </label>
+ </radiobuttons>
+
+ <editbox>
+   <row> 2.5 </row><col> 1 </col>
+   <name> RenalCa.[Ca_dial] </name>
+   <label> Dialysate calcium </label>
+ </editbox>
+ <infobutton>
+  <row> 2.5 </row><col> 30 </col>
+  <line>  mmol/L </line>
+ </infobutton>
+
+ <editbox>
+   <row> 4.0 </row><col> 1 </col>
+   <name> RenalCa.DialFlow </name>
+   <label> Dialysate Flow </label>
+ </editbox>
+ <infobutton>
+  <row> 4.0 </row><col> 35 </col>
+  <line>  standard is 300-500 mL/min </line>
+ </infobutton>
+
+<showvalue>
+   <row> 6 </row><col> 1 </col>
+   <name> RenalCa.Alpha</name>
+   <format><decimal> 3 </decimal></format>
+   <label> Alpha </label>
+</showvalue>
+ <infobutton>
+  <row> 6.0 </row><col> 35 </col>
+  <line>  serum_flow*dial_flow/(serum_flow+dial_flow) </line>
+ </infobutton>
+
+</groupbox>
+
+
+End
+                                                                                                                                                                                                      
+              
+                          

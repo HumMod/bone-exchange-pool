@@ -1,0 +1,94 @@
+ HumMod / PO4Pool
+
+Created : 15-dec-10
+Last Modified : 15-dec-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> TalmagePO4Pool </name>
+
+<variables>
+  <var><name>Test</name><val>1</val></var>
+  <var><name>TestDrip</name><val>1</val></var>
+
+  <parm><name> PO4BolusValue </name><val>0</val></parm>
+  <parm><name> PO4DripValue </name><val>0</val></parm>
+  <parm><name> PO4DripTime </name><val>0</val></parm>
+  <parm><name> PO4DripStart </name><val>0</val></parm>
+
+  <var><name>Gain</name></var>
+  <var><name>Loss</name></var>
+  <var><name>[PO4Total]</name><val> 1.25 </val></var>
+  <var><name>[PO4]</name><val> 1.125 </val></var><!--mmol/L; combines HPO4 and H2PO4-->
+  <var><name>[PO4Comp]</name><val> .125 </val></var>
+  <var><name>[EPO4]</name><val> 1.125 </val></var>
+  <var><name>EMass</name><val> 1176 </val></var>
+  <var><name> PExch </name><val> 0 </val></var>
+  <var><name> [MassPO4] </name><val> 11 </val></var>
+</variables>
+
+<equations>
+ <diffeq>
+   <name> Mass </name>
+   <integralname> Mass </integralname>
+   <initialval> 365 </initialval>
+   <dervname> Change </dervname>
+   <errorlim> .5 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+
+  <block>
+    <name> Parms </name>
+      <if><test>( PO4BolusValue NE 0 ) AND Test</test>
+        <true>
+         <def><name> Mass </name><val> Mass + PO4BolusValue </val></def>
+         <def><name>Test</name><val> 0 </val></def>
+         <def><name>PO4BolusValue</name><val> 0 </val></def>
+        </true>
+        <false>
+         <def><name>Test</name><val>1</val></def>
+        </false>
+      </if>    
+    </block>
+
+ <block>
+   <name> Dervs </name>
+    <def><name> Gain </name><val> GutPO4.Absorption </val></def>
+    <if><test>( System.X - PO4DripStart - 1 LT PO4DripTime ) AND TestDrip</test>
+        <true>
+        <def><name> Gain </name><val> Gain + PO4DripValue </val></def>
+        </true>
+        <false>
+        <def><name>PO4DripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+        <def><name>PO4DripValue</name><val> 0 </val></def>
+        <def><name>PO4DripTime</name><val> 0 </val></def>
+        </false>
+    </if>    
+    <def><name> Loss </name><val> RenalPO4.Excretion </val></def><!-- should have a PO4 slough; how much?-->
+    <def><name> Change </name><val> Gain - Loss + TalmageBone.PO4Change  </val></def>
+                                        
+ </block>
+
+ <block>
+    <name> CalcConc </name>
+    <def><name> PExch  </name><val> .4 * ( [EPO4] - [PO4] - [PO4Comp] )</val></def>
+    <def><name> Mass   </name><val> Mass + ( 95 * PExch )  </val></def>
+    <def><name> EMass  </name><val> EMass - ( 95 * PExch ) </val></def>
+    <def><name> [PO4]  </name><val> .88 * Mass / ( 95 * 3 )      </val></def><!--mmol/L-->
+    <def><name> [PO4Comp]  </name><val> .12 * Mass / ( 95 * 3 )      </val></def>
+    <def><name> [EPO4] </name><val> EMass / ( 95 * 11 )    </val></def><!-- mmol/L-->
+    <def><name>[MassPO4] </name><val> Mass / 30 </val></def>
+ </block>
+
+
+</definitions>
+</structure>
+
+End                                                                                                                                                                                                                                                                                                                               
+   
+                                                                             

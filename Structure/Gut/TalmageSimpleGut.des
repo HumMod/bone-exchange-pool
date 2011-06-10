@@ -1,0 +1,20 @@
+ HumMod / Gut
+
+Created : 27-Oct-10
+Last Modified : 21-Dec-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+  
+<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Structure\Gut ?>
+
+<?include StomachParms.DES ?>
+<?include Stomach.DES ?>  
+<?include CaSupplement.DES ?>  
+<?include Duodenum.DES ?>                                                                  
+<?include DistalSmallIntestine.DES ?>
+<?include GutPO4.DES ?>
+<?include StomachPO4.DES ?>
+
+END

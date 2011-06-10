@@ -1,0 +1,156 @@
+ HumMod / Bone
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> TalmageBone </name>
+
+<variables>
+
+<!-- solubility constant parms -->
+ <!-- PTH -->
+  <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
+  <var><name> Kx </name><val>  .95 </val></var> 
+  <parm><name> SP </name><val>  40 </val></parm>
+  <parm><name> nh </name><val>  4  </val></parm>
+
+
+  <var><name> TargetC </name> </var>
+
+ <!-- Target -->
+  <var><name> Target </name> </var><!-- Target is K_sp as a function of CT -->
+  <parm><name> common </name> <val> .7 </val></parm>
+  <parm><name> Baseline </name><val> .81 </val></parm>
+  <var><name> Product </name><val> 1.31537  </val> </var>
+
+ <!--flux parms -->
+  <var><name> CaChange </name><val>0</val> </var>
+  <var><name> PO4Change </name><val>0</val> </var>
+  <var><name> H </name><val>0</val> </var>
+  <var><name> HposMult </name></var>
+  <var><name> HnegMult </name></var>
+  <var><name> Mult </name></var>
+  <var><name> PoolToPerm </name></var>
+
+
+ <!-- imported parms -->
+
+  <var><name> C </name><val> 1.20 </val> </var>
+  <var><name> P </name><val> 1.12 </val> </var>
+  <var><name> PTH </name></var>
+  <var><name> CTN </name></var>
+  <parm><name> CO </name><val> 3 </val></parm><!-- cardiac (plasma) output; 3L/min-->
+  <parm><name> BoneFlow </name><val> .04 </val></parm> <!-- serum flow to bone; 4% of total-->
+
+  <var><name>DelayP</name></var>
+  <var><name>DelayC</name></var>
+  <var><name>dP</name></var>
+  <var><name>dC</name></var>
+
+</variables>
+
+<equations>
+ <diffeq>
+  <name> BoneX </name>  
+     <integralname> BoneX </integralname>
+     <initialval> 1000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> SetP </name>  
+     <integralname> SetP </integralname>
+     <initialval> .8 </initialval>
+     <dervname> dSetP </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+  
+ <block>
+  <name>Dervs</name>
+
+  <def><name>  PTH  </name><val> TalmagePTHormone.[PTHwt] </val></def> <!-- ng/L-->
+  <def><name>  PTH  </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
+  <def><name> dP    </name><val> TalmagePTpool.PTSec </val></def>
+
+  <if>
+  <test> dP GT 0 </test>
+  <true>
+   <def><name> DelayP </name><val> .159 </val></def>
+  </true>
+  <false>
+   <def><name> DelayP </name><val> .0225 </val></def>
+  </false></if>
+ 
+  <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
+  <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
+  <def><name> Product </name><val> C * P </val></def> <!--mg-->  
+
+  <def><name>TargetP</name><val> Kx * ( ( PTH ^ nh ) / ( ( PTH ^ nh ) + ( SP ^ nh ) ) ) </val></def>
+
+  <def><name> dSetP </name><val> DelayP * ( TargetP - SetP ) </val></def>
+  <def><name>Target</name><val> SetP + Baseline </val></def>
+  <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+
+  <testcase>
+  <case>
+    <test> BoneX GE 900 </test>
+    <def><name>HposMult</name><val>1</val></def>
+  </case>
+  <case>
+    <test>BoneX LE 200 </test>
+    <def><name>HposMult</name><val>0</val></def>  
+  </case>
+  <case>
+    <test>TRUE</test>
+    <def><name> HposMult </name><val> ( ( BoneX - 200 ) / 700 ) </val></def>
+  </case>
+  </testcase>
+
+  <testcase>
+  <case>
+    <test> BoneX LE 1100 </test>
+    <def><name>HnegMult</name><val>1</val></def>
+  </case>
+  <case>
+    <test>BoneX GE 1300 </test>
+    <def><name>HnegMult</name><val>0</val></def>  
+  </case>
+  <case>
+    <test>TRUE</test>
+    <def><name> HnegMult </name><val> 1 - ( ( BoneX - 1100 ) / 200 ) </val></def>
+  </case>
+  </testcase>
+
+  <if>
+  <test> H GE 0 </test>
+    <true>
+    <def><name>Mult</name><val>HposMult</val></def>
+    </true>
+    <false>
+    <def><name> Mult </name><val> HnegMult </val></def>
+    </false>
+  </if>
+
+  <def><name> PoolToPerm </name><val> 0 * .03 * BoneX / 1440 </val></def>
+  <def><name> CaChange </name><val> Mult * ( common * BoneFlow * CO * 40 * H ) + PoolToPerm </val></def> 
+  <def><name> PO4Change </name><val> Mult * ( common * BoneFlow * CO * 95 * H + ( PoolToPerm * ( 95 / 40 ) ) ) </val></def> 		
+  <def><name> Change </name><val> -1 * ( CaChange ) </val></def> 
+
+<!-- 300/1440 corresponds to conversion to apatite -->
+<!-- .03 corresponds to ordinary 300 mg/day resorption by 'clasts, which is then replaced from the BoneX.  This will be tightened with addition of clast/blast model -->
+ </block>
+
+</definitions>
+</structure>
+
+End     

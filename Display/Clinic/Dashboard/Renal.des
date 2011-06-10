@@ -1,0 +1,77 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 11.0 </row>
+   <col> 52.0 </col>
+   <high> 6.0 </high>
+   <wide> 45.0 </wide>
+   <title> Renal Overview </title>
+
+ <showvalue>
+   <row> 1.0 </row><col> 1 </col>
+   <name> RenalCa.Excretion </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Urine Ca </label>
+ </showvalue>
+ <infobutton>
+  <row> 1.0 </row><col> 17 </col>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 2.5 </row><col> 1 </col>
+   <name> RenalPO4.Excretion </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Urine PO4 </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.5 </row><col> 17 </col>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 4. </row><col> 1 </col>
+   <name> RenalPO4.TmP/GFR </name>
+   <format><decimal> 3 </decimal></format>
+   <label> TmP/GFR </label>
+ </showvalue>
+ <infobutton>
+  <row> 4. </row><col> 17 </col>
+  <line>  ? </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 1.0 </row><col> 25 </col>
+   <name> RenalCa.FracExcretionCa </name>
+   <format><decimal> 3 </decimal></format>
+   <label> % Ca Ex. </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 2.5 </row><col> 25 </col>
+   <name> RenalPO4.FracExcretionPO4 </name>
+   <format><decimal> 3 </decimal></format>
+   <label> % PO4 Ex. </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 4.0 </row><col> 25 </col>
+   <name> RenalCa.Ca++filt </name>
+   <format><decimal> 3 </decimal></format>
+   <label> filtered Ca mmol/min </label>
+ </showvalue>
+
+</groupbox>
+   
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

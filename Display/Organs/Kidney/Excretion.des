@@ -1,0 +1,86 @@
+Kidney Panel
+
+Created : 29-Oct-10
+Last Modified : 19-Feb-11
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 20.0 </high>
+   <wide> 45.0 </wide>
+   <title> Kidney </title>
+
+<showvalue>
+   <row> 1 </row><col> 1 </col>
+   <name> RenalCa.Excretionmmol </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Ca Excretion </label>
+</showvalue>
+ <infobutton>
+  <row> 1.0 </row><col> 25 </col>
+  <line>  </line>
+  <line>  mmol/min </line>
+ </infobutton>
+
+<showvalue>
+   <row> 2.5 </row><col> 1 </col>
+   <name>RenalPO4.Excretionmmol</name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4 Excretion </label>
+</showvalue>
+ <infobutton>
+  <row> 2.5 </row><col> 25 </col>
+  <line>  </line>
+  <line>  mmol/min </line>
+ </infobutton>
+
+<showvalue>
+   <row> 4.0 </row><col> 1 </col>
+   <name> RenalPO4.TmP/GFR </name>
+   <format><decimal> 3 </decimal></format>
+   <label> TmP/GFR </label>
+</showvalue>
+ <infobutton>
+  <row> 4.0 </row><col> 25 </col>
+  <line>  </line>
+  <line>  mg.min/L </line>
+ </infobutton>
+
+
+<showgraph>
+  <row> 6.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> RenalCa.Excretion</name>
+     <label> Excreted Ca</label>
+     <linecolor> RED </linecolor>
+    </yvar>
+<yvar>
+     <name> RenalPO4.Excretion</name>
+     <label> Excreted PO4</label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+
+    <scale><min> 0</min><max> .1 </max></scale>
+  </yaxis>
+</showgraph>
+
+
+</groupbox>
+
+
+END
+                                                                                                                                                                                                      
+              
+                          

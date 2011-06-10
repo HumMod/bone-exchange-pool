@@ -1,0 +1,22 @@
+ HumMod / Hormones
+
+Created : 2010-06-05
+Last Modified : 2010-06-06
+Author : Tom Coleman
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+
+<branch>
+  <name> Hormones </name>
+  <label> Hormones </label>
+  <parent> Physiology </parent>
+</branch>
+
+<leaf>
+  <name> Talmage PTH Panel </name>
+  <label> PTH </label>
+  <parent> Hormones </parent>
+</leaf>
+
+End     
+      

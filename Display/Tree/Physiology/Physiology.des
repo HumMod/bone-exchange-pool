@@ -1,0 +1,35 @@
+ HumMod / Physiology DES
+
+Created : 
+Last Modified : 2011-01-04
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+
+<branch>
+  <name> PHYSIOLOGY </name>
+  <label> Physiology </label>
+  <parent> MAINMENU </parent>
+</branch>
+
+<?path Display\Tree\Physiology ?>
+
+<leaf>
+  <name> Talmage PTH Panel </name>
+  <label> Hormones </label>
+  <parent> PHYSIOLOGY </parent>
+</leaf>
+
+<leaf>
+  <name> TalmageVitD panel </name>
+  <label> Vitamin D </label>
+  <parent> PHYSIOLOGY </parent>
+</leaf>
+
+<leaf>
+  <name> TalmageElectrolytes panel </name>
+  <label> Electrolytes </label>
+  <parent> PHYSIOLOGY </parent>
+</leaf>
+
+End     

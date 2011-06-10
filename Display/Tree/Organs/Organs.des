@@ -1,0 +1,29 @@
+ HumMod / Organs DES
+
+Created : 
+Last Modified : 2011-01-04
+Author : Pruett
+Copyright : 2011
+By : University of Mississippi Medical Center
+
+<branch>
+  <name> ORGANS </name>
+  <label> Organs </label>
+  <parent> MAINMENU </parent>
+</branch>
+
+<?path Display ?>
+
+<leaf>
+  <name> Talmage Kidney Panel </name>
+  <label> Kidney </label>
+  <parent> ORGANS </parent>
+</leaf>
+
+<leaf>
+  <name> Talmage Gut Panel </name>
+  <label> Gut </label>
+  <parent> ORGANS </parent>
+</leaf>
+End     
+      

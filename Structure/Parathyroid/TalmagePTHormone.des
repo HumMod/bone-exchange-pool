@@ -1,0 +1,96 @@
+ HumMod / Parathyroid
+
+Created : 14-Sep-10
+Last Modified : 10-Nov-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> TalmagePTHormone </name>
+
+<variables>
+  <parm><name>PTHDegRate</name><val> -.159 </val></parm><!-- /min  (-.159 for 4 minute half life, -.206 for a 3 minute half life)-->
+  <parm><name> PTHBolusValue </name><val>0</val></parm>
+  <parm><name> PTHDripValue </name><val>0</val></parm>
+  <parm><name> PTHDripTime </name><val>0</val></parm>
+  <parm><name> PTHDripStart </name><val>0</val></parm>
+
+
+  <var><name>Vol</name><val> 3 </val></var> <!-- plasma volume-->
+  <var><name>PTHpumpRate</name><val>0</val></var>
+  <var><name>Test</name><val>1</val></var>
+  <var><name>TestDrip</name><val>1</val></var>
+  <var><name>[PTH] </name><val>.003</val></var>
+  <var><name>[PTHwt] </name></var>
+</variables>
+
+<functions>
+  <curve>
+    <name> PO4Effect </name>
+    <point><x> .9 </x><y> 1 </y><slope> 0 </slope></point>
+    <point><x> 4 </x><y> 3 </y><slope> 0 </slope></point>
+  </curve>
+</functions>
+
+<equations>
+<diffeq>
+     <name>PTH</name>  <!-- serum-->
+     <integralname>PTH</integralname>
+     <initialval>93.5</initialval><!-- ng-->
+     <dervname>dPTH/dt</dervname>
+     <errorlim>.05</errorlim>
+  </diffeq>
+
+</equations>
+
+<definitions>
+
+ <block>
+  <name> Parms </name>
+    <if><test>( PTHBolusValue NE 0 ) AND Test</test>
+      <true>
+       <def><name> PTH </name><val> PTH + PTHBolusValue </val></def>
+       <def><name>Test</name><val> 0 </val></def>
+       <def><name>PTHBolusValue</name><val> 0 </val></def>
+      </true>
+      <false>
+       <def><name>Test</name><val>1</val></def>
+      </false>
+    </if>    
+ </block>
+
+  <block>
+   <name>CalcPTH</name>
+
+      <if><test> ( ( System.X - PTHDripStart ) - 1 LT PTHDripTime ) AND TestDrip</test>
+        <true>
+          <def><name> PTHpumpRate </name><val> PTHDripValue  </val></def>
+        </true>
+        <false>
+          <def><name>PTHDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+          <def><name>PTHDripValue</name><val> 0 </val></def>
+          <def><name>PTHDripTime</name><val> 0 </val></def>
+        </false>
+      </if>    
+
+
+     <def><name>dPTH/dt</name><val> ( TalmagePTpool.Switch * TalmagePTpool.PTSec ) + PTHpumpRate + ( PTHDegRate * PTH ) </val></def>
+
+     <def><name>[PTHwt]</name><val>PTH / Vol </val></def>
+     <def><name>[PTH]</name><val>[PTHwt] / 9.400 </val></def><!--pmol/L MW is 9.4kD -->
+ </block>
+
+
+ <block>
+    <name>Wrapup</name>    
+
+ </block>
+
+</definitions>
+</structure>
+
+End                                                                                                                                                                                                                                                                                                                                                                       
+            
+                                             

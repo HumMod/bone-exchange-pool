@@ -1,0 +1,109 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 28.0 </high>
+   <wide> 45.0 </wide>
+   <title> Pool values </title>
+
+ <showvalue>
+   <row> 1.0 </row><col> 1.0 </col>
+   <name> TalmageCaPool.[Ca++] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Serum ionized Ca </label>
+ </showvalue>
+ <infobutton>
+  <row> 1.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mmol/L </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 2.0 </row><col> 1.0 </col>
+   <name> TalmageCaPool.Mass </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Total Serum Ca (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 3.0 </row><col> 1 </col>
+   <name> TalmagePO4Pool.[PO4] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4 </label>
+ </showvalue>
+ <infobutton>
+  <row> 3.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mmol/L </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 4.0 </row><col> 1.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.Mass</name>
+      <label> Mass </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 100 </min><max> 150 </max></scale>
+  </yaxis>
+ </showgraph>
+ <infobutton>
+  <row> 12.0 </row><col> 42 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+
+ <showgraph>
+  <row> 15.0 </row><col> 1.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc> 12 </inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.[Ca++]</name>
+      <label> Ca </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> TalmagePO4Pool.[PO4]</name>
+      <label> PO4 </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+   
+   <scale><min> 1</min><max> 1.5 </max></scale>
+  </yaxis>
+ </showgraph>
+
+</groupbox>
+
+
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

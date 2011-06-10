@@ -1,0 +1,32 @@
+Kidney Panel
+
+Created : 29-Oct-10
+Last Modified : 3-Nov-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<panel><name> Talmage Kidney Panel</name>
+
+<structurename> Kidney Panel </structurename>
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Display\Organs\Kidney\ ?>
+
+<?include Excretion.DES ?>
+<?include PTH-Effect.DES ?>
+<?include TmP-GFR.DES ?>
+<!--<?include Dialysis.DES ?>-->
+
+
+
+</panel>
+
+End
+                                                                                                                                                                                                      
+              
+                          

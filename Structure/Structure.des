@@ -1,0 +1,81 @@
+HumMod / Structure.DES
+
+Created : 21-Oct-04
+Last Modified : 2011-01-03
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+
+<?path C:\Users\Drew\Desktop\TalmageCaHomeostasis\Structure ?>
+
+<?include Gut\TalmageSimpleGut.DES ?>
+<?include Calcium\TalmageCaPool.DES ?>
+<?include Calcium\CalciumReceptor.DES ?>
+<?include Kidney\TalmageSimpleKidney.DES ?>
+<?include Phosphates\TalmagePO4Pool.DES ?>
+<?include Vitamin D\TalmageVitD.DES ?>
+<?include Parathyroid\Talmage PTPool.DES ?>
+<?include Parathyroid\TalmagePTHormone.DES ?>
+<?include Parathyroid\PTHReceptor.DES ?>
+<?include Calcitonin\Talmage calcitonin.DES ?>
+<?include Bone\TalmageBone.DES ?>
+<?include AUC\AUC.DES ?>
+
+<structure><name> Structure </name>
+
+<definitions>
+
+<block>
+  <name> Parms </name>
+  <call> AUC.Parms </call>
+  <call> TalmagePTHormone.Parms </call>
+  <call> TalmageCalcitonin.Parms </call>
+  <call> CaSupplement.Parms </call>
+  <call> Stomach.Parms </call>
+  <call> StomachPO4.Parms </call>
+  <call> TalmageCaPool.Parms </call>
+  <call> TalmagePO4Pool.Parms </call>
+  <call> TalmageVitD.Parms </call>
+
+
+</block>
+
+
+<block>
+  <name> Dervs </name>
+  
+  <call> CaSupplement.Dervs </call>
+  <call> Stomach.Dervs </call>
+  <call> Duodenum.Dervs </call>
+  <call> DistalSmallIntestine.Dervs </call>
+  <call> GutPO4.Dervs </call>
+  <call> StomachPO4.Dervs </call>
+  <call> TalmageCaPool.Dervs </call>
+  <call> TalmagePO4Pool.Dervs </call>
+
+ 
+  <call> TalmageCalcitonin.Dervs </call>
+  <call> TalmagePTHormone.CalcPTH </call>
+  <call> TalmagePTpool.CalcSecretion </call>
+  <call> TalmageVitD.Dervs </call>
+  <call> TalmageBone.Dervs </call>
+  <call> RenalParms.Dervs </call>
+  <call> RenalCa.Dervs </call>
+  <call> RenalPO4.Dervs </call>
+  <call> AUC.Dervs </call>
+</block>
+
+
+<block>
+  <name> Wrapup </name>
+  <call> TalmageCaPool.CalcConc </call> 
+  <call> TalmagePO4Pool.CalcConc </call>
+  <call> CaSupplement.Wrapup </call>
+  <call> TalmagePTHormone.Wrapup </call>
+  <call> TalmageVitD.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+
+End                                                  

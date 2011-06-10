@@ -1,0 +1,149 @@
+ HumMod / AUC
+
+Created : 10-Sep-10
+Last Modified : 29-Oct-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> AUC </name>
+
+<variables>
+  <var><name>StartTime</name><val> 0 </val></var>
+  <var><name>Test</name><val> 0 </val></var>
+  <var><name>dx</name></var>
+
+ <var><name> AvCa </name></var>
+<!-- <var><name> AUCCa </name><val> 0 </val></var>-->
+</variables>
+
+<equations>
+
+ <diffeq>
+   <name> AUCCa </name>
+   <integralname> AUCCa </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeCa </dervname>
+   <errorlim> 0.01 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCPTH </name>
+   <integralname> AUCPTH </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangePTH </dervname>
+   <errorlim> 0.01 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCuCa </name>
+   <integralname> AUCuCa </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeuCa </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCPO4 </name>
+   <integralname> AUCPO4 </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangePO4 </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCuPO4 </name>
+   <integralname> AUCuPO4 </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeuPO4 </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCFecalCa </name>
+   <integralname> AUCFecalCa </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeFecalCa </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCPoolToPerm </name>
+   <integralname> AUCPoolToPerm </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangePTP </dervname>
+   <errorlim> 0.0001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCAbsorption </name>
+   <integralname> AUCAbsorption </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeAbsorption </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUCPassive </name>
+   <integralname> AUCPassive </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangePassive </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUC </name>
+   <integralname> AUCActive </integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangeActive </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+   <name> AUC </name>
+   <integralname> AUCPO4Abs</integralname>
+   <initialval> 0 </initialval>
+   <dervname> ChangePO4Abs </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+</equations>
+
+<definitions>
+
+<block>
+ <name>Parms</name>
+  <def><name> StartTime </name><val> System.X - 1 </val></def>
+
+</block>
+  
+<block>
+ <name> AUC </name> 
+  <def><name> Test</name><val> NOT Test </val></def>
+</block>
+
+<block>
+ <name> Dervs </name> 
+  <def><name> dx </name><val> System.Dx </val></def>
+ <def><name> ChangeCa </name><val> Test * TalmageCaPool.[CaMass] </val></def>
+ <def><name> ChangePO4 </name><val> Test * TalmagePO4Pool.[MassPO4] </val></def>
+ <def><name> ChangePTH</name><val> Test * TalmagePTHormone.PTH / 3  </val></def>
+ <def><name> ChangeuCa </name><val> Test * RenalCa.Excretion </val></def>
+ <def><name> ChangeuPO4 </name><val> Test * RenalPO4.Excretion </val></def> 
+ <def><name> ChangeFecalCa </name><val> Test * DistalSmallIntestine.FecalCa </val></def>
+ <def><name> ChangePTP </name><val> Test * TalmageBone.PoolToPerm </val></def>  
+<def><name> ChangeAbsorption </name><val> Test * DistalSmallIntestine.Absorption </val></def> 
+<def><name> ChangeActive </name><val> Test * Duodenum.Absorption </val></def> 
+<def><name> ChangePassive</name><val> Test * DistalSmallIntestine.EntericAbsorption </val></def> 
+<def><name> ChangePO4Abs</name><val> Test * GutPO4.Absorption </val></def> 
+ <def><name>AvCa </name><val> AUCCa / ( System.X - StartTime ) </val></def>
+
+
+</block>
+
+</definitions>
+</structure>
+
+End                                                                                                                                                                                                                                                                                                                               
+   
+                                                          

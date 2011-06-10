@@ -1,0 +1,184 @@
+ AUC Panel
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<panel><name> AUC </name>
+
+<structurename> AUC </structurename>
+
+<showclock>
+   <row> 0.5 </row><col> 36 </col>
+   <name> System.X </name>
+   <ampm/>
+   <days/>
+</showclock>
+
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+   
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 1.0 </col>
+   <high> 39.0 </high>
+   <wide> 85.0 </wide>
+   <title> AUC </title>
+
+<actionbutton>
+ <row> 1 </row><col>1 </col>
+ <blockname> AUC </blockname>
+ <label> Begin AUC meaurement </label>
+</actionbutton>
+
+ <showvalue>
+   <row> 2.0 </row><col> 1.0 </col>
+   <name> AUC.AvCa </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Average total Ca (mg/dL) </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 3.5 </row><col> 1.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> AUC.AUCCa</name>
+      <label> AUC calcium </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1 </max></scale>
+  </yaxis>
+ </showgraph>
+
+ <showvalue>
+   <row> 16.5 </row><col> 1.0 </col>
+   <name> TalmageCaPool.Change </name>
+   <format><decimal> 3 </decimal></format>
+   <label> CaChange (mg) </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 18.0 </row><col> 1.0 </col>
+   <name> AUC.AUCPO4 </name>
+   <format><decimal> 3 </decimal></format>
+   <label> AUC PO4 (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 18.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 19.5 </row><col> 1.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> AUC.AUCPO4</name>
+      <label> AUC PO4 </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1 </max></scale>
+  </yaxis>
+ </showgraph>
+ <showvalue>
+   <row> 15. </row><col> 51.0 </col>
+   <name> AUC.AUCPTH </name>
+   <format><decimal> 3 </decimal></format>
+   <label> AUC PTH (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 15.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 16.5 </row><col> 51.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> AUC.AUCPTH</name>
+      <label> AUC PTH </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1 </max></scale>
+  </yaxis>
+ </showgraph>
+
+ <showvalue>
+   <row> 2.0 </row><col> 41.0 </col>
+   <name> AUC.AUCuCa </name>
+   <format><decimal> 3 </decimal></format>
+   <label> AUC urine Ca (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 3.5 </row><col> 41.0 </col>
+  <high> 10 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> AUC.AUCuCa</name>
+      <label> AUC urine calcium </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1 </max></scale>
+  </yaxis>
+ </showgraph>
+</groupbox>
+
+<showvalue>
+   <row> 42.5 </row><col> 1 </col>
+   <name> System.Dx </name>
+   <format><decimal> 6 </decimal></format>
+   <label> dx </label>
+</showvalue>
+
+
+</panel>
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

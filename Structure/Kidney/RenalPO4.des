@@ -1,0 +1,104 @@
+ HumMod / Kidney
+
+Created : 11-Sep-10
+Last Modified : 7-Jun-11
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name>RenalPO4</name>
+
+<variables>
+
+<!-- Reabsorption parms -->
+  <var><name> PO4Filt </name><val> 0 </val></var>
+  <var><name>PO4Gradient</name></var>
+  <var><name> PTH </name></var>
+  <parm><name> a </name><val> 140 </val></parm>
+  <parm><name> b </name><val> 45 </val></parm><!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+  <parm><name> s </name><val> 30 </val></parm>
+  <parm><name> n </name><val> 2 </val></parm>
+
+<!-- TmP/GFR parms-->
+  <var><name> TargetTmP/GFR </name><val> 70 </val></var>
+
+<!-- Excretion parms -->  
+  <var><name>Excretionmmol</name></var><!-- excreted PO4 in mmol/min-->                                                      
+  <var><name>Excretion</name><val>0</val></var><!-- excreted PO4 mass mg/min-->
+  <var><name> FracExcretionPO4 </name></var> 
+
+</variables>
+
+<functions>
+  <curve>
+    <name> PTHonTmP </name><!-- considering fixed for GFR = 125mL/min-->(0,90),(70,73)
+    <point><x> 10 </x><y> 90 </y><slope> 0 </slope></point>33.2,94,139.3
+    <point><x> 90 </x><y> 73 </y><slope> 0 </slope></point> 22.8,62,88.7
+  </curve>
+
+ <!-- 33.2/22.8 from McElduff et al 1987 Calcif Tissue Int 41:267-273 -->
+ <!-- assume the McElduff figures are for phosphorus; normalize they yield 106 and 72 respectively as 95*x/30-->
+ <!-- the -->
+</functions>
+
+<equations>
+
+ <diffeq>
+  <name> TmP/GFR </name>  
+     <integralname> TmP/GFR </integralname>
+     <initialval> 87 </initialval>
+     <dervname> dTmP </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+
+ <block>
+ <name>Dervs</name>
+
+<!-- Filtration-->
+   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR </val></def><!-- mmol/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
+   <def><name>PTH</name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
+
+
+<!-- Calculate TmP/GFR -->
+   <def><name> TargetTmP/GFR </name>
+	<!-- <val> ( -1.1875 * PTH ) + 144.5 </val> -->
+	<!--<val> PTHonTmP [ PTH ] </val>-->
+	<val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) ) + b </val>  <!--taken by forming a sigmoid on 10,90; 35, 69.6; 80,62  Bijvoet et al, through Parfitt Misconceptions 4-->
+   </def>  <!-- recheck the values in Misconceptions 4; they are too low.  we expect 1.2 mmol=3.5mg/dL P = 10.8 mg/dL PO4 at PTH in 35-45-->
+
+   <def><name> dTmP </name><val> .045 * (TargetTmP/GFR - TmP/GFR ) </val></def>
+   <def><name> PO4Gradient </name><val> ( .9 * TalmagePO4Pool.[PO4] * 95 ) - TmP/GFR </val></def>
+
+<!-- Reabsorption-->
+   <if>
+   <test> PO4Gradient GT 0 </test>
+    <true>
+     <def>
+      <name> Excretion </name>
+      <val> RenalParms.ModGFR * PO4Gradient </val>
+     </def>
+    </true>
+    <false>
+     <def>
+      <name> Excretion </name>
+      <val> 0 </val>
+     </def>
+    </false>
+   </if>
+
+<!-- Excretion -->
+   <def><name> Excretionmmol </name><val> Excretion / 95 </val></def>
+   <def><name> FracExcretionPO4 </name><val> Excretionmmol / ( RenalParms.ModGFR * .9 * TalmagePO4Pool.[PO4] ) </val></def>
+
+ </block>
+
+</definitions>  
+
+</structure>                                                                                                                                                                                                  
+                         
+                                                                                                                                                                                                               

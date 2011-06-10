@@ -1,0 +1,103 @@
+ HumMod / Kidney
+
+Created : 11-Sep-10
+Last Modified : 21-Dec-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name>RenalCa</name>
+
+<variables>
+
+<!-- The isea of the coupled kidney is that, if a physiome is in steady state, renal excretion is coupled to serum iCa via PTH.  We solve for the PTH effect on renal absorption of calcium by inverting the Ca-PTH function, and plug into the linear regression for excretion as a function of serum lvel derived from data in Adami/Parfitt 2001-->
+
+<!-- CaExc variables -->
+  <var><name>PTH</name></var>
+  <var><name> root </name></var>
+  <var><name> SP </name></var>
+  <var><name>alpha</name></var>
+  <var><name>beta</name></var>
+  <parm><name>m</name><val> .16 </val></parm>.16
+  <parm><name>b</name><val> -.183 </val></parm>.183
+  <var><name> iCa </name></var>
+  <var><name> cCa </name></var>
+  <var><name> Vol </name></var>
+  <var><name> ImpCa </name></var>
+
+<!-- Filtration parms -->
+  <var><name> GFR </name></var>
+  <var><name> Ca++filt </name></var>
+
+<!-- Excretion parms -->
+  <var><name> FracExcretionCaTarget </name></var> 
+  <var><name> Excretionmmol </name><val>0</val></var><!-- calcium excretion-->
+  <var><name> Excretion </name><val>0</val></var><!-- calcium excretion-->
+
+</variables>
+
+<equations>
+
+ <diffeq>
+   <name> FracExcretionCa </name>
+   <integralname> FracExcretionCa </integralname>
+   <initialval> .03 </initialval>
+   <dervname> dFrac </dervname>
+   <errorlim> 0.0003 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+ <block>
+ <name>Dervs </name>
+
+<!-- Imported -->
+
+  <def><name> GFR </name><val> RenalParms.ModGFR </val></def>
+  <def><name>PTH</name><val> TalmagePTHormone.PTH * PTHReceptor.PTHrExpression </val></def> 
+  <def><name> alpha </name><val> - ( TalmagePTpool.A - TalmagePTpool.B ) / TalmagePTHormone.PTHDegRate </val></def>
+  <def><name> beta </name><val> - TalmagePTpool.B / TalmagePTHormone.PTHDegRate </val></def>
+  <def><name> SP </name><val> TalmagePTpool.SetPoint </val></def>
+  <def><name> root </name><val> INVERT TalmagePTpool.NH </val></def>
+  <def><name> iCa </name><val> TalmageCaPool.[Ca++] </val></def>
+  <def><name> cCa </name><val> TalmageCaPool.[CaComp] </val></def>
+  <def><name> Vol </name><val> TalmagePTHormone.Vol </val></def>
+
+<!-- filtration-->
+
+  <def><name> Ca++filt </name> <val> ( iCa + cCa ) * GFR </val></def><!-- mmol/min-->
+
+<!-- tubule -->
+
+ <if>
+ <test> PTH GT beta </test>
+  <true>
+  <def><name> ImpCa </name><val> SP * ( ( ( alpha + beta - PTH ) / ( PTH - beta ) ) ^ ( root ) ) </val></def> 
+  <def><name> FracExcretionCaTarget </name><val> ( m * ImpCa ) + b </val></def>
+  </true>
+  <false>
+  <def><name>FracExcretionCaTarget </name><val> .03 </val></def>
+  </false>
+ </if>
+
+ <def><name> dFrac </name><val> .1 * ( FracExcretionCaTarget - FracExcretionCa ) </val></def>
+
+ 
+<!-- excretion -->
+
+ <def><name> Excretionmmol </name><val> Ca++filt * FracExcretionCa </val></def>
+ <def><name> Excretion </name><val> Excretionmmol * 40 </val></def><!-- mg/min-->
+
+
+ </block>
+
+</definitions>  
+</structure>
+                         
+                                   
+                                                                                                       
+
+.125 L/min * 1.2 mmol/L * 40 mg/mmol = filtered_amount
+Excretion/filtered/amount=exc%                                                                     

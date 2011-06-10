@@ -1,0 +1,37 @@
+HumMod / CaReceptor
+
+Created : 2011-02-11
+Last Modified : 2011-02-11
+Author : w pruett
+Copyright : 2011-2011
+By : University of Mississippi Medical Center
+
+<structurename> CaReceptor </structurename>
+
+<groupbox>
+   <row> 21.0 </row>
+   <col> 2.0 </col>
+   <high> 4.5 </high>
+   <wide> 45.0 </wide>
+   <title> Receptor Expression </title>
+
+<repeatlist>
+  <name> RExp </name>
+  <firstval> 0.01 </firstval>
+  <repeat><reps> 200 </reps><stepsize> .01 </stepsize></repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 1.5 </row><col> 2.0 </col>
+  <name> PTHReceptor.PTHrExpression </name>
+  <listname> RExp </listname>
+  <label> PTHr </label>
+</slidebar>
+
+<slidebar>
+  <row> 3 </row><col> 2.0 </col>
+  <name> CaReceptor.CaRExpression </name>
+  <listname> RExp </listname>
+  <label> CaR </label>
+</slidebar>
+</groupbox>

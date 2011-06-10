@@ -1,0 +1,110 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<groupbox>
+   <row> 17.0 </row>
+   <col> 52.0 </col>
+   <high> 30.0 </high>
+   <wide> 45.0 </wide>
+   <title> Hormone Overview </title>
+
+ <showvalue>
+   <row> 1.0 </row><col> 1 </col>
+   <name> TalmagePTHormone.[PTHwt]</name>
+   <format><decimal> 3 </decimal></format>
+   <label> Parathyroid hormone concentration </label>
+ </showvalue>
+ <infobutton>
+  <row> 1.0 </row><col> 35 </col>
+  <line>  ng/L </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 2.5 </row><col> 1 </col>
+   <name> TalmageCalcitonin.[CTNwt]</name>
+   <format><decimal> 3 </decimal></format>
+   <label> Calcitonin concentration </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.5 </row><col> 35 </col>
+  <line>  ng/L </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 4.0 </row><col> 1 </col>
+   <name> TalmageVitD.v1A(OH)ase </name>
+   <format><decimal> 3 </decimal></format>
+   <label> 1alpha (OH)ase </label>
+ </showvalue>
+ <infobutton>
+  <row> 4.0 </row><col> 35 </col>
+  <line>   </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 5.5 </row><col> 1 </col>
+   <name> TalmageVitD.[125OH2D3] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> 1,25 (OH)2 D3 </label>
+ </showvalue>
+ <infobutton>
+  <row> 5.5 </row><col> 35 </col>
+  <line>   </line>
+ </infobutton>
+
+ <showgraph>
+  <row> 7.5 </row><col> 1 </col>
+  <high> 10 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> TalmagePTHormone.[PTHwt]</name>
+     <label> serum [PTHwt] </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+   <yvar>
+     <name> TalmageCalcitonin.[CTNwt]</name>
+     <label> serum [CTwt] </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+
+    <scale><min> 45</min><max> 50 </max></scale>
+  </yaxis>
+ </showgraph>
+
+ <showgraph>
+  <row> 19.0 </row><col> 1 </col>
+  <high> 10 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageVitD.[125OH2D3]</name>
+      <label> 1,25 (OH)2D3 </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> 2 </max></scale>
+  </yaxis>
+ </showgraph>
+
+</groupbox>
+
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

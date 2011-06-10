@@ -1,0 +1,109 @@
+ HumMod / Calcitonin
+
+Created : 27-Oct-10
+Last Modified : 19-Feb-11
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name>TalmageCalcitonin</name>
+
+This is evidently a simple structure; we are not keeping track of pool size, only ideal calcitonin levels.
+
+<variables>
+
+<!-- bolus/drip -->
+  <parm><name> CTBolusValue </name><val>0</val></parm>
+  <parm><name> CTDripValue </name><val>0</val></parm>
+  <parm><name> CTDripTime </name><val>0</val></parm>
+  <parm><name> CTDripStart </name><val>0</val></parm>
+  <var><name>Test</name><val>1</val></var>
+
+<!-- secretion parms -->
+  <var><name> KCTN </name><val> 1.45 </val></var>
+  <var><name> n </name><val> 12 </val></var>
+  <var><name> alpha </name><val> 10 </val></var>
+
+<!-- serum level parms -->
+  <parm><name> CT_Decay </name><val> .066 </val></parm>
+  <var><name> Gain </name></var>
+  <var><name> Loss </name></var>
+
+<!-- concentration parms -->
+  <var><name>[CTNwt]</name><val>15</val></var>
+  <var><name>[CTN]</name><val>5</val></var>
+  <var><name> Vol </name><val>3</val></var><!-- plasma volume-->
+ 
+
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> CTN </name>  
+     <integralname> CTN </integralname>
+     <initialval> 15 </initialval>
+     <dervname> dCTN </dervname>
+     <errorlim> .1 </errorlim>
+ </diffeq>
+
+</equations>
+
+
+<definitions>
+ <block>
+ <name> Parms </name>
+  <if>
+    <test>( CTBolusValue NE 0 ) AND Test</test>
+    <true>
+     <def><name> CTN </name><val> CTN + CTBolusValue </val></def>
+     <def><name>Test</name><val> 0 </val></def>
+     <def><name>CTBolusValue</name><val> 0 </val></def>
+    </true>
+    <false>
+     <def><name>Test</name><val>1</val></def>
+    </false>
+  </if>
+ </block>
+
+ <block>
+ <name>Dervs </name>
+
+    <def>
+     <name> Gain </name> 
+     <val> ( ( alpha * ( TalmageCaPool.[Ca++] ^ n ) ) / ( ( TalmageCaPool.[Ca++] ^ n ) + ( KCTN ^ n ) ) )  </val>
+    </def>
+
+     <if><test> ( ( System.X - CTDripStart ) - 1 LT CTDripTime ) AND Test</test>
+        <true>
+          <def><name> Gain </name><val> Gain + CTDripValue </val></def>
+        </true>
+        <false>
+          <def><name>CTDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+          <def><name>CTDripValue</name><val> 0 </val></def>
+          <def><name>CTDripTime</name><val> 0 </val></def>
+        </false>
+      </if>    
+
+    <def>
+     <name> Loss </name>
+     <val> CT_Decay * CTN </val>
+    </def>
+
+    <def>
+     <name> dCTN </name>
+     <val> Gain - Loss </val>
+    </def>
+
+    <def>
+     <name> [CTNwt] </name> 
+     <val> CTN / Vol </val>
+    </def><!--ng/L, 3 is plasma volume in L-->
+
+ </block>
+
+</definitions>  
+</structure>                                                                                                                                                                                                                                                                           
+                                                          
+                         

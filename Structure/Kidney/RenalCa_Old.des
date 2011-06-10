@@ -1,0 +1,87 @@
+ HumMod / Kidney
+
+Created : 11-Sep-10
+Last Modified : 21-Dec-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name>RenalCa</name>
+
+<variables>
+
+<!-- PTH effect variables -->
+  <var><name>PTH</name></var>
+  <parm><name> np </name><val> 8.5 </val></parm>
+  <parm><name> spp </name><val> 32 </val></parm>
+  <var><name>TargetPTHeffect</name></var>
+
+<!-- Reabsorption parms -->
+  <var><name> Ca++filt </name></var>
+  <parm><name> RApassive </name><val> .9 </val></parm><!-- multiply sourced, Brenner etc-->
+  <var><name>DCTCa++</name></var><!-- calcium delivery to distal tubule-->
+  <var><name>ActiveReabsorb</name></var>
+  <var><name> Test </name></var>
+  <var><name> RA</name></var>
+<!-- Excretion parms -->
+  <var><name> Excretionmmol </name><val>0</val></var><!-- calcium excretion-->
+  <var><name> Excretion </name><val>0</val></var><!-- calcium excretion-->
+  <var><name> FracExcretionCa </name></var> 
+
+<!-- Dialysis associated variables -->
+  <parm><name> DialFlow </name><val> .5 </val></parm> 
+  <parm><name> dialyze </name><val> 0 </val></parm> 
+  <parm><name> [Ca_dial] </name><val> 1.25 </val></parm> 
+  <var><name>CaFlux</name></var>
+  <var><name>Alpha</name></var>
+  <var><name>HD_SF</name><val>.18</val></var><!-- haemodialysis serum flow L/min (.3 L/min blood=.18L plasma, assuming 40%Hct)-->
+
+</variables>
+
+<equations>
+
+ <diffeq>
+   <name> PTHeffect </name>
+   <integralname> PTHeffect </integralname>
+   <initialval> .8 </initialval>
+   <dervname> dPTHeffect </dervname>
+   <errorlim> 0.001 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+ <block>
+ <name>Dervs </name>
+
+<!-- filtration-->
+  <def><name> Ca++filt </name> <val> ( TalmageCaPool.[Ca++] + TalmageCaPool.[CaComp] ) * RenalParms.ModGFR </val></def><!-- mmol/min-->
+  <def><name>PTH</name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
+
+
+<!-- tubule -->
+
+ <def><name> TargetPTHeffect </name><val> 0.5 + ( 0.5 * ( ( PTH ^ np ) / ( ( PTH ^ np ) + ( spp ^ np ) ) ) ) </val></def> 
+ <def><name> dPTHeffect </name><val> .1 * ( TargetPTHeffect - PTHeffect ) </val></def>
+ <def><name> RA </name><val> ( ( 1 - RApassive ) * PTHeffect ) + RApassive</val></def>
+
+  <if>
+   <test> Ca++filt GE ( 2. * RenalParms.ModGFR ) </test>
+   <true>
+    <def><name> Excretionmmol </name><val> Ca++filt * ( 1 - RApassive ) * ( 1 - PTHeffect ) + Ca++filt - ( 2. * RenalParms.ModGFR )</val></def>
+   </true>
+   <false>  
+     <def><name> Excretionmmol </name><val> Ca++filt * ( 1 - RApassive ) * ( 1 - PTHeffect ) </val></def>       </false>
+  </if>
+ 
+<!-- excretion -->
+   <def><name> Excretion</name><val> Excretionmmol * 40 </val></def><!-- mg/min-->
+   <def><name> FracExcretionCa </name><val> Excretionmmol / Ca++filt  </val></def>
+
+ </block>
+
+</definitions>  
+</structure>
+                         
+                                                                                                                                                                                                               

@@ -1,0 +1,116 @@
+Calcium - electrolyte panel
+
+Created : 2-Nov-10
+Last Modified : 1-Mar-11
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 30.0 </high>
+   <wide> 44.0 </wide>
+   <title> Calcium </title>
+
+<showvalue>
+   <row> 1.0 </row><col> 1 </col>
+   <name> TalmageCaPool.[Ca++] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [iCa] </label>
+</showvalue>
+ <infobutton>
+  <row> 1 </row><col> 35 </col>
+  <line>  mmol/L </line>
+ </infobutton>
+
+<showvalue>
+   <row> 2.5 </row><col> 1 </col>
+   <name> TalmageCaPool.[CaComp] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Complexed [Ca] (mg/dL) </label>
+</showvalue>
+ <infobutton>
+  <row> 2.5 </row><col> 35 </col>
+  <line>  total complexed calcium mass concentration by weight</line>
+ </infobutton>
+
+<showvalue>
+   <row> 4. </row><col> 1 </col>
+   <name> TalmageCaPool.[Ca] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [Ca] (mg/dL) </label>
+</showvalue>
+ <infobutton>
+  <row> 4. </row><col> 35 </col>
+  <line>  total calcium molar concentration</line>
+ </infobutton>
+
+<showvalue>
+   <row> 5.5 </row><col> 1 </col>
+   <name> TalmageCaPool.EMass </name>
+   <format><decimal> 3 </decimal></format>
+   <label> ECF Ca mass mg </label>
+</showvalue>
+ <infobutton>
+  <row> 5.5 </row><col> 35 </col>
+  <line>  total calcium molar concentration</line>
+ </infobutton>
+
+<showvalue>
+   <row> 7. </row><col> 1 </col>
+   <name> TalmageCaPool.[ECa] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Total ECF [Ca] (mmol/L) </label>
+</showvalue>
+ <infobutton>
+  <row> 7. </row><col> 35 </col>
+  <line>  total calcium molar concentration</line>
+ </infobutton>
+
+
+<showgraph>
+  <row> 9. </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.[Ca++]</name>
+      <label> [iCa] </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 1</min><max> 1.2 </max></scale>
+  </yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 20 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.[CaMass]</name>
+      <label> [CaMass] </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 9</min><max> 10 </max></scale>
+  </yaxis>
+</showgraph>
+
+</groupbox>
+
+                                                                                                                                                                                                                       
+   
+                                                                            

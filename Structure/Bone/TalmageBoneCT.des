@@ -1,0 +1,77 @@
+ HumMod / Bone
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> TalmageBone </name>
+
+<variables>
+  <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
+  <var><name> TargetC </name> </var><!-- Target is K_sp as a function of CT -->
+  <var><name> Target </name> </var><!-- Target is K_sp as a function of CT -->
+
+  <var><name> CaChange </name><val>0</val> </var>
+  <var><name> PO4Change </name><val>0</val> </var>
+
+  <var><name> Product </name><val> 1.56  </val> </var>
+  <var><name> H </name><val>0</val> </var>
+  <var><name> C </name><val>1.2 </val> </var>
+  <var><name> P </name><val>1.12 </val> </var>
+
+  <parm><name> CO </name><val> 3.6 </val></parm><!-- cardiac (plasma) output; 3L/min-->
+  <parm><name> BoneFlow </name><val> .04 </val></parm> <!-- serum flow to bone; 4% of total-->
+
+  <var><name> Ky </name><val> .5 </val></var>
+  <parm><name> SQ </name><val> 7 </val></parm>
+  <parm><name> mh </name><val> 7 </val></parm>
+
+  <parm><name> Kx </name><val> .71 </val></parm>
+  <parm><name> SP </name><val> 44 </val></parm>
+  <parm><name> nh </name><val> 3.3 </val></parm>
+
+  <parm><name> Baseline </name><val> .81 </val></parm>
+
+</variables>
+
+<equations>
+ <diffeq>
+  <name> BoneX </name>  
+     <integralname> BoneX </integralname>
+     <initialval> 3000 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+  
+ <block>
+  <name>Dervs</name>
+
+  <def><name> Product </name><val> C * P </val></def> <!--mg--> 
+
+ 
+
+  <def><name>TargetP</name><val> Kx * ( ( TalmagePTHormone.[PTHwt] ^ nh ) / ( ( TalmagePTHormone.[PTHwt] ^ nh ) + ( SP ^ nh ) ) ) </val></def>
+  <def><name>TargetC</name><val> Ky * ( ( SQ ^ mh ) / ( ( TalmageCalcitonin.[CTNwt] ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
+  <def><name>Target</name><val> TargetP + TargetC + Baseline </val></def>
+
+  <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
+  <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
+  <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+
+  <def><name> CaChange </name><val> 2.3 * BoneFlow * CO * 40 * H</val></def> 
+  <def><name> PO4Change </name><val> 2.3 * BoneFlow * CO * 95 * H </val></def> 		
+  <def><name> Change </name><val> - CaChange -  ( 300 / 1440 ) </val></def> <!-- 30 corresponds to osteoclastic resorption-->
+ </block>
+
+</definitions>
+</structure>
+
+End     

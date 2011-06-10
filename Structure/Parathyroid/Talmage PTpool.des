@@ -1,0 +1,66 @@
+  HumMod / Parathyroid
+
+Created : 26-Oct-10
+Last Modified : 29-Oct-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> TalmagePTpool </name>
+
+<variables>
+
+  <parm><name> CaRExpression </name><val>1</val></parm>
+
+  <parm><name>NH</name><val> 26.89 </val></parm><!--11-->26.89
+  <parm><name>B</name><val> 4.19 </val></parm><!--4.4-->4.19
+  <parm><name>A</name><val> 66.22 </val></parm><!--55-->66.22
+  <parm><name>SetPoint</name><val> 1.15 </val></parm>1.15
+  <parm><name>Switch</name><val> 1 </val></parm>
+
+  <var><name>ModifiedCa</name></var>
+  <var><name>Sec_Target</name> <val> 0 </val> </var>
+
+</variables>
+
+<equations>
+
+ <diffeq>
+     <name>PTSec</name>  
+     <integralname>PTSec</integralname>
+     <initialval>5.406</initialval>
+     <dervname>dPTSec</dervname>
+     <errorlim>.1</errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+  
+  <block>
+   <name>CalcSecretion</name>    
+
+    <def>
+      <name> ModifiedCa </name>
+      <val> CaReceptor.CaRExpression * TalmageCaPool.[Ca++]  </val>
+    </def>
+
+    <def>
+      <name> Sec_Target </name>
+      <val> ( ( A - B ) * ( SetPoint ^ NH ) / ( ( SetPoint ^ NH ) + ( ModifiedCa ^ NH ) ) ) + B </val>
+    </def>
+    <def>
+      <name> dPTSec </name>
+      <val> .5 * ( Sec_Target - PTSec ) </val>
+    </def> <!-- ng /min^2 -->
+
+  </block>
+</definitions>
+</structure>
+
+End                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                 
+                                                                                                                                                                                                                        

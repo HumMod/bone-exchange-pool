@@ -1,0 +1,88 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 24.5 </high>
+   <wide> 45.0 </wide>
+   <title> Pool values </title>
+
+ <showvalue>
+   <row> 1.0 </row><col> 1.0 </col>
+   <name> TalmageCaPool.[Ca++] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Serum ionized Ca (mmol/L) </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 2.0 </row><col> 1.0 </col>
+   <name> TalmageCaPool.[CaMass] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Serum Ca (mg.dL) </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 3.0 </row><col> 1 </col>
+   <name> TalmagePO4Pool.[PO4] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4 (mmol/L) </label>
+ </showvalue>
+
+ <showgraph>
+  <row> 4.0 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc> 12 </inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.[Ca++]</name>
+      <label> Ca (mmol/L) </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+      <name> TalmagePO4Pool.[PO4]</name>
+      <label> PO4 (mmol/L) </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+   
+   <scale><min> 1</min><max> 1.5 </max></scale>
+  </yaxis>
+ </showgraph>
+
+ <showgraph>
+  <row> 14.5 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 40 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max><inc>12</inc></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> TalmageCaPool.[CaMass]</name>
+      <label> [Ca] (mg/dL) </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 9 </min><max> 11 </max></scale>
+  </yaxis>
+ </showgraph>
+
+</groupbox>
+
+
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                

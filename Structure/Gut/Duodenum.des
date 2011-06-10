@@ -1,0 +1,95 @@
+ HumMod / Gut
+
+Created : 27-Oct-10
+Last Modified : 28-feb-11
+Author : W Pruett
+Copyright : 2010-2010//
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name> Duodenum </name>
+
+<variables>
+
+<!-- active factors -->
+  <var><name> AbsFrac </name></var>
+  <var><name> Common </name><val> .18 </val></var>.003
+  <var><name> In </name></var>
+  <parm><name> a </name><val> .97 </val></parm>.95
+  <parm><name> b </name><val> .15  </val></parm>.185
+  <parm><name> WashOut </name><val> .2 </val></parm> 92.5% washout in 10 minutes
+
+<!-- Total effect -->
+  <var><name> Absorption </name></var>
+
+<!-- timer vars -->
+  <var><name> CaIn </name></var>
+  <var><name> Outflow </name><val> 0 </val></var>
+</variables>
+
+<equations>
+
+
+ <diffeq>
+  <name> Mass </name>  
+     <integralname> Mass </integralname>
+     <initialval> 0.1 </initialval>
+     <dervname> Change </dervname>
+     <errorlim> .01 </errorlim>
+ </diffeq>
+
+</equations>
+
+
+<definitions>
+
+ <block>
+ <name>Dervs </name>
+
+  <def>
+	<name> In </name>
+	<val> Stomach.ToDuod </val>
+  </def>
+
+ <if>
+  <test> Mass LE .0000454 </test>
+   <true>
+   	<def>
+	<name> AbsFrac </name>
+	<val> Common * (a + ( 10 * b ) ) </val>
+	</def> 
+	<!--keeps the logarithm well defined; only takes effect if duodmass<e^-10-->
+   </true>
+   <false>
+   	<def>
+	<name> AbsFrac </name>
+	<val> Common * ( a - ( b * ( LOG Mass ) ) )</val>
+	</def> 
+  </false>
+  </if>
+
+
+   <def>
+	<name> Absorption </name> 
+	<val> Mass * AbsFrac </val>
+   </def>
+
+   <def>
+	<name> Outflow </name> 
+	<val> Mass * WashOut </val>
+   </def>
+
+   <def>
+	<name> Change </name>
+	<val> In - Absorption - Outflow </val>
+   </def>
+
+
+ </block>
+
+
+</definitions>  
+
+</structure>                                                                                                                                                  
+   
+                                                                               

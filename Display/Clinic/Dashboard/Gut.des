@@ -1,0 +1,70 @@
+
+Created : 17-Oct-10
+Last Modified : 17-Oct-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 52.0 </col>
+   <high> 9.0 </high>
+   <wide> 45.0 </wide>
+   <title> Gut Overview </title>
+
+
+ <showvalue>
+   <row> 2.5 </row><col> 1.0 </col>
+   <name> DistalSmallIntestine.Absorption </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Calcium absorption (mg/min) </label>
+ </showvalue>
+ <infobutton>
+  <row> 2.5 </row><col> 35 </col>
+  <line>  Intake * AbsoluteGutFraction</line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 4.0 </row><col> 1.0 </col>
+   <name> GutPO4.Absorption </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4 absorption (mg/min) </label>
+ </showvalue>
+ <infobutton>
+  <row> 4.0 </row><col> 35 </col>
+  <line> Intake*PO4GutFraction </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 5.5 </row><col> 1 </col>
+   <name> DistalSmallIntestine.Slough </name>
+   <format><decimal> 3 </decimal></format>
+   <label> gut slough (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 5.5 </row><col> 35 </col>
+  <line>  constant </line>
+  <line>  mg </line>
+ </infobutton>
+
+ <showvalue>
+   <row> 7.0 </row><col> 1 </col>
+   <name> Stomach.NetIntake </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Net intake (mg/min) </label>
+ </showvalue>
+ <infobutton>
+  <row> 7.0 </row><col> 35 </col>
+  <line>  constant </line>
+  <line>  mg/min </line>
+ </infobutton>
+</groupbox>
+
+End
+                                                                                                                                                                                                                                                                                                       
+ 
+                                                                                                                                                                                                
