@@ -49,8 +49,8 @@ HumMod / GoFor
 
 <gofor>
   <solutionint> 300.0 </solutionint>
-  <displayint> 6.0 </displayint>
-  <storageint> 300.0 </storageint>
+  <displayint> 5.0 </displayint>
+  <storageint> 30.0 </storageint>
   <menuitem> 5 Hours </menuitem>
 </gofor>
 
