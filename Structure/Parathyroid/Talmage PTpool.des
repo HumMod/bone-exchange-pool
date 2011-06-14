@@ -15,10 +15,14 @@ Schema : DES V1.0
   <parm><name> CaRExpression </name><val>1</val></parm>
 
   <parm><name>NH</name><val> 26.89 </val></parm><!--11-->26.89
-  <parm><name>B</name><val> 4.19 </val></parm><!--4.4-->4.19
+  <var><name>B</name><val> 4.19 </val></var><!--4.4-->4.19
   <parm><name>A</name><val> 66.22 </val></parm><!--55-->66.22
   <parm><name>SetPoint</name><val> 1.15 </val></parm>1.15
   <parm><name>Switch</name><val> 1 </val></parm>
+
+  <parm><name> SP </name><val> 1.25 </val></parm>
+  <parm><name> AP </name><val> 8.2 </val></parm>
+  <parm><name> nP </name><val> 10 </val></parm>
 
   <var><name>ModifiedCa</name></var>
   <var><name>Sec_Target</name> <val> 0 </val> </var>
