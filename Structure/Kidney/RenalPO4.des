@@ -15,8 +15,8 @@ Schema : DES V1.0
   <var><name> PO4Filt </name><val> 0 </val></var>
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
-  <parm><name> a </name><val> 140 </val></parm>
-  <parm><name> b </name><val> 65 </val></parm>45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+  <parm><name> a </name><val> 35 </val></parm>
+  <parm><name> b </name><val> 85 </val></parm>45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
   <parm><name> s </name><val> 30 </val></parm>
   <parm><name> n </name><val> 2 </val></parm>
 
@@ -31,12 +31,11 @@ Schema : DES V1.0
 </variables>
 
 <functions>
-  <curve>
+<curve>
     <name> PTHonTmP </name><!-- considering fixed for GFR = 125mL/min-->(0,90),(70,73)
     <point><x> 10 </x><y> 90 </y><slope> 0 </slope></point>33.2,94,139.3
     <point><x> 90 </x><y> 73 </y><slope> 0 </slope></point> 22.8,62,88.7
   </curve>
-
  <!-- 33.2/22.8 from McElduff et al 1987 Calcif Tissue Int 41:267-273 -->
  <!-- assume the McElduff figures are for phosphorus; normalize they yield 106 and 72 respectively as 95*x/30-->
  <!-- the -->
