@@ -37,9 +37,7 @@ By : University of Mississippi Medical Center
   <call> TalmagePO4Pool.Parms </call>
   <call> TalmageVitD.Parms </call>
 
-
 </block>
-
 
 <block>
   <name> Dervs </name>
@@ -52,8 +50,6 @@ By : University of Mississippi Medical Center
   <call> StomachPO4.Dervs </call>
   <call> TalmageCaPool.Dervs </call>
   <call> TalmagePO4Pool.Dervs </call>
-
- 
   <call> TalmageCalcitonin.Dervs </call>
   <call> TalmagePTHormone.CalcPTH </call>
   <call> TalmagePTpool.CalcSecretion </call>
