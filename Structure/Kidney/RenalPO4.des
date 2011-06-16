@@ -17,7 +17,7 @@ Schema : DES V1.0
   <var><name> PTH </name></var>
   <parm><name> a </name><val> 35 </val></parm>
   <parm><name> b </name><val> 85 </val></parm>45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
-  <parm><name> s </name><val> 30 </val></parm>
+  <parm><name> s </name><val> 35 </val></parm>
   <parm><name> n </name><val> 2 </val></parm>
 
 <!-- TmP/GFR parms-->
