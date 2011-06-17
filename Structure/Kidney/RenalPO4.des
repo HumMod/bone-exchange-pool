@@ -46,7 +46,7 @@ Schema : DES V1.0
  <diffeq>
   <name> TmP/GFR </name>  
      <integralname> TmP/GFR </integralname>
-     <initialval> 87 </initialval>
+     <initialval> 100 </initialval>
      <dervname> dTmP </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>

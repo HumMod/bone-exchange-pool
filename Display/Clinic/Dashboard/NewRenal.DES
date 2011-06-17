@@ -41,12 +41,12 @@ Solver : Digital Human (V1.0)
   <yvar>
       <name> RenalCa.Excretion </name>
       <label> uCa (mg/min)  </label>
-      <linecolor> BLUE </linecolor>
+      <linecolor> RED </linecolor>
     </yvar>
   <yvar>
       <name> RenalPO4.Excretion </name>
       <label> uPO4 (mg/min) </label>
-      <linecolor> RED </linecolor>
+      <linecolor> BLUE </linecolor>
     </yvar>
   <scale><min> 0 </min><max> .1 </max></scale>
   </yaxis>
@@ -65,12 +65,12 @@ Solver : Digital Human (V1.0)
   <yvar>
      <name> RenalCa.FracExcretionCa </name>
       <label> uCa%  </label>
-      <linecolor> BLUE </linecolor>
+      <linecolor> RED </linecolor>
     </yvar>
   <yvar>
       <name> RenalPO4.FracExcretionPO4 </name>
       <label> uPO4% </label>
-      <linecolor> RED </linecolor>
+      <linecolor> BLUE </linecolor>
     </yvar>
   <scale><min> 0 </min><max> .01 </max></scale>
   </yaxis>

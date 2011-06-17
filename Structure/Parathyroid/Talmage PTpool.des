@@ -34,7 +34,7 @@ Schema : DES V1.0
  <diffeq>
      <name>PTSec</name>  
      <integralname>PTSec</integralname>
-     <initialval>15.406</initialval>
+     <initialval>25.</initialval>
      <dervname>dPTSec</dervname>
      <errorlim>.1</errorlim>
  </diffeq>
