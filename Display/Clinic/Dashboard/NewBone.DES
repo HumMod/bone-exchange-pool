@@ -6,7 +6,7 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-
+<structurename> TalmageBone </structurename>
 <groupbox>
    <row> 26.5 </row>
    <col> 2.0 </col>
@@ -16,7 +16,7 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 1 </row><col> 1 </col>
-  <name> TalmageBone.BoneX </name>
+  <name> BoneX </name>
   <label> Bone Exchange pool size (mg ) </label>
 </showvalue>
 
@@ -31,12 +31,12 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
   <yvar>
-      <name> TalmageBone.Target</name>
+      <name> Target</name>
       <label> Target </label>
       <linecolor> BLUE </linecolor>
     </yvar>
   <yvar>
-      <name> TalmageBone.Product</name>
+      <name> Product</name>
       <label> Molar Product </label>
       <linecolor> GREEN </linecolor>
     </yvar>
@@ -58,7 +58,7 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
   <yvar>
-      <name> TalmageBone.BoneX</name>
+      <name> BoneX</name>
       <label> Exchange Pool </label>
       <linecolor> BLUE </linecolor>
     </yvar>
@@ -66,6 +66,25 @@ Solver : Digital Human (V1.0)
   <scale><min> 2950 </min><max> 3050 </max></scale>
   </yaxis>
  </showgraph>
+
+<showvalue>
+  <row> 20 </row><col> 1 </col>
+  <name> PoolToPerm </name>
+  <label> pool to perm </label>
+</showvalue>
+
+<showvalue>
+  <row> 21 </row><col> 1 </col>
+  <name> PermToSerum </name>
+  <label> perm to serum </label>
+</showvalue>
+
+<showvalue>
+  <row> 22 </row><col> 1 </col>
+  <name> BoneExchange </name>
+  <label> bone exchange </label>
+</showvalue>
+
 
 </groupbox>
 

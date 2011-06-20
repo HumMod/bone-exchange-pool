@@ -21,13 +21,13 @@ Schema : DES V1.0
 
  <!-- CTN -->
   <var><name> TargetC </name></var><!-- Target is K_sp as a function of CT -->
-  <var><name> Ky </name><val> .95 </val></var> .65
+  <var><name> Ky </name><val> .65 </val></var> .65
   <parm><name> SQ </name><val> 7.8 </val></parm>
   <parm><name> mh </name><val> 2. </val></parm>
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> common </name> <val> 1 </val></parm>
+  <parm><name> common </name> <val> .75 </val></parm>
   <parm><name> Baseline </name><val> 1 </val></parm>.87
   <var><name> Product </name></var>
 
@@ -39,6 +39,8 @@ Schema : DES V1.0
   <var><name> HnegMult </name></var>
   <var><name> Mult </name></var>
   <var><name> PoolToPerm </name></var>
+  <var><name> PermToSerum </name></var>
+  <var><name> BoneExchange </name></var>
 
  <!-- imported parms -->
   <var><name> C </name></var>
@@ -58,7 +60,7 @@ Schema : DES V1.0
   <name> BoneX </name>  
      <integralname> BoneX </integralname>
      <initialval> 3000 </initialval>
-     <dervname> Change </dervname>
+     <dervname> BoneXChange </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>
 
@@ -78,6 +80,14 @@ Schema : DES V1.0
      <errorlim> .001 </errorlim>
  </diffeq>
 
+ <diffeq>
+  <name> Perm </name>  
+     <integralname> Perm </integralname>
+     <initialval> 1000000 </initialval>
+     <dervname> dPerm </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>
+
 </equations>
 
 <definitions>
@@ -91,19 +101,19 @@ Schema : DES V1.0
    <if>
     <test> dP GT 0 </test>
     <true>
-      <def><name> DelayP </name><val> .0159 </val></def>
+      <def><name> DelayP </name><val> .00159 </val></def>
     </true>
     <false>
-      <def><name> DelayP </name><val> .0225 </val></def><!-- rate constant for 5 hour half life-->
+      <def><name> DelayP </name><val> .00225 </val></def><!-- rate constant for 5 hour half life-->
     </false></if>
  
    <if>
     <test> dC GT 0 </test>
     <true>
-     <def><name> DelayC </name> <val> .0159 </val></def>
+     <def><name> DelayC </name> <val> .00159 </val></def>
     </true>
     <false>
-     <def><name> DelayC </name><val> .3 </val></def>
+     <def><name> DelayC </name><val> .03 </val></def>
     </false></if>
 
    <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
@@ -157,12 +167,16 @@ Schema : DES V1.0
     </false>
   </if>
 
-  <def><name> PoolToPerm </name><val> 1.5 *  ( 1 - ( SetC / Ky ) ) * .14 * BoneX / 1440 </val></def>
-     <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
-  <def><name> CaChange </name><val> Mult * ( common * BoneFlow * CO * 40 * H ) + PoolToPerm </val></def> 
-  <def><name> PO4Change </name><val> Mult * ( common * BoneFlow * CO * 95 * H + ( PoolToPerm * ( 95 / 40 ) ) ) </val></def> 		
-  <def><name> Change </name><val> -1 * ( CaChange ) </val></def> 
+  <def><name> PoolToPerm </name><val> ( 1 / 7 ) * BoneX / 1440 </val></def>
 
+
+  <def><name> PermToSerum </name><val> 2 * ( 300 / 1440 ) * ( 1 - SetC ) </val></def> <!-- 3.125 = 1.5 * 300/1440, with 1.5 a normalizing factor -->
+  <def><name> BoneExchange </name><val> - Mult * common * BoneFlow * CO * 40 * H </val></def>
+     <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
+  <def><name> CaChange </name><val> PermToSerum - BoneExchange </val></def> 
+  <def><name> PO4Change </name><val> CaChange * 95 / 40 </val></def> 		
+  <def><name> BoneXChange </name><val> BoneExchange - PoolToPerm </val></def> 
+  <def><name> dPerm </name><val> PoolToPerm - PermToSerum </val></def>
  </block>
 </definitions>
 </structure>
