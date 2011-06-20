@@ -22,7 +22,7 @@ Solver : Digital Human (V1.0)
 
  <showgraph>
   <row> 2.5 </row><col> 1.0 </col>
-  <high> 9 </high><wide> 40 </wide>
+  <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
      <name> System.X </name>
@@ -40,6 +40,7 @@ Solver : Digital Human (V1.0)
       <label> Molar Product </label>
       <linecolor> GREEN </linecolor>
     </yvar>
+
   <scale><min> .4</min><max> .6 </max></scale>
   </yaxis>
  </showgraph>
@@ -47,8 +48,8 @@ Solver : Digital Human (V1.0)
 
 
  <showgraph>
-  <row> 12.5 </row><col> 1.0 </col>
-  <high> 9 </high><wide> 40 </wide>
+  <row> 11 </row><col> 1.0 </col>
+  <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
      <name> System.X </name>

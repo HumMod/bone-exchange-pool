@@ -15,19 +15,19 @@ Schema : DES V1.0
 <!-- solubility constant parms -->
  <!-- PTH -->
   <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
-  <var><name> Kx </name><val> 1.9 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
-  <parm><name> SP </name><val> 68 </val></parm>
+  <var><name> Kx </name><val> 2 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
+  <parm><name> SP </name><val> 61 </val></parm>
   <parm><name> nh </name><val> 2. </val></parm>
 
  <!-- CTN -->
   <var><name> TargetC </name></var><!-- Target is K_sp as a function of CT -->
-  <var><name> Ky </name><val> 1 </val></var> .65
-  <parm><name> SQ </name><val> 7.4 </val></parm>
+  <var><name> Ky </name><val> .95 </val></var> .65
+  <parm><name> SQ </name><val> 7.8 </val></parm>
   <parm><name> mh </name><val> 2. </val></parm>
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> common </name> <val> .5 </val></parm>
+  <parm><name> common </name> <val> 1 </val></parm>
   <parm><name> Baseline </name><val> 1 </val></parm>.87
   <var><name> Product </name></var>
 
@@ -51,7 +51,6 @@ Schema : DES V1.0
   <var><name>DelayC</name></var>
   <var><name>dP</name></var>
   <var><name>dC</name></var>
-
 </variables>
 
 <equations>
@@ -92,10 +91,10 @@ Schema : DES V1.0
    <if>
     <test> dP GT 0 </test>
     <true>
-      <def><name> DelayP </name><val> .00159 </val></def>
+      <def><name> DelayP </name><val> .0159 </val></def>
     </true>
     <false>
-      <def><name> DelayP </name><val> .00225 </val></def><!-- rate constant for 5 hour half life-->
+      <def><name> DelayP </name><val> .0225 </val></def><!-- rate constant for 5 hour half life-->
     </false></if>
  
    <if>
@@ -104,7 +103,7 @@ Schema : DES V1.0
      <def><name> DelayC </name> <val> .0159 </val></def>
     </true>
     <false>
-     <def><name> DelayC </name><val> .03 </val></def>
+     <def><name> DelayC </name><val> .3 </val></def>
     </false></if>
 
    <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
@@ -112,9 +111,9 @@ Schema : DES V1.0
    <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
    <def><name> Product </name><val> C * P </val></def> <!--mg-->  
    <def><name>TargetP</name><val> Kx * ( ( PTH ^ nh ) / ( ( PTH ^ nh ) + ( SP ^ nh ) ) ) </val></def>
-   <def><name>TargetC</name><val> Ky * ( ( CTN ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
-   <def><name> dSetP </name><val> DelayP * ( TargetP - SetP ) </val></def>
-   <def><name> dSetC </name><val> DelayC * ( TargetC - SetC ) </val></def>
+   <def><name>TargetC</name><val> ( ( CTN ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
+   <def><name> dSetP </name><val> 1 * DelayP * ( TargetP - SetP ) </val></def>
+   <def><name> dSetC </name><val> 1 *  DelayC * ( ( Ky * TargetC ) - SetC ) </val></def>
    <def><name>Target</name><val> SetP - SetC + Baseline </val></def>
    <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
 
@@ -158,7 +157,7 @@ Schema : DES V1.0
     </false>
   </if>
 
-  <def><name> PoolToPerm </name><val>  ( 1 - SetC ) * .14 * 3000 / 1440 </val></def>
+  <def><name> PoolToPerm </name><val> 1.5 *  ( 1 - ( SetC / Ky ) ) * .14 * BoneX / 1440 </val></def>
      <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
   <def><name> CaChange </name><val> Mult * ( common * BoneFlow * CO * 40 * H ) + PoolToPerm </val></def> 
   <def><name> PO4Change </name><val> Mult * ( common * BoneFlow * CO * 95 * H + ( PoolToPerm * ( 95 / 40 ) ) ) </val></def> 		
