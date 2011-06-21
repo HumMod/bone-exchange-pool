@@ -6,7 +6,7 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<structurename> TalmageBone </structurename>
+<structurename> NewBone </structurename>
 <groupbox>
    <row> 26.5 </row>
    <col> 2.0 </col>
@@ -69,8 +69,8 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 20 </row><col> 1 </col>
-  <name> PoolToPerm </name>
-  <label> pool to perm </label>
+  <name> Common </name>
+  <label> common </label>
 </showvalue>
 
 <showvalue>

@@ -37,14 +37,7 @@ Solver : Digital Human (V1.0)
 <?include NewRenal.DES ?>
 <?include NewHormones.DES ?> 
 <?include NewAUC.DES?>
-   
- <showvalue>
-   <row> 41.0 </row><col> 51.0 </col>
-   <name> TalmageBone.SetC </name>
-   <format><decimal> 3 </decimal></format>
-   <label> SetC </label>
- </showvalue>
-   
+     
 </panel>
 
 End
