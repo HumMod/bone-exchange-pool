@@ -31,7 +31,7 @@ Solver : Digital Human (V1.0)
      <linecolor> BLUE </linecolor>
     </yvar>
 
-    <scale><min> 0</min><max> .1 </max></scale>
+    <scale><min> 70</min><max> 120 </max></scale>
   </yaxis>
 </showgraph>
 

@@ -131,7 +131,7 @@ Schema : DES V1.0
  <def><name> ChangeuCa </name><val> Test * RenalCa.Excretion </val></def>
  <def><name> ChangeuPO4 </name><val> Test * RenalPO4.Excretion </val></def> 
  <def><name> ChangeFecalCa </name><val> Test * DistalSmallIntestine.FecalCa </val></def>
- <def><name> ChangePTP </name><val> Test * TalmageBone.PoolToPerm </val></def>  
+ <def><name> ChangePTP </name><val> Test * NewBone.PoolToPerm </val></def>  
 <def><name> ChangeAbsorption </name><val> Test * DistalSmallIntestine.Absorption </val></def> 
 <def><name> ChangeActive </name><val> Test * Duodenum.Absorption </val></def> 
 <def><name> ChangePassive</name><val> Test * DistalSmallIntestine.EntericAbsorption </val></def> 
