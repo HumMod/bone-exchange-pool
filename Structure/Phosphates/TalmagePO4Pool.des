@@ -54,6 +54,7 @@ Schema : DES V1.0
          <def><name>Test</name><val>1</val></def>
         </false>
       </if>    
+        <def><name>PO4DripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
     </block>
 
  <block>

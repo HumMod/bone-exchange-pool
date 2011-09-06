@@ -69,7 +69,7 @@ Solver : Digital Human (V1.0)
  </showvalue>
 
  <showvalue>
-   <row> 15 </row><col> 31 </col>
+   <row> 15 </row><col> 26 </col>
    <name> NewBone.Perm </name>
    <format><decimal> 3 </decimal></format>
    <label> Perm </label>
@@ -81,6 +81,21 @@ Solver : Digital Human (V1.0)
    <format><decimal> 3 </decimal></format>
    <label> targetc </label>
  </showvalue>
+
+ <showvalue>
+   <row> 17 </row><col> 1 </col>
+   <name> NewBone.H </name>
+   <format><decimal> 3 </decimal></format>
+   <label> h</label>
+ </showvalue>
+
+ <showvalue>
+   <row> 17 </row><col> 26 </col>
+   <name> NewBone.Hprime </name>
+   <format><decimal> 3 </decimal></format>
+   <label> h`</label>
+ </showvalue>
+
  <showvalue>
    <row> 18 </row><col> 1 </col>
    <name> NewBone.Target </name>

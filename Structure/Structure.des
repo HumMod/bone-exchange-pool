@@ -13,7 +13,7 @@ By : University of Mississippi Medical Center
 <?include Calcium\CalciumReceptor.DES ?>
 <?include Kidney\TalmageSimpleKidney.DES ?>
 <?include Phosphates\TalmagePO4Pool.DES ?>
-<?include Vitamin D\TalmageVitD.DES ?>
+<!--<?include Vitamin D\TalmageVitD.DES ?>-->
 <?include Parathyroid\Talmage PTPool.DES ?>
 <?include Parathyroid\TalmagePTHormone.DES ?>
 <?include Parathyroid\PTHReceptor.DES ?>
@@ -35,7 +35,7 @@ By : University of Mississippi Medical Center
   <call> StomachPO4.Parms </call>
   <call> TalmageCaPool.Parms </call>
   <call> TalmagePO4Pool.Parms </call>
-  <call> TalmageVitD.Parms </call>
+<!--  <call> TalmageVitD.Parms </call>-->
 
 </block>
 
@@ -53,7 +53,7 @@ By : University of Mississippi Medical Center
   <call> TalmageCalcitonin.Dervs </call>
   <call> TalmagePTHormone.CalcPTH </call>
   <call> TalmagePTpool.CalcSecretion </call>
-  <call> TalmageVitD.Dervs </call>
+  <!--<call> TalmageVitD.Dervs </call>-->
   <call> NewBone.Dervs </call>
   <call> RenalParms.Dervs </call>
   <call> RenalCa.Dervs </call>
@@ -68,7 +68,7 @@ By : University of Mississippi Medical Center
   <call> TalmagePO4Pool.CalcConc </call>
   <call> CaSupplement.Wrapup </call>
   <call> TalmagePTHormone.Wrapup </call>
-  <call> TalmageVitD.Wrapup </call>
+ <!-- <call> TalmageVitD.Wrapup </call>-->
 </block>
 
 </definitions>

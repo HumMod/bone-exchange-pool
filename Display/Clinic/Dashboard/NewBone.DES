@@ -21,7 +21,7 @@ Solver : Digital Human (V1.0)
 </showvalue>
 
  <showgraph>
-  <row> 2.5 </row><col> 1.0 </col>
+  <row> 2. </row><col> 1.0 </col>
   <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
@@ -48,7 +48,7 @@ Solver : Digital Human (V1.0)
 
 
  <showgraph>
-  <row> 11 </row><col> 1.0 </col>
+  <row> 10.5 </row><col> 1.0 </col>
   <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
@@ -68,19 +68,19 @@ Solver : Digital Human (V1.0)
  </showgraph>
 
 <showvalue>
-  <row> 20 </row><col> 1 </col>
+  <row> 19 </row><col> 1 </col>
   <name> Common </name>
   <label> common </label>
 </showvalue>
 
 <showvalue>
-  <row> 21 </row><col> 1 </col>
+  <row> 20 </row><col> 1 </col>
   <name> PermToSerum </name>
   <label> perm to serum </label>
 </showvalue>
 
 <showvalue>
-  <row> 22 </row><col> 1 </col>
+  <row> 21 </row><col> 1 </col>
   <name> BoneExchange </name>
   <label> bone exchange </label>
 </showvalue>

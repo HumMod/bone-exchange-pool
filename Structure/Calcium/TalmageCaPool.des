@@ -14,7 +14,7 @@ Schema : DES V1.0
   <parm><name> CalciumBolusValue </name><val>0</val></parm>
   <parm><name> CalciumDripValue </name><val>0</val></parm>
   <parm><name> CalciumDripTime </name><val>0</val></parm>
-  <parm><name> CalciumDripStart </name><val>0</val></parm>
+  <parm><name> CalciumDripStart </name><val> 0 </val></parm>
   <parm><name> AccelSwitch </name><val>0</val></parm>
   <parm><name> AbTime </name><val>330</val></parm>
 
@@ -68,6 +68,7 @@ Schema : DES V1.0
         </true>
       </if>    
 
+          <def><name>CalciumDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
 
   </block>
       
@@ -92,8 +93,6 @@ Schema : DES V1.0
 
  <block>
     <name> CalcConc </name>
-
-
 
      <def>
 	<name> CExch </name>
