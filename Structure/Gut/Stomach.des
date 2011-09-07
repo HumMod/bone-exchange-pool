@@ -36,9 +36,9 @@ Schema : DES V1.0
  <diffeq>
   <name> Mass </name>  
      <integralname> Mass </integralname>
-     <initialval> 0.1 </initialval>
+     <initialval> 0.0 </initialval>
      <dervname> Change </dervname>
-     <errorlim> .1 </errorlim>
+     <errorlim> .25 </errorlim>
  </diffeq>
 
 </equations>

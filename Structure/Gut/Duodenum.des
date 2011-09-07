@@ -35,7 +35,7 @@ Schema : DES V1.0
      <integralname> Mass </integralname>
      <initialval> 0.1 </initialval>
      <dervname> Change </dervname>
-     <errorlim> .01 </errorlim>
+     <errorlim> .015 </errorlim>
  </diffeq>
 
 </equations>
@@ -76,7 +76,7 @@ Schema : DES V1.0
 
    <def>
 	<name> Outflow </name> 
-	<val> Mass * WashOut </val>
+	<val> ( Mass - Absorption ) * WashOut </val>
    </def>
 
    <def>

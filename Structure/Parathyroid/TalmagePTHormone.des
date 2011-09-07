@@ -36,11 +36,11 @@ Schema : DES V1.0
 
 <equations>
 <diffeq>
-     <name>PTH</name>  <!-- serum-->
-     <integralname>PTH</integralname>
-     <initialval>105</initialval><!-- ng-->
-     <dervname>dPTH/dt</dervname>
-     <errorlim>.05</errorlim>
+     <name> PTH </name>  <!-- serum-->
+     <integralname> PTH </integralname>
+     <initialval>105 </initialval><!-- ng-->
+     <dervname> dPTH/dt</dervname>
+     <errorlim>1 </errorlim>
   </diffeq>
 
 </equations>
