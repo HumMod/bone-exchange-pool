@@ -1,0 +1,53 @@
+  HumMod / Parathyroid
+
+Created : 26-Oct-10
+Last Modified : 29-Oct-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> FGF23 </name>
+
+<variables>
+
+  <parm><name> DecayRate </name></val> -.0154 </val></def>  <!-- = (ln .5)/45, i.e. 45 minute half life.  From Khosravi; renally cleared --> 
+  <parm><name> A </name><val>   </val></parm>
+  <parm><name> S </name><val>   </val></parm>
+  <parm><name> n </name><val>   </val></parm>
+
+
+</variables>
+
+<equations>
+<diffeq>
+     <name> FGF23Pool </name>  
+     <integralname> FGF23Pool </integralname>
+     <initialval>  90.0 </initialval>
+     <dervname> dFGF </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+</equations>
+
+<definitions>
+  
+  <block>
+   <name>CalcSecretion</name>    
+
+    <def>
+      <name> FGF23Secretion </name>
+      <val> A * ( VitD ^ n ) / ( ( VitD ^ n )  + ( S ^ n ) )</val>
+    </def>
+
+  </block>
+
+</definitions>
+</structure>
+
+<!-- 30 pg/ml = ng/L-->
+
+End                                                                                                                                                                                                                                                                                                                                            
+                                                                                                                                                                                                                                                                                                                                                                                                              
+                                                                                                                                                                 
+                                                                                                                                                                                                                        

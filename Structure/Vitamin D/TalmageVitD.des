@@ -96,7 +96,7 @@ Schema : DES V1.0
   <diffeq>
     <name>mRNA</name>  
      <integralname>mRNA</integralname>
-     <initialval> 1</initialval> 
+     <initialval> .85</initialval> 
      <dervname> dmRNA</dervname>
      <errorlim>.0001 </errorlim>
   </diffeq>
@@ -112,7 +112,7 @@ Schema : DES V1.0
   <diffeq>
     <name>v125OH2D</name>  
      <integralname>v125OH2D</integralname>
-     <initialval> 264 </initialval>  <!-- pmol  Heaney et al 97 -->
+     <initialval> 150 </initialval>  <!-- pmol  Heaney et al 97 -->
      <dervname>d125OH2D/dt</dervname>
      <errorlim>.1</errorlim>
   </diffeq>
@@ -120,7 +120,7 @@ Schema : DES V1.0
   <diffeq>
     <name>v1A(OH)ase</name>  
      <integralname>v1A(OH)ase</integralname>
-     <initialval>  1000    </initialval>
+     <initialval>  600    </initialval>
      <dervname>d1A(OH)ase/dt</dervname>
      <errorlim>.1</errorlim>
   </diffeq>
@@ -129,7 +129,7 @@ Schema : DES V1.0
   <diffeq>
     <name>PTHeffect</name>  
      <integralname>PTHeffect</integralname>
-     <initialval>  .2    </initialval>
+     <initialval>  .18    </initialval>
      <dervname>dPTHeffect</dervname>
      <errorlim>.005</errorlim>
   </diffeq>
@@ -185,7 +185,7 @@ Schema : DES V1.0
 
     <def>
       <name>dPTHeffect</name>
-      <val> .5 * ( 1.2 * ( 51 ^ 3 ) / ( ( 51 ^ 3 ) + ( ( PTH ) ^ 3 ) ) - PTHeffect )</val>
+      <val> .5 * ( 2.5 * ( 51 ^ 3 ) / ( ( 51 ^ 3 ) + ( ( PTH ) ^ 3 ) ) - PTHeffect )</val>1.2
     </def> 
 
     <def>
@@ -200,7 +200,7 @@ Schema : DES V1.0
 
     <def>
       <name>d1A(OH)ase/dt</name>
-      <val> 5 * ( ( k3 * mRNA ) + ( k4 * v1A(OH)ase ) )</val>
+      <val> .5 * ( ( k3 * mRNA ) + ( k4 * v1A(OH)ase ) )</val>
     </def>
 
     <def>

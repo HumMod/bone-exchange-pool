@@ -11,8 +11,6 @@ Schema : 2005.0
 <control>
 
 <?include Control.DES ?>
-<?include Control.DES ?>
-<?include Control.DES ?>
 
 </control>
 

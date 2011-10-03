@@ -1,0 +1,184 @@
+ HumMod / Bone
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> TalmageBone </name>
+<!-- Schemes BL, Kx, Ky : iCa 24hr : ica fasted 30 : response to PTH 6 hr -->
+
+<variables>
+<!-- solubility constant parms -->
+ <!-- PTH -->
+  <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
+  <var><name> Kx </name><val> 2 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
+  <parm><name> SP </name><val> 61 </val></parm>
+  <parm><name> nh </name><val> 2. </val></parm>
+
+ <!-- CTN -->
+  <var><name> TargetC </name></var><!-- Target is K_sp as a function of CT -->
+  <var><name> Ky </name><val> .65 </val></var> .65
+  <parm><name> SQ </name><val> 7.8 </val></parm>
+  <parm><name> mh </name><val> 2. </val></parm>
+
+ <!-- Target -->
+  <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
+  <parm><name> common </name> <val> .75 </val></parm>
+  <parm><name> Baseline </name><val> 1 </val></parm>.87
+  <var><name> Product </name></var>
+
+ <!--flux parms -->
+  <var><name> CaChange </name><val> 0 </val></var>
+  <var><name> PO4Change </name><val>0</val> </var>
+  <var><name> H </name><val>0</val> </var>
+  <var><name> HposMult </name></var>
+  <var><name> HnegMult </name></var>
+  <var><name> Mult </name></var>
+  <var><name> PoolToPerm </name></var>
+  <var><name> PermToSerum </name></var>
+  <var><name> BoneExchange </name></var>
+
+ <!-- imported parms -->
+  <var><name> C </name></var>
+  <var><name> P </name></var>
+  <var><name> PTH </name></var>
+  <var><name> CTN </name></var>
+  <var><name> CO </name><val> 3 </val></var><!-- cardiac (plasma) output; 3L/min-->
+  <var><name> BoneFlow </name><val> .04 </val></var> <!-- serum flow to bone; 4% of total-->
+  <var><name>DelayP</name></var>
+  <var><name>DelayC</name></var>
+  <var><name>dP</name></var>
+  <var><name>dC</name></var>
+</variables>
+
+<equations>
+ <diffeq>
+  <name> BoneX </name>  
+     <integralname> BoneX </integralname>
+     <initialval> 3000 </initialval>
+     <dervname> BoneXChange </dervname>
+     <errorlim> 1 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> SetP </name>  
+     <integralname> SetP </integralname>
+     <initialval> 1 </initialval>
+     <dervname> dSetP </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> SetC </name>  
+     <integralname> SetC </integralname>
+     <initialval> .5 </initialval>
+     <dervname> dSetC </dervname>
+     <errorlim> .001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> Perm </name>  
+     <integralname> Perm </integralname>
+     <initialval> 1000000 </initialval>
+     <dervname> dPerm </dervname>
+     <errorlim> 100 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+ <block>
+  <name>Dervs</name>
+    <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] </val></def> <!-- ng/L-->
+    <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
+    <def><name> dP </name><val> TalmagePTHormone.dPTH/dt </val></def>
+    <def><name> dC </name><val> TalmageCalcitonin.dCTN </val></def>
+
+   <if>
+    <test> dP GT 0 </test>
+    <true>
+      <def><name> DelayP </name><val> .00159 </val></def>
+    </true>
+    <false>
+      <def><name> DelayP </name><val> .0225 </val></def><!-- rate constant for 5 hour half life-->
+    </false></if>
+ 
+   <if>
+    <test> dC GT 0 </test>
+    <true>
+     <def><name> DelayC </name> <val> .00159 </val></def>
+    </true>
+    <false>
+     <def><name> DelayC </name><val> .03 </val></def>
+    </false></if>
+
+   <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
+   <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
+   <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
+   <def><name> Product </name><val> C * P </val></def> <!--mg-->  
+   <def><name>TargetP</name><val> Kx * ( ( PTH ^ nh ) / ( ( PTH ^ nh ) + ( SP ^ nh ) ) ) </val></def>
+   <def><name>TargetC</name><val> ( ( CTN ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
+   <def><name> dSetP </name><val> 1 * DelayP * ( TargetP - SetP ) </val></def>
+   <def><name> dSetC </name><val> 1 *  DelayC * ( ( Ky * TargetC ) - SetC ) </val></def>
+   <def><name>Target</name><val> SetP - SetC + Baseline </val></def>
+   <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+
+  <testcase>
+  <case>
+    <test> BoneX GE 1500 </test>
+    <def><name>HposMult</name><val>1</val></def>
+  </case>
+  <case>
+    <test>BoneX LE 200 </test>
+    <def><name>HposMult</name><val>0</val></def>  
+  </case>
+  <case>
+    <test>TRUE</test>
+    <def><name> HposMult </name><val> ( ( BoneX - 200 ) / 1300 ) </val></def>
+  </case>
+  </testcase>
+
+  <testcase>
+  <case>
+    <test> BoneX LE 4000 </test>
+    <def><name>HnegMult</name><val>1</val></def>
+  </case>
+  <case>
+    <test>BoneX GE 5000 </test>
+    <def><name>HnegMult</name><val>0</val></def>  
+  </case>
+  <case>
+    <test>TRUE</test>
+    <def><name> HnegMult </name><val> 1 - ( ( BoneX - 4000 ) / 1000 ) </val></def>
+  </case>
+  </testcase>
+
+  <if>
+  <test> H GE 0 </test>
+    <true>
+     <def><name>Mult</name><val>HposMult</val></def>
+    </true>
+    <false>
+     <def><name> Mult </name><val> HnegMult </val></def>
+    </false>
+  </if>
+
+  <def><name> PoolToPerm </name><val> ( 1 / 7 ) * BoneX / 1440 </val></def>
+
+
+  <def><name> PermToSerum </name><val> 2 * ( 300 / 1440 ) * ( 1 - SetC ) </val></def> <!-- 3.125 = 1.5 * 300/1440, with 1.5 a normalizing factor -->
+  <def><name> BoneExchange </name><val> - Mult * common * BoneFlow * CO * 40 * H </val></def>
+     <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
+  <def><name> CaChange </name><val> PermToSerum - BoneExchange </val></def> 
+  <def><name> PO4Change </name><val> CaChange * 95 / 40 </val></def> 		
+  <def><name> BoneXChange </name><val> BoneExchange - PoolToPerm </val></def> 
+  <def><name> dPerm </name><val> PoolToPerm - PermToSerum </val></def>
+ </block>
+</definitions>
+</structure>
+
+End     
