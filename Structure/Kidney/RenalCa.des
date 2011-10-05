@@ -66,12 +66,12 @@ Schema : DES V1.0
   <def><name> TargetTRPV </name><val> .00149 * ( .02 * PTH + .4  ) * TRPVMult </val></def>
  <def><name> dTRPV </name><val> .004 * ( TargetTRPV - TRPV ) </val></def><!-- ~180 minutes to adjust levels of absorption -->
 
-  <def><name> RApassive </name><val> .888 + ( .012 * RenalPO4.RA / ( .125 * RenalPO4.TmP/GFR / 95 ) ) </val></def>
+  <def><name> RApassive </name><val> .9 + ( 0 * .012 * RenalPO4.RA / ( .125 * RenalPO4.TmP/GFR  ) ) </val></def>
   <def><name> CaToDT </name><val> Ca++filt * ( 1 - RApassive ) </val></def>
   <def><name> ActiveRA </name> <val> CaToDT * TRPV  / ( TRPV + .000161 ) </val></def>
  <def><name> RA </name><val> ActiveRA + ( Ca++filt * RApassive )</val></def>
 
- <def><name> Excretionmmol </name><val> Ca++filt - RA  </val></def>
+ <def><name> Excretionmmol </name><val> Ca++filt - RA  MAX 0 </val></def>
  
 <!-- excretion -->
    <def><name> Excretion</name><val> Excretionmmol * 40 </val></def><!-- mg/min-->

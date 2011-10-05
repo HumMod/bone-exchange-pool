@@ -1,0 +1,70 @@
+<groupbox>
+   <row> 20.0 </row>
+   <col> 47.0 </col>
+   <high> 18.0 </high>
+   <wide> 45.0 </wide>
+   <title> FGF23 </title>
+
+<structurename> FGF23 </structurename>
+ <showvalue>
+   <row> 1.0 </row><col> 1 </col>
+   <name> [FGF]</name>
+   <format><decimal> 3 </decimal></format>
+   <label> FGF </label>
+ </showvalue>
+ <infobutton>
+  <row> 1 </row><col> 20 </col>
+  <line>  ng/L = pg/mL</line>
+ </infobutton>
+
+ <showvalue>
+   <row> 2.0 </row><col> 1 </col>
+   <name> Secretion </name>
+   <format><decimal> 3 </decimal></format>
+   <label> FGF </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 3.0 </row><col> 1 </col>
+   <name> FGF23 </name>
+   <format><decimal> 3 </decimal></format>
+   <label> FGF23 total </label>
+ </showvalue>
+
+ <showgraph>
+  <row> 4.5 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> [FGF]</name>
+     <label> FGF </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 30 </max></scale>
+  </yaxis>
+ </showgraph>
+
+
+ <radiobuttons>
+  <row> 16.0 </row><col> 1.0 </col>
+  <name> Switch </name>
+  <listname> Common.Switch </listname>
+  <label> FGF secreting tumor </label>
+ </radiobuttons>
+
+ <editbox>
+   <row> 17.5 </row><col> 1 </col>
+   <name> Secretor </name>
+   <label> Secretion amount (ng/min) </label>
+ </editbox>
+
+
+
+</groupbox>
+

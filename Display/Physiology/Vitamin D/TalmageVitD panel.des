@@ -9,7 +9,7 @@ Solver : Digital Human (V1.0)
 
 <panel><name> TalmageVitD panel </name>
 
-<structurename> Vitamin D Panel </structurename>
+<structurename> TalmageVitD </structurename>
 
 <showpanelname>
   <row> 0.5 </row><col> 1.0 </col>
@@ -21,10 +21,10 @@ Solver : Digital Human (V1.0)
    <high> 19.0 </high>
    <wide> 95.0 </wide>
    <title> Vitamin D metabolites </title>
-<!--
+
 <showvalue>
    <row> 1.0 </row><col> 1 </col>
-   <name> TalmageVitD.[VitD] </name>
+   <name> [VitD] </name>
    <format><decimal> 3 </decimal></format>
    <label> [Cholecalciferol] </label>
 </showvalue>
@@ -34,7 +34,7 @@ Solver : Digital Human (V1.0)
  </infobutton>
 
 <showvalue>
-   <row> 2.5 </row><col> 1 </col>
+   <row> 2 </row><col> 1 </col>
    <name> TalmageVitD.[25OHDwt] </name>
    <format><decimal> 3 </decimal></format>
    <label> [25(OH)2D3] by weight </label>
@@ -45,19 +45,25 @@ Solver : Digital Human (V1.0)
  </infobutton>
 
 <showvalue>
-   <row> 4.0 </row><col> 1 </col>
+   <row> 3.0 </row><col> 1 </col>
    <name> TalmageVitD.[125OH2D3] </name>
    <format><decimal> 3 </decimal></format>
    <label> active Vit D </label>
 </showvalue>
  <infobutton>
-  <row> 4 </row><col> 25 </col>
+  <row> 3 </row><col> 35 </col>
   <line>  pmol/L </line>
  </infobutton>
 
+ <editbox>
+   <row> 4.2 </row><col> 1 </col>
+   <name> [25OHDwt] </name>
+   <label> 25(OH)D (ng/mL) </label>
+ </editbox>
+
 
 <showgraph>
-  <row> 8.5 </row><col> 1 </col>
+  <row> 6.5 </row><col> 1 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 10 </leftmargin>
   <xaxis>
@@ -67,41 +73,23 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-      <name> TalmageVitD.[125OH2D3]</name>
+      <name> TalmageVitD.[125OH2D3wt]</name>
       <label> 1,25 (OH)2D3 </label>
       <linecolor> RED </linecolor>
     </yvar>
-    <scale><min> 0</min><max> 2 </max></scale>
+    <scale><min> 20</min><max> 40 </max></scale>
   </yaxis>
 </showgraph>
-
-<showgraph>
-  <row> 1.0 </row><col> 45 </col>
-  <high> 7.5 </high><wide> 42 </wide>
-  <leftmargin> 10 </leftmargin>
-  <xaxis>
-     <name> System.X </name>
-     <label> Time </label>
-     <scale><min> 0 </min><max> 360 </max></scale>
-  </xaxis>
-  <yaxis>
-    <yvar>
-      <name> TalmageVitD.mRNA</name>
-      <label> mrna </label>
-      <linecolor> RED </linecolor>
-    </yvar>
-    <scale><min> 0</min><max> 1 </max></scale>
-  </yaxis>
-</showgraph>
-
- <infobutton>
-  <row> 7 </row><col> 90 </col>
-  <line>  Units are relative </line>
+<infobutton>
+  <row> 8.5 </row><col> 44 </col>
+  <line>  pg/ml </line>
  </infobutton>
 
 
+
+
 <showgraph>
-  <row> 8.5 </row><col> 45 </col>
+  <row> 1.0 </row><col> 45 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 10 </leftmargin>
   <xaxis>
@@ -122,7 +110,7 @@ Solver : Digital Human (V1.0)
   <row> 16 </row><col> 90 </col>
   <line>  Units are relative </line>
  </infobutton>
--->
+
 </groupbox>
 </panel>
 
