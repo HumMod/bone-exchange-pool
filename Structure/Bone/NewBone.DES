@@ -8,33 +8,34 @@ By : University Of Mississippi Medical Center
 Schema : DES V1.0
 
 <structure>
-  <name> TalmageBone </name>
+  <name> NewBone </name>
 <!-- Schemes BL, Kx, Ky : iCa 24hr : ica fasted 30 : response to PTH 6 hr -->
 
 <variables>
 <!-- solubility constant parms -->
  <!-- PTH -->
   <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
-  <var><name> Kx </name><val> 2 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
-  <parm><name> SP </name><val> 61 </val></parm>
-  <parm><name> nh </name><val> 2. </val></parm>
+  <var><name> Kx </name><val> .85 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
+  <parm><name> SP </name><val> 50 </val></parm>
+  <parm><name> nh </name><val> 3 </val></parm>
 
  <!-- CTN -->
   <var><name> TargetC </name></var><!-- Target is K_sp as a function of CT -->
-  <var><name> Ky </name><val> .65 </val></var> .65
-  <parm><name> SQ </name><val> 7.8 </val></parm>
-  <parm><name> mh </name><val> 2. </val></parm>
+  <var><name> Ky </name><val> .575 </val></var> .65
+  <parm><name> SQ </name><val> 20 </val></parm>
+  <parm><name> mh </name><val> 4 </val></parm>
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> common </name> <val> .75 </val></parm>
-  <parm><name> Baseline </name><val> 1 </val></parm>.87
+  <parm><name> Baseline </name><val> 1.05 </val></parm>
   <var><name> Product </name></var>
+
 
  <!--flux parms -->
   <var><name> CaChange </name><val> 0 </val></var>
   <var><name> PO4Change </name><val>0</val> </var>
-  <var><name> H </name><val>0</val> </var>
+  <var><name> H </name> </var>
+  <var><name> Hprime </name> </var>
   <var><name> HposMult </name></var>
   <var><name> HnegMult </name></var>
   <var><name> Mult </name></var>
@@ -49,10 +50,12 @@ Schema : DES V1.0
   <var><name> CTN </name></var>
   <var><name> CO </name><val> 3 </val></var><!-- cardiac (plasma) output; 3L/min-->
   <var><name> BoneFlow </name><val> .04 </val></var> <!-- serum flow to bone; 4% of total-->
-  <var><name>DelayP</name></var>
+  <var><name>PermP</name><val> .159 </val></var>
+  <var><name>DelayP </name><val> .0001 </val></var>
   <var><name>DelayC</name></var>
   <var><name>dP</name></var>
   <var><name>dC</name></var>
+  <var><name> CProd </name></var>
 </variables>
 
 <equations>
@@ -67,7 +70,7 @@ Schema : DES V1.0
  <diffeq>
   <name> SetP </name>  
      <integralname> SetP </integralname>
-     <initialval> 1 </initialval>
+     <initialval> .2 </initialval>
      <dervname> dSetP </dervname>
      <errorlim> .001 </errorlim>
  </diffeq>
@@ -75,7 +78,7 @@ Schema : DES V1.0
  <diffeq>
   <name> SetC </name>  
      <integralname> SetC </integralname>
-     <initialval> .5 </initialval>
+     <initialval> .6 </initialval>
      <dervname> dSetC </dervname>
      <errorlim> .001 </errorlim>
  </diffeq>
@@ -88,44 +91,47 @@ Schema : DES V1.0
      <errorlim> 100 </errorlim>
  </diffeq>
 
+  <diffeq>
+  <name> Common </name>
+  <integralname> Common </integralname>
+   <initialval> 6 </initialval>
+   <dervname> dCommon </dervname>
+   <errorlim> .01 </errorlim>
+ </diffeq>
+
 </equations>
 
 <definitions>
  <block>
   <name>Dervs</name>
-    <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] </val></def> <!-- ng/L-->
     <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
+    <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
+    <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
+    <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
+    <def><name> Product </name><val> C * P </val></def> <!--mg-->  
     <def><name> dP </name><val> TalmagePTHormone.dPTH/dt </val></def>
     <def><name> dC </name><val> TalmageCalcitonin.dCTN </val></def>
 
-   <if>
-    <test> dP GT 0 </test>
-    <true>
-      <def><name> DelayP </name><val> .00159 </val></def>
-    </true>
-    <false>
-      <def><name> DelayP </name><val> .0225 </val></def><!-- rate constant for 5 hour half life-->
-    </false></if>
- 
    <if>
     <test> dC GT 0 </test>
     <true>
      <def><name> DelayC </name> <val> .00159 </val></def>
     </true>
     <false>
-     <def><name> DelayC </name><val> .03 </val></def>
+     <def><name> DelayC </name><val> .00159 </val></def>
     </false></if>
 
-   <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
-   <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
-   <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
-   <def><name> Product </name><val> C * P </val></def> <!--mg-->  
+
    <def><name>TargetP</name><val> Kx * ( ( PTH ^ nh ) / ( ( PTH ^ nh ) + ( SP ^ nh ) ) ) </val></def>
-   <def><name>TargetC</name><val> ( ( CTN ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
+   <def><name>TargetC</name><val> Ky * ( ( SQ ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
    <def><name> dSetP </name><val> 1 * DelayP * ( TargetP - SetP ) </val></def>
-   <def><name> dSetC </name><val> 1 *  DelayC * ( ( Ky * TargetC ) - SetC ) </val></def>
-   <def><name>Target</name><val> SetP - SetC + Baseline </val></def>
+   <def><name> dSetC </name><val> 1 * DelayC * ( TargetC - SetC ) </val></def>
+   <def><name>Target</name><val> SetP + SetC + Baseline </val></def>
+
    <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+   <def><name> Hprime </name><val> ( ( - ( C + P ) ) - SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+
+
 
   <testcase>
   <case>
@@ -170,13 +176,14 @@ Schema : DES V1.0
   <def><name> PoolToPerm </name><val> ( 1 / 7 ) * BoneX / 1440 </val></def>
 
 
-  <def><name> PermToSerum </name><val> 2 * ( 300 / 1440 ) * ( 1 - SetC ) </val></def> <!-- 3.125 = 1.5 * 300/1440, with 1.5 a normalizing factor -->
-  <def><name> BoneExchange </name><val> - Mult * common * BoneFlow * CO * 40 * H </val></def>
+  <def><name> PermToSerum </name><val>  ( 375 / 1440 ) * ( TargetC / Ky ) </val></def> <!-- 3.125 = 1.5 * 300/1440, with 1.5 a normalizing factor -->
+  <def><name> BoneExchange </name><val> - Mult * Common * BoneFlow * CO * 40 * H </val></def>
      <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
   <def><name> CaChange </name><val> PermToSerum - BoneExchange </val></def> 
   <def><name> PO4Change </name><val> CaChange * 95 / 40 </val></def> 		
   <def><name> BoneXChange </name><val> BoneExchange - PoolToPerm </val></def> 
   <def><name> dPerm </name><val> PoolToPerm - PermToSerum </val></def>
+  <def><name> dCommon </name><val> 0 * .159 * ( .5 + ( TargetP / Kx ) - Common )  </val></def>
  </block>
 </definitions>
 </structure>

@@ -14,7 +14,7 @@ Schema : DES V1.0
   <parm><name> CalciumBolusValue </name><val>0</val></parm>
   <parm><name> CalciumDripValue </name><val>0</val></parm>
   <parm><name> CalciumDripTime </name><val>0</val></parm>
-  <parm><name> CalciumDripStart </name><val>0</val></parm>
+  <parm><name> CalciumDripStart </name><val> 0 </val></parm>
   <parm><name> AccelSwitch </name><val>0</val></parm>
   <parm><name> AbTime </name><val>330</val></parm>
 
@@ -68,6 +68,7 @@ Schema : DES V1.0
         </true>
       </if>    
 
+          <def><name>CalciumDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
 
   </block>
       
@@ -86,14 +87,12 @@ Schema : DES V1.0
         </false>
       </if>    
       <def><name> Loss </name><val> RenalCa.Excretion + DistalSmallIntestine.Slough</val></def>
-      <def><name> Change </name><val> Gain - Loss + TalmageBone.CaChange  </val></def><!--TalmageBone.CaChange can be either positive or negative-->
+      <def><name> Change </name><val> Gain - Loss + NewBone.CaChange  </val></def><!--TalmageBone.CaChange can be either positive or negative-->
 
  </block>
 
  <block>
     <name> CalcConc </name>
-
-
 
      <def>
 	<name> CExch </name>

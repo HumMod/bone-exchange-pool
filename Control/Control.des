@@ -14,7 +14,7 @@ Schema : 2005.0
 
 <?include GoFor.DES ?>
 
-<!--<?include SettlingTime.DES ?>-->
+<?include SettlingTime.DES ?>
 
 </control>
 

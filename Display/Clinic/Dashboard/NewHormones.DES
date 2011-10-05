@@ -9,7 +9,7 @@ Solver : Digital Human (V1.0)
 <groupbox>
    <row> 26.5 </row>
    <col> 47.0 </col>
-   <high> 13.5 </high>
+   <high> 18.5 </high>
    <wide> 45.0 </wide>
    <title> Hormone Overview </title>
 
@@ -60,6 +60,48 @@ Solver : Digital Human (V1.0)
   </yaxis>
  </showgraph>
 
+
+ <showvalue>
+   <row> 15 </row><col> 1 </col>
+   <name> NewBone.SetP </name>
+   <format><decimal> 3 </decimal></format>
+   <label> targetp</label>
+ </showvalue>
+
+ <showvalue>
+   <row> 15 </row><col> 26 </col>
+   <name> NewBone.Perm </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Perm </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 16 </row><col> 1 </col>
+   <name> NewBone.SetC </name>
+   <format><decimal> 3 </decimal></format>
+   <label> targetc </label>
+ </showvalue>
+
+ <showvalue>
+   <row> 17 </row><col> 1 </col>
+   <name> NewBone.H </name>
+   <format><decimal> 3 </decimal></format>
+   <label> h</label>
+ </showvalue>
+
+ <showvalue>
+   <row> 17 </row><col> 26 </col>
+   <name> NewBone.Hprime </name>
+   <format><decimal> 3 </decimal></format>
+   <label> h`</label>
+ </showvalue>
+
+ <showvalue>
+   <row> 18 </row><col> 1 </col>
+   <name> NewBone.Target </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Target </label>
+ </showvalue>
 
 </groupbox>
 

@@ -25,6 +25,8 @@ Solver : Digital Human (V1.0)
 <?path Display\ ?>
 
 <?include Physiology\Hormones\Parathyroid.DES ?>
+<?include Physiology\Hormones\FGF23.DES ?>
+
 <?include Physiology\Hormones\Calcitonin.DES ?>
 <?include Clinic\Dashboard\CaReceptor.DES ?>
 

@@ -15,38 +15,36 @@ Schema : DES V1.0
   <var><name> PO4Filt </name><val> 0 </val></var>
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
-  <parm><name> a </name><val> 35 </val></parm>
-  <parm><name> b </name><val> 85 </val></parm>45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
-  <parm><name> s </name><val> 35 </val></parm>
+  <parm><name> a </name><val> 6. </val></parm>45
+  <parm><name> s </name><val> 40 </val></parm>
   <parm><name> n </name><val> 2 </val></parm>
 
+  <parm><name> aFGF </name><val> 6. </val></parm>45
+  <parm><name> sFGF </name><val> 40 </val></parm>
+  <parm><name> nFGF </name><val> 1 </val></parm>
+
+  <parm><name> b </name><val> 1.0 </val></parm>85,45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+
+
 <!-- TmP/GFR parms-->
-  <var><name> TargetTmP/GFR </name><val> 70 </val></var>
+  <var><name> TargetTmP/GFR_PTH </name><val> 7 </val></var>
+  <var><name> TargetTmP/GFR_FGF </name><val> 7 </val></var>
 
 <!-- Excretion parms -->  
-  <var><name>Excretionmmol</name></var><!-- excreted PO4 in mmol/min-->                                                      
+  <var><name>Excretionmmol</name><val> 0 </val></var><!-- excreted PO4 in mmol/min-->                                                      
   <var><name>Excretion</name><val>0</val></var><!-- excreted PO4 mass mg/min-->
-  <var><name> FracExcretionPO4 </name></var> 
-
+  <var><name> FracExcretionPO4 </name></var>  
+  <var><name> RA </name><val> 0 </val></var>
+  <var><name> TargetPTNaRA </name></var>
+  <var><name> NaFilt </name></var>
 </variables>
-
-<functions>
-<curve>
-    <name> PTHonTmP </name><!-- considering fixed for GFR = 125mL/min-->(0,90),(70,73)
-    <point><x> 10 </x><y> 90 </y><slope> 0 </slope></point>33.2,94,139.3
-    <point><x> 90 </x><y> 73 </y><slope> 0 </slope></point> 22.8,62,88.7
-  </curve>
- <!-- 33.2/22.8 from McElduff et al 1987 Calcif Tissue Int 41:267-273 -->
- <!-- assume the McElduff figures are for phosphorus; normalize they yield 106 and 72 respectively as 95*x/30-->
- <!-- the -->
-</functions>
 
 <equations>
 
  <diffeq>
   <name> TmP/GFR </name>  
      <integralname> TmP/GFR </integralname>
-     <initialval> 100 </initialval>
+     <initialval> 8 </initialval>
      <dervname> dTmP </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>
@@ -59,45 +57,31 @@ Schema : DES V1.0
  <name>Dervs</name>
 
 <!-- Filtration-->
-   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR </val></def><!-- mmol/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
+   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR * 91 </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
    <def><name>PTH</name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
-
+   <def><name> NaFilt </name><val> 141 * RenalParms.ModGFR </val></def> <!-- mmol/min -->
+   <def><name> TargetPTNaRA </name><val> .65 * NaFilt </val></def> <!-- mmol/min -->
 
 <!-- Calculate TmP/GFR -->
-   <def><name> TargetTmP/GFR </name>
-	<!-- <val> ( -1.1875 * PTH ) + 144.5 </val> -->
-	<!--<val> PTHonTmP [ PTH ] </val>-->
-	<val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) ) + b </val>  <!--taken by forming a sigmoid on 10,90; 35, 69.6; 80,62  Bijvoet et al, through Parfitt Misconceptions 4-->
+   <def><name> TargetTmP/GFR_PTH </name>
+	<val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  </val>  <!--taken by forming a sigmoid on 10,90; 35, 69.6; 80,62  Bijvoet et al, through Parfitt Misconceptions 4-->
    </def>  <!-- recheck the values in Misconceptions 4; they are too low.  we expect 1.2 mmol=3.5mg/dL P = 10.8 mg/dL PO4 at PTH in 35-45-->
 
-   <def><name> dTmP </name><val> .045 * (TargetTmP/GFR - TmP/GFR ) </val></def>
-   <def><name> PO4Gradient </name><val> ( .9 * TalmagePO4Pool.[PO4] * 95 ) - TmP/GFR </val></def>
+   <def><name> TargetTmP/GFR_FGF </name>
+	<val> aFGF * ( sFGF ^ nFGF ) / ( ( sFGF ^ nFGF ) + ( FGF23.[FGF] ^ nFGF ) )  </val>  
+   </def>  
 
-<!-- Reabsorption-->
-   <if>
-   <test> PO4Gradient GT 0 </test>
-    <true>
-     <def>
-      <name> Excretion </name>
-      <val> RenalParms.ModGFR * PO4Gradient </val>
-     </def>
-    </true>
-    <false>
-     <def>
-      <name> Excretion </name>
-      <val> 0 </val>
-     </def>
-    </false>
-   </if>
+   <def><name> dTmP </name><val> .045 * ( b + TargetTmP/GFR_PTH + TargetTmP/GFR_FGF - TmP/GFR ) </val></def>
 
-<!-- Excretion -->
+   <def><name> PO4Gradient </name><val> PO4Filt - TmP/GFR </val></def>
+  <def><name> Excretion </name><val> RenalParms.ModGFR * PO4Gradient MAX 0 </val></def>
+
    <def><name> Excretionmmol </name><val> Excretion / 95 </val></def>
+   <def><name> RA </name><val> PO4Filt - Excretion </val></def>
    <def><name> FracExcretionPO4 </name><val> Excretionmmol / ( RenalParms.ModGFR * .9 * TalmagePO4Pool.[PO4] ) </val></def>
 
  </block>
 
 </definitions>  
 
-</structure>                                                                                                                                                                                                  
-                         
-                                                                                                                                                                                                               
+</structure>  

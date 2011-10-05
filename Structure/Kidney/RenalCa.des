@@ -17,19 +17,24 @@ Schema : DES V1.0
   <parm><name> np </name><val> 2.75 </val></parm>1.75
   <parm><name> spp </name><val> 24 </val></parm>15
   <var><name>TargetPTHeffect</name></var>
+  
 
 <!-- Reabsorption parms -->
   <var><name> Ca++filt </name></var>
-  <parm><name> RApassive </name><val> .92 </val></parm><!-- multiply sourced, Brenner etc-->
+  <parm><name> RApassive </name><val> .9 </val></parm><!-- multiply sourced, Brenner etc-->
   <var><name>DCTCa++</name></var><!-- calcium delivery to distal tubule-->
   <var><name>ActiveReabsorb</name></var>
   <var><name> Test </name></var>
   <var><name> RA</name></var>
-
+  <var><name> ActiveRA </name><val> 0 </val></var>
+  <var><name> CaToDT </name></var>
+  <var><name> TargetTRPV </name></var>
+  <var><name> TargetCaBD </name></var>
 <!-- Excretion parms -->
   <var><name> Excretionmmol </name><val>0</val></var><!-- calcium excretion-->
   <var><name> Excretion </name><val>0</val></var><!-- calcium excretion-->
   <var><name> FracExcretionCa </name></var> 
+  <var><name> TRPVMult </name></var>
 
 
 </variables>
@@ -37,11 +42,11 @@ Schema : DES V1.0
 <equations>
 
  <diffeq>
-   <name> PTHeffect </name>
-   <integralname> PTHeffect </integralname>
-   <initialval> .07 </initialval>
-   <dervname> dPTHeffect </dervname>
-   <errorlim> 0.001 </errorlim>
+   <name> TRPV </name>
+   <integralname> TRPV </integralname>
+   <initialval> .000644 </initialval>
+   <dervname> dTRPV </dervname>
+   <errorlim> 0.00001 </errorlim>
  </diffeq>
 
 </equations>
@@ -53,15 +58,20 @@ Schema : DES V1.0
 <!-- filtration-->
   <def><name> Ca++filt </name> <val> ( TalmageCaPool.[Ca++] + TalmageCaPool.[CaComp] ) * RenalParms.ModGFR </val></def><!-- mmol/min-->
   <def><name>PTH</name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
-
+  <def><name> TRPVMult </name><val> ( .025 ^ 10 ) / ( ( .025 ^ 10 ) + ( ActiveRA ^ 10 ) ) </val></def>
+     <!-- this term seeks to capture the negative effect of excessive calcium intake on the TRPV constitutively open status -->
 
 <!-- tubule -->
 
- <def><name> TargetPTHeffect </name><val> A * ( ( PTH ^ np ) / ( ( PTH ^ np ) + ( spp ^ np ) ) ) </val></def> <!-- would this be better coupled to circulating Ca and calculated as mass, not %?-->
- <def><name> dPTHeffect </name><val> .1 * ( TargetPTHeffect - PTHeffect ) </val></def><!-- ~3.5 minutes to adjust levels of absorption -->
- <def><name> RA </name><val> TargetPTHeffect + RApassive</val></def>
+  <def><name> TargetTRPV </name><val> .00149 * ( .02 * PTH + .4  ) * TRPVMult </val></def>
+ <def><name> dTRPV </name><val> .004 * ( TargetTRPV - TRPV ) </val></def><!-- ~180 minutes to adjust levels of absorption -->
 
- <def><name> Excretionmmol </name><val> Ca++filt * ( 1 - RA ) </val></def>
+  <def><name> RApassive </name><val> .9 + ( 0 * .012 * RenalPO4.RA / ( .125 * RenalPO4.TmP/GFR  ) ) </val></def>
+  <def><name> CaToDT </name><val> Ca++filt * ( 1 - RApassive ) </val></def>
+  <def><name> ActiveRA </name> <val> CaToDT * TRPV  / ( TRPV + .000161 ) </val></def>
+ <def><name> RA </name><val> ActiveRA + ( Ca++filt * RApassive )</val></def>
+
+ <def><name> Excretionmmol </name><val> Ca++filt - RA  MAX 0 </val></def>
  
 <!-- excretion -->
    <def><name> Excretion</name><val> Excretionmmol * 40 </val></def><!-- mg/min-->
@@ -71,5 +81,3 @@ Schema : DES V1.0
 
 </definitions>  
 </structure>
-                         
-                                                                                                                                                                                                               

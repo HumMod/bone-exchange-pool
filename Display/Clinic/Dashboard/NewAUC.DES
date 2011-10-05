@@ -32,9 +32,9 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 4 </row><col> 1.0 </col>
-   <name> AUC.AUCPO4 </name>
+   <name> AUC.AUCuPO4 </name>
    <format><decimal> 3 </decimal></format>
-   <label> AUC PO4 </label>
+   <label> AUC uPO4 </label>
  </showvalue>
 
  <showvalue>

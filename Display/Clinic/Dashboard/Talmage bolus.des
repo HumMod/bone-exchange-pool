@@ -101,7 +101,7 @@ Schema :
  <editbox>
    <row> 2 </row><col> 1 </col>
    <name> TalmagePO4Pool.PO4DripTime </name>
-   <label> PO4DripTime </label>s
+   <label> PO4DripTime </label>
  </editbox>
  <infobutton>
   <row> 2.0 </row><col> 30 </col>
@@ -228,6 +228,13 @@ Schema :
    <wide> 37.0 </wide>
    <title> Vitamin D </title>
 
+<repeatlist>
+  <name> TimesDay </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
 
 <repeatlist>
   <name> Dose </name>
@@ -250,14 +257,6 @@ Schema :
   <line>  ng </line>
  </infobutton>
 
-<repeatlist>
-  <name> TimesDay </name>
-  <repeat>
-    <reps> 20 </reps>
-    <stepsize> 1 </stepsize>
-  </repeat>
-</repeatlist>
-
 <slidebar>
   <row> 3.0 </row><col> 1 </col>
   <name> TalmageVitD.TimesDay </name>
@@ -266,13 +265,12 @@ Schema :
 </slidebar>
 </groupbox>
 
-
 <groupbox>
    <row> 18.0 </row>
    <col> 42.0 </col>
    <high> 7.5 </high>
    <wide> 37.0 </wide>
-   <title> Vitamin D </title>
+   <title> Calcium Supplement </title>
 
 
 <repeatlist>
