@@ -208,12 +208,12 @@ Schema : DES V1.0
 
     <def>
       <name>d1A(OH)ase/dt</name>
-      <val> .5 * ( ( k3 * mRNA ) + ( k4 * v1A(OH)ase ) )</val>
+      <val> FGFeffect * .5 * ( ( k3 * mRNA ) + ( k4 * v1A(OH)ase ) )</val>
     </def>
 
     <def>
       <name> d125OH2D/dt </name>
-      <val> FGFeffect * 1 * ( ( Knormal * [25OHD] * 3 * v1A(OH)ase ) + ( v125DecayRate * v125OH2D ) ) </val>
+      <val> 1 * ( ( Knormal * [25OHD] * 3 * v1A(OH)ase ) + ( v125DecayRate * v125OH2D ) ) </val>
     </def> 
 
     <def>
