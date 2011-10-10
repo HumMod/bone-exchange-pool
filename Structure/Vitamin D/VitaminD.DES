@@ -1,0 +1,244 @@
+ HumMod / Vitamin D
+
+Created : 17-Oct-10
+Last Modified : 12-Jan-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+ 
+
+<structure><name> VitaminD </name>
+
+ <variables>
+
+<var><name>PTH</name></var>
+
+<var>
+  <name> PTHEffect </name>
+</var>
+
+<parm>
+  <name> VitD </name>
+  <val> 390000 </val>
+</parm>  <!-- nmol in whole body --> 
+  
+<parm>
+  <name> Base25Rate </name>
+  <val> -.00002674 </val>
+</parm>  <!-- derived from half life of 18 days, assumption of steady state -->
+  
+<parm>
+  <name> [25OHD] </name>
+  <val> 69 </val>
+</parm>  <!-- nmol/L -->
+  
+<parm>
+  <name> [25OHDwt] </name>
+  <val> 27.641 </val>
+</parm>  <!-- ng/mL -->
+<!-- we will assume constant replacement of 25OHD, and so will not keep track of circulating levels in this model-->
+
+<parm>
+  <name> CalcitriolDecay </name>
+  <val> -.002567 </val>
+</parm>  <!-- derived from half life of 4.5 hours, assumption of steady state  -->
+  
+<parm>
+  <name> k3 </name>
+  <val> .07584 </val>
+</parm>  
+  
+<parm>
+  <name> CYP27A1Decay </name> <!-- normalized form?  -->
+  <val> -0.01 </val>
+</parm>  
+  
+<var>
+  <name>[125OH2D3]</name>
+  <val>91</val>
+</var><!-- pmol/L -->
+
+<var>
+  <name>[125OH2D3wt]</name><val> 30 </val>
+</var><!-- pg/mL -->
+
+<var>
+  <name>[VitD]</name>
+</var><!-- pmol/L -->
+
+<var>
+  <name>bonus</name>
+  <val>0</val>
+</var>
+
+<parm>
+  <name> DDose </name>
+  <val> 0 </val>
+</parm> 
+
+<parm>
+  <name> LastDose </name>
+  <val> 0 </val>
+</parm> 
+
+<parm>
+  <name> Interval </name>
+  <val> 0 </val>
+</parm> 
+
+<parm>
+  <name> TimesDay </name>
+  <val> 0 </val>
+</parm> 
+
+<var>
+  <name> FGFeffect </name>
+</var>
+
+<parm>
+  <name> Sq </name><val> 17 </val>
+</parm>
+
+<parm>
+  <name> Vmax </name>
+  <val> .021 </val>
+</parm>   <!--  From Sawasa et al Biochem and Biophys Res comm 273 (2000) 977-984 -->
+
+<parm>
+  <name> Km </name>
+  <val> 3.5 </val>
+</parm>  <!--  From Sawasa et al Biochem and Biophys Res comm 273 (2000) 977-984 -->
+ </variables>
+
+ <equations>
+
+  <diffeq>
+    <name>mRNA</name>  
+     <integralname>mRNA</integralname>
+     <initialval> 58.905 </initialval> <!-- derived from steady state-->
+     <dervname> dmRNA</dervname>
+     <errorlim> .5 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> Calcifediol </name>  
+     <integralname> Calcifediol </integralname>
+     <initialval> 150    </initialval>  <!-- ug : Omdahl et al 2002-->
+     <dervname> dCalcifediol </dervname>
+     <errorlim> .75 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> Calcitriol </name>  
+     <integralname> Calcitriol </integralname>
+     <initialval> 120 </initialval>  <!-- ng: Omdahl et al 2002 -->
+     <dervname> dCalcitriol </dervname>
+     <errorlim> .6 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> CYP27A1 </name>  
+     <integralname> CYP27A1 </integralname>
+     <initialval>  7.584    </initialval>
+     <dervname> dCYP27A1 </dervname>
+     <errorlim> .1 </errorlim>
+  </diffeq>
+
+
+
+ </equations>
+
+ <definitions>
+
+ <block><name> Parms </name>
+
+    <if>
+    <test> TimesDay GT 0 </test>
+    <true>
+      <def>
+	<name> Interval </name>
+	<val> 1440 / TimesDay </val>
+      </def>
+    </true>
+    <false>
+       <def>
+	<name> Interval </name>
+	<val> INFINITE </val>
+      </def>
+    </false>
+    </if>
+
+  <def><name> [25OHD] </name><val> .4006 * [25OHDwt] </val></def>
+
+ </block>
+
+ <block><name>Dervs</name>
+
+<def>
+  <name> PTH </name>
+  <val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val>
+</def>
+
+<def>
+  <name> PTHEffect </name>
+  <val> 6 * ( PTH ^ 3 ) / ( ( PTH ^ 3 ) + ( 60 ^ 3 ) ) </val>
+</def>
+
+
+    <def>
+      <name> dCalcifediol </name>
+      <val>  0 </val>
+    </def> <!-- from Omdahl 2002: p 152, PTH acts posttranscriptionally -->
+
+    <def>
+      <name>dmRNA</name>
+      <val> FGFEffect - ( .01 * mRNA )  </val>
+    </def> 
+
+    <def>
+      <name>dCYP27A1 </name>
+      <val> ( .13 * mRNA ) - ( PTHEffect * CYP27A1 )   </val>
+    </def>
+   
+   <def>
+      <name> [Calcifediol] </name>
+      <val> Calcifediol / ( 3  * 401 ) </val>  <!-- 401 is the m.w. of calcifediol -->
+   </def>
+
+    <def>
+      <name> dCalcitriol  </name>
+      <val> CYP27A1 * Vmax * [Calcifediol] / ( [Calcifediol] + Km ) </val>
+    </def> <!-- umol/min -->
+
+    <def>
+      <name>[125OH2D3] </name>
+      <val> Calcitriol /  3</val>
+    </def>
+
+    <def>
+      <name>[125OH2D3wt]</name>
+      <val> [125OH2D3] * .416 </val>
+    </def>
+
+ </block>
+
+<block><name> Wrapup </name> =======================
+
+<if>
+  <test> System.X GE ( LastDose + Interval ) </test>
+  <true>
+    <def>
+      <name> LastDose </name>
+      <val> LastDose + Interval </val>
+    </def>
+    <def>
+      <name> v125OH2D </name>
+      <val> v125OH2D + DDose </val>
+    </def>
+  </true>
+</if>
+</block>
+ </definitions>
+
+</structure>
