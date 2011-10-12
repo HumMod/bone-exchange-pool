@@ -12,7 +12,7 @@ Schema : DES V1.0
 
 <variables>
 
-  <parm><name> A </name><val> 80 </val></parm>
+  <parm><name> A </name><val> 85 </val></parm>
   <parm><name> S </name><val> 8000 </val></parm>
   <parm><name> Switch </name><val> 0 </val></parm>
   <parm><name> Secretor </name><val> 0 </val></parm>
@@ -62,7 +62,7 @@ Schema : DES V1.0
   <block>
    <name> Dervs </name>    
 
-    <def><name> VitD </name><val> TalmageVitD.[125OH2D3wt]</val></def>
+    <def><name> VitD </name><val> VitaminD.[Calcitriol->ng/L]</val></def>
     <def><name> SecretionTarget </name><val> A * ( VitD ^ n ) / ( ( VitD ^ n ) + ( S ^ n ) ) </val></def>
     <def><name> dSec </name><val> .15 * ( SecretionTarget - Secretion ) </val></def>
     <def><name> dFGF </name><val> Secretion + Tumor - ( DecayRate * FGF23 ) </val></def> 

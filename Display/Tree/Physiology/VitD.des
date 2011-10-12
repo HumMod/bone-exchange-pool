@@ -13,7 +13,7 @@ By : University Of Mississippi Medical Center
 </branch>
 
 <leaf>
-  <name> TalmageVitD panel </name>
+  <name> VitaminDPanel </name>
   <label> Vitamin D </label>
   <parent> Vitamin D </parent>
 </leaf>

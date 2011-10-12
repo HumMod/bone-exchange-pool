@@ -35,28 +35,6 @@ Solver : Digital Human (V1.0)
   <line>  ng/L </line>
  </infobutton>
 
- <showvalue>
-   <row> 4.0 </row><col> 1 </col>
-   <name> TalmageVitD.v1A(OH)ase </name>
-   <format><decimal> 3 </decimal></format>
-   <label> 1alpha (OH)ase </label>
- </showvalue>
- <infobutton>
-  <row> 4.0 </row><col> 35 </col>
-  <line>   </line>
- </infobutton>
-
- <showvalue>
-   <row> 5.5 </row><col> 1 </col>
-   <name> TalmageVitD.[125OH2D3] </name>
-   <format><decimal> 3 </decimal></format>
-   <label> 1,25 (OH)2 D3 </label>
- </showvalue>
- <infobutton>
-  <row> 5.5 </row><col> 35 </col>
-  <line>   </line>
- </infobutton>
-
  <showgraph>
   <row> 7.5 </row><col> 1 </col>
   <high> 10 </high><wide> 42 </wide>
@@ -77,7 +55,11 @@ Solver : Digital Human (V1.0)
      <label> serum [CTwt] </label>
      <linecolor> BLUE </linecolor>
     </yvar>
-
+  <yvar>
+     <name> FGF23.[FGF]</name>
+     <label> serum [FGF] </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
     <scale><min> 45</min><max> 50 </max></scale>
   </yaxis>
  </showgraph>

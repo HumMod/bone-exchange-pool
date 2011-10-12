@@ -7,9 +7,9 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<panel><name> TalmageVitD panel </name>
+<panel><name> VitaminDPanel </name>
 
-<structurename> TalmageVitD </structurename>
+<structurename> VitaminD </structurename>
 
 <showpanelname>
   <row> 0.5 </row><col> 1.0 </col>
@@ -35,7 +35,7 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
    <row> 2 </row><col> 1 </col>
-   <name> TalmageVitD.[25OHDwt] </name>
+   <name> [25OHDwt] </name>
    <format><decimal> 3 </decimal></format>
    <label> [25(OH)2D3] by weight </label>
 </showvalue>
@@ -46,7 +46,7 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
    <row> 3.0 </row><col> 1 </col>
-   <name> TalmageVitD.[125OH2D3] </name>
+   <name> [125OH2D3] </name>
    <format><decimal> 3 </decimal></format>
    <label> active Vit D </label>
 </showvalue>
@@ -73,7 +73,7 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-      <name> TalmageVitD.[125OH2D3wt]</name>
+      <name> [125OH2D3wt]</name>
       <label> 1,25 (OH)2D3 </label>
       <linecolor> RED </linecolor>
     </yvar>
@@ -99,7 +99,7 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>   
   <yvar>
-     <name> TalmageVitD.v1A(OH)ase</name>
+     <name> CYP27A1 </name>
      <label> 1A(OH)ase </label>
      <linecolor> BLUE </linecolor>
   </yvar>

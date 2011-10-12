@@ -36,7 +36,7 @@ Panels are
 </leaf>
 
 <leaf>
-  <name> TalmageVitamin D Panel </name>
+  <name> VitaminDPanel </name>
   <label> Vitamin D Panel </label>
   <parent> Panels </parent>
 </leaf>

@@ -12,10 +12,24 @@ Schema : DES V1.0
 
  <variables>
 
-<var><name>PTH</name></var>
+<var>
+  <name>PTH</name>
+</var>
 
 <var>
-  <name> PTHEffect </name>
+  <name> FGF </name>
+</var>
+
+<var>
+  <name> Deffect </name>
+</var>
+
+<var>
+  <name> PTHeffectTarget </name>
+</var>
+
+<var>
+  <name> PTHeffect24 </name>
 </var>
 
 <parm>
@@ -29,20 +43,9 @@ Schema : DES V1.0
 </parm>  <!-- derived from half life of 18 days, assumption of steady state -->
   
 <parm>
-  <name> [25OHD] </name>
-  <val> 69 </val>
-</parm>  <!-- nmol/L -->
-  
-<parm>
-  <name> [25OHDwt] </name>
-  <val> 27.641 </val>
-</parm>  <!-- ng/mL -->
-<!-- we will assume constant replacement of 25OHD, and so will not keep track of circulating levels in this model-->
-
-<parm>
   <name> CalcitriolDecay </name>
-  <val> -.002567 </val>
-</parm>  <!-- derived from half life of 4.5 hours, assumption of steady state  -->
+  <val> -.00165 </val>
+</parm>  <!-- derived from half life of 7 hours, assumption of steady state  -->
   
 <parm>
   <name> k3 </name>
@@ -93,22 +96,73 @@ Schema : DES V1.0
 </parm> 
 
 <var>
-  <name> FGFeffect </name>
+  <name> FGFeffect24 </name>
+</var>
+
+<var>
+  <name> FGFeffectCYP </name>
+</var>
+
+<var>
+  <name> [Calcifediol->ug/L] </name>
+</var>
+
+<var>
+  <name> [Calcifediol->umol/L] </name>
+</var>
+
+<var>
+  <name> [Calcitriol->ng/L] </name>
+  <val> 40 </val>
+</var>
+
+<var>
+  <name> [Calcitriol->nmol/L] </name>
+</var>
+
+<var>
+  <name> [FreeCalcifediol->umol/L] </name>
+</var>
+
+<var>
+  <name> [FreeCalcitriol->nmol/L] </name>
 </var>
 
 <parm>
-  <name> Sq </name><val> 17 </val>
+  <name> VDP </name>
+  <val> .000006 </val>
 </parm>
 
 <parm>
-  <name> Vmax </name>
-  <val> .021 </val>
-</parm>   <!--  From Sawasa et al Biochem and Biophys Res comm 273 (2000) 977-984 -->
+  <name> Kaff125 </name>
+  <val> 40000000 </val>
+</parm>
 
 <parm>
-  <name> Km </name>
-  <val> 3.5 </val>
-</parm>  <!--  From Sawasa et al Biochem and Biophys Res comm 273 (2000) 977-984 -->
+  <name> KaffOth </name>
+  <val> 500000000 </val>
+</parm>
+
+<var>
+  <name> MaxPTH </name>
+  <val> 30 </val>
+</var>
+
+<var>
+  <name> Ptimer </name>
+  <val> 0 </val>
+</var>
+
+<var>
+  <name> MaxFGF </name>
+  <val> 30 </val>
+</var>
+
+<var>
+  <name> Ftimer </name>
+  <val> 0 </val>
+</var>
+
  </variables>
 
  <equations>
@@ -116,9 +170,9 @@ Schema : DES V1.0
   <diffeq>
     <name>mRNA</name>  
      <integralname>mRNA</integralname>
-     <initialval> 58.905 </initialval> <!-- derived from steady state-->
+     <initialval> 1.0 </initialval> <!-- derived from steady state-->
      <dervname> dmRNA</dervname>
-     <errorlim> .5 </errorlim>
+     <errorlim> .01 </errorlim>
   </diffeq>
 
   <diffeq>
@@ -138,20 +192,26 @@ Schema : DES V1.0
   </diffeq>
 
   <diffeq>
-    <name> CYP27A1 </name>  
-     <integralname> CYP27A1 </integralname>
-     <initialval>  7.584    </initialval>
-     <dervname> dCYP27A1 </dervname>
+    <name> CYP27B1 </name>  
+     <integralname> CYP27B1 </integralname>
+     <initialval>  7.854    </initialval>
+     <dervname> dCYP27B1 </dervname>
      <errorlim> .1 </errorlim>
   </diffeq>
 
-
+  <diffeq>
+    <name> PTHeffect </name>  
+     <integralname> PTHeffect </integralname>
+     <initialval>  1   </initialval>
+     <dervname> dPTHeffect </dervname>
+     <errorlim> .01 </errorlim>
+  </diffeq>
 
  </equations>
 
  <definitions>
-
- <block><name> Parms </name>
+============================================================
+ <block><name> Parms </name>==================================
 
     <if>
     <test> TimesDay GT 0 </test>
@@ -169,11 +229,41 @@ Schema : DES V1.0
     </false>
     </if>
 
-  <def><name> [25OHD] </name><val> .4006 * [25OHDwt] </val></def>
-
+  <def><name> Ptimer </name><val> 0 </val></def>
  </block>
 
- <block><name>Dervs</name>
+============================================================
+<block><name>Dervs</name>===================================
+
+<def>
+  <name> [Calcifediol->ug/L] </name>
+  <val> Calcifediol / 3  </val> 
+</def>
+
+<def>
+  <name> [Calcifediol->umol/L] </name>
+  <val> [Calcifediol->ug/L] / 401  </val>  <!-- 401 is the m.w. of calcifediol -->
+</def>
+
+<def>
+  <name> [Calcitriol->ng/L] </name>
+  <val> Calcitriol / 3  </val> 
+</def>
+
+<def>
+  <name> [Calcitriol->nmol/L] </name>
+  <val> [Calcitriol->ng/L] / 416  </val>  <!-- 416 is the m.w. of calcitriol -->
+</def>
+
+<def>
+  <name> [FreeCalcifediol->umol/L] </name>
+  <val> ( 1 - ( KaffOth * VDP / ( KaffOth * VDP + 1 ) ) ) * [Calcifediol->umol/L]  </val>  <!-- simplified solution of affinity equation -->
+</def>
+
+<def>
+  <name> [FreeCalcitriol->nmol/L] </name>
+  <val> ( 1 - ( Kaff125 * VDP / ( Kaff125 * VDP + 1 ) ) ) * [Calcitriol->nmol/L]  </val>  <!-- simplified solution of affinity equation -->
+</def>
 
 <def>
   <name> PTH </name>
@@ -181,48 +271,76 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> PTHEffect </name>
-  <val> 6 * ( PTH ^ 3 ) / ( ( PTH ^ 3 ) + ( 60 ^ 3 ) ) </val>
+  <name> FGF </name>
+  <val> FGF23.[FGF]  </val>
 </def>
 
+==================================================================
 
-    <def>
-      <name> dCalcifediol </name>
-      <val>  0 </val>
-    </def> <!-- from Omdahl 2002: p 152, PTH acts posttranscriptionally -->
+<if>
+  <test> ( PTH GE MaxPTH ) OR ( System.X GE Ptimer )</test>
+  <true> 
+    <def><name> MaxPTH </name><val> PTH </val></def>
+    <def><name> PTHeffectTarget </name><val> .75 * ( MaxPTH ^ 3 ) / ( ( MaxPTH ^ 3 ) + ( 60 ^ 3 ) ) </val></def>
+    <def><name> Ptimer </name><val> System.X + 60 </val></def>
+  </true>
+</if>
+       
+<if>
+  <test> ( FGF GE MaxFGF ) OR ( System.X GE Ftimer )</test>
+  <true> 
+    <def><name> MaxFGF </name><val> FGF </val></def>
+    <def><name> FGFeffectCYP </name><val> 40 / ( FGF + 40 ) + .6 </val></def>
+    <def><name> Ftimer </name><val> System.X + 60 </val></def>
+  </true>
+</if>
 
-    <def>
-      <name>dmRNA</name>
-      <val> FGFEffect - ( .01 * mRNA )  </val>
-    </def> 
+<def>
+  <name> FGFeffect24 </name>
+  <val> 3 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 40  ^ 2 ) ) </val>
+</def>
 
-    <def>
-      <name>dCYP27A1 </name>
-      <val> ( .13 * mRNA ) - ( PTHEffect * CYP27A1 )   </val>
-    </def>
-   
-   <def>
-      <name> [Calcifediol] </name>
-      <val> Calcifediol / ( 3  * 401 ) </val>  <!-- 401 is the m.w. of calcifediol -->
-   </def>
+<def>
+  <name> PTHeffect24 </name>
+  <val> 2 * ( 30 ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
+</def>
 
-    <def>
-      <name> dCalcitriol  </name>
-      <val> CYP27A1 * Vmax * [Calcifediol] / ( [Calcifediol] + Km ) </val>
-    </def> <!-- umol/min -->
+<def>
+  <name> Deffect </name>
+  <val> 2 * ( 40 ^ 2 ) / ( ( [Calcitriol->ng/L] ^ 2 ) + ( 40 ^ 2 ) )  </val>
+</def>
 
-    <def>
-      <name>[125OH2D3] </name>
-      <val> Calcitriol /  3</val>
-    </def>
+=======================================================================
+=======================================================================
 
-    <def>
-      <name>[125OH2D3wt]</name>
-      <val> [125OH2D3] * .416 </val>
-    </def>
+<def>
+  <name> dPTHeffect </name>
+  <val> .001 * ( PTHeffectTarget - PTHeffect ) </val>
+</def>
 
- </block>
+<def>
+  <name> dCalcifediol </name>
+  <val>  0 </val>
+</def> 
 
+<def>
+  <name>dmRNA</name>
+  <val> Deffect * PTHeffect  -  ( .1 * mRNA ) </val>
+</def> 
+
+<def>
+  <name>dCYP27B1 </name>
+  <val> ( mRNA * FGFeffectCYP ) - ( .13 * CYP27B1 )   </val>
+</def>
+
+<def>
+  <name> dCalcitriol  </name>
+  <val> ( 0.0255 * CYP27B1 ) + ( CalcitriolDecay * FGFeffect24 * PTHeffect24 * Calcitriol ) </val>
+</def> <!-- ug/min -->
+
+</block>
+
+===================================================
 <block><name> Wrapup </name> =======================
 
 <if>

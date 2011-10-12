@@ -246,7 +246,7 @@ Schema :
 
 <slidebar>
   <row> 1.0 </row><col> 1 </col>
-  <name> TalmageVitD.DDose </name>
+  <name> VitaminD.DDose </name>
   <listname> Dose </listname>
   <label> Dose </label>
 </slidebar>
@@ -259,7 +259,7 @@ Schema :
 
 <slidebar>
   <row> 3.0 </row><col> 1 </col>
-  <name> TalmageVitD.TimesDay </name>
+  <name> VitaminD.TimesDay </name>
   <listname> TimesDay </listname>
   <label> Times / Day </label>
 </slidebar>

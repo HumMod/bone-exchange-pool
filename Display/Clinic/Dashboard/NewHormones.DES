@@ -55,7 +55,11 @@ Solver : Digital Human (V1.0)
      <label> serum [CTwt] </label>
      <linecolor> BLUE </linecolor>
     </yvar>
-
+ <yvar>
+     <name> FGF23.[FGF]</name>
+     <label> serum [FGF] </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
     <scale><min> 30 </min><max> 35 </max></scale>
   </yaxis>
  </showgraph>

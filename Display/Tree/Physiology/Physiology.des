@@ -21,7 +21,7 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <leaf>
-  <name> TalmageVitD panel </name>
+  <name> VitaminDPanel</name>
   <label> Vitamin D </label>
   <parent> PHYSIOLOGY </parent>
 </leaf>
