@@ -33,16 +33,6 @@ Schema : DES V1.0
 </var>
 
 <parm>
-  <name> VitD </name>
-  <val> 390000 </val>
-</parm>  <!-- nmol in whole body --> 
-  
-<parm>
-  <name> Base25Rate </name>
-  <val> -.00002674 </val>
-</parm>  <!-- derived from half life of 18 days, assumption of steady state -->
-  
-<parm>
   <name> CalcitriolDecay </name>
   <val> -.00165 </val>
 </parm>  <!-- derived from half life of 7 hours, assumption of steady state  -->
@@ -58,22 +48,8 @@ Schema : DES V1.0
 </parm>  
   
 <var>
-  <name>[125OH2D3]</name>
-  <val>91</val>
-</var><!-- pmol/L -->
-
-<var>
-  <name>[125OH2D3wt]</name><val> 30 </val>
-</var><!-- pg/mL -->
-
-<var>
   <name>[VitD]</name>
 </var><!-- pmol/L -->
-
-<var>
-  <name>bonus</name>
-  <val>0</val>
-</var>
 
 <parm>
   <name> DDose </name>
