@@ -70,7 +70,7 @@ Schema : DES V1.0
   <block>
    <name> Dervs </name>    
 
-    <def><name> VitD </name><val> VitaminD.[Calcitriol->pmol/L]</val></def>
+    <def><name> VitD </name><val> VitaminD.[Calcitriol->pmol/L] </val></def>
 
 <def>
   <name> Signal </name>
