@@ -27,7 +27,7 @@ Schema : DES V1.0
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> Baseline </name><val> 1.0 </val></parm>
+  <parm><name> Baseline </name><val> .6 </val></parm>
   <var><name> Product </name></var>
 
 

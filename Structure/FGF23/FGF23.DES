@@ -16,13 +16,20 @@ Schema : DES V1.0
   <parm><name> S </name><val> 8000 </val></parm>
   <parm><name> Switch </name><val> 0 </val></parm>
   <parm><name> Secretor </name><val> 0 </val></parm>
+  <var><name> Secretion </name></var>
+
   <var><name> Tumor </name></var>
   <parm><name> n </name><val>.718</val></parm>
-  <parm><name> DecayRate </name><val> 0.0154 </val></parm>  
+  <parm><name> DecayRate </name><val> 0.012 </val></parm>  
   <var><name> SecretionTarget </name></var>  <!-- secretion target is altered by mutations to Phex gene;-->
   <var><name> VitD </name> </var>
-  <var><name> [FGF] </name></var>
+  <var><name> [FGF] </name><val> 30 </val> </var>
 
+ <var>
+  <name> Signal </name>
+ </var>
+
+ 
 </variables>
 
 <equations>
@@ -37,12 +44,13 @@ Schema : DES V1.0
  </diffeq>
 
  <diffeq>
-     <name> Secretion </name>  
-     <integralname> Secretion </integralname>
-     <initialval> 1.34 </initialval>
-     <dervname> dSec </dervname>
-     <errorlim> .0134 </errorlim>
+     <name> mrna </name>  
+     <integralname> mrna </integralname>
+     <initialval> 1100 </initialval>
+     <dervname> dmrna </dervname>
+     <errorlim> 1.1 </errorlim>
  </diffeq>
+
 
 </equations>
 
@@ -62,9 +70,19 @@ Schema : DES V1.0
   <block>
    <name> Dervs </name>    
 
-    <def><name> VitD </name><val> VitaminD.[Calcitriol->ng/L]</val></def>
-    <def><name> SecretionTarget </name><val> A * ( VitD ^ n ) / ( ( VitD ^ n ) + ( S ^ n ) ) </val></def>
-    <def><name> dSec </name><val> .15 * ( SecretionTarget - Secretion ) </val></def>
+    <def><name> VitD </name><val> VitaminD.[Calcitriol->pmol/L]</val></def>
+
+<def>
+  <name> Signal </name>
+  <val> ( VitD ^ 2 ) / ( ( VitD ^ 2 ) + ( 14 ^ 2 ) ) </val>
+</def>
+
+<def>
+  <name> dmrna </name>
+  <val> Signal - ( .00321 * mrna ) </val>
+</def>
+
+    <def><name> Secretion </name><val> .027 * mrna </val></def>
     <def><name> dFGF </name><val> Secretion + Tumor - ( DecayRate * FGF23 ) </val></def> 
     <def><name> [FGF] </name><val> FGF23 / 3 </val></def>
   </block>

@@ -25,19 +25,13 @@ Schema : DES V1.0
   <parm><name> nP </name><val> 10 </val></parm>
 
   <var><name>ModifiedCa</name></var>
-  <var><name>Sec_Target</name> <val> 0 </val> </var>
+  <var><name> PTSec</name><val> 0 </val></var>
+  <var><name> Deffect </name></var>
+  <var><name> FGFeffect </name></var>
 
 </variables>
 
 <equations>
-
- <diffeq>
-     <name>PTSec </name>  
-     <integralname> PTSec </integralname>
-     <initialval> 25. </initialval>
-     <dervname> dPTSec </dervname>
-     <errorlim>.25 </errorlim>
- </diffeq>
 
 </equations>
 
@@ -46,25 +40,28 @@ Schema : DES V1.0
   <block>
    <name>CalcSecretion</name>    
 
-    <def>
-      <name> ModifiedCa </name>
-      <val> CaReceptor.CaRExpression * TalmageCaPool.[Ca++]  </val>
-    </def>
+<def>
+  <name> Deffect </name>
+  <val> 2 - ( 1.3 * VitaminD.[Calcitriol->pmol/L] / ( VitaminD.[Calcitriol->pmol/L] + .4  ) ) </val>
+</def>
 
-    <def>
-      <name> Sec_Target </name>
-      <val> ( ( A - B ) * ( SetPoint ^ NH ) / ( ( SetPoint ^ NH ) + ( ModifiedCa ^ NH ) ) ) + B </val>
-    </def>
-    <def>
-      <name> dPTSec </name>
-      <val> .5 * ( Sec_Target - PTSec ) </val>
-    </def> <!-- ng /min^2 -->
+<def>
+  <name> FGFeffect </name>
+  <val>  1 - ( .5 * ( FGF23.[FGF] ^ 2 ) / ( ( FGF23.[FGF] ^ 2 ) + ( 350 ^ 2 ) ) ) </val>
+</def>
+
+<def>
+  <name> ModifiedCa </name>
+  <val> CaReceptor.CaRExpression * TalmageCaPool.[Ca++]  </val>
+</def>
+
+<def>
+  <name> PTSec</name>
+  <val> ( ( ( A - B ) * ( SetPoint ^ NH ) / ( ( SetPoint ^ NH ) + ( ModifiedCa ^ NH ) ) ) + B ) * Deffect </val>
+</def>
 
   </block>
 </definitions>
 </structure>
 
-End                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                                              
-                                                                                                                                                                 
-                                                                                                                                                                                                                        
+End      

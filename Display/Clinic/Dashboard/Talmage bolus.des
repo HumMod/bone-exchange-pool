@@ -239,7 +239,7 @@ Schema :
 <repeatlist>
   <name> Dose </name>
   <repeat>
-    <reps> 4 </reps>
+    <reps> 20 </reps>
     <stepsize> 250 </stepsize>
   </repeat>
 </repeatlist>

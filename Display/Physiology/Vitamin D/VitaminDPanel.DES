@@ -35,9 +35,9 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
    <row> 3.0 </row><col> 1 </col>
-   <name> [Calcitriol->nmol/L] </name>
+   <name> [Calcitriol->pmol/L] </name>
    <format><decimal> 3 </decimal></format>
-   <label> active Vit D </label>
+   <label> active Vit D (pM)</label>
 </showvalue>
  <infobutton>
   <row> 3 </row><col> 35 </col>

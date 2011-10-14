@@ -117,7 +117,8 @@ Schema : DES V1.0
 </var>
 
 <var>
-  <name> [Calcitriol->nmol/L] </name>
+  <name> [Calcitriol->pmol/L] </name>
+  <val> 100 </val>
 </var>
 
 <var>
@@ -125,7 +126,7 @@ Schema : DES V1.0
 </var>
 
 <var>
-  <name> [FreeCalcitriol->nmol/L] </name>
+  <name> [FreeCalcitriol->pmol/L] </name>
 </var>
 
 <parm>
@@ -171,7 +172,16 @@ Schema : DES V1.0
     <name>mRNA</name>  
      <integralname>mRNA</integralname>
      <initialval> 1.0 </initialval> <!-- derived from steady state-->
-     <dervname> dmRNA</dervname>
+     <dervname> dmRNAalpha</dervname>
+     <errorlim> .01 </errorlim>
+  </diffeq>
+
+
+  <diffeq>
+    <name>mRNA24</name>  
+     <integralname>mRNA24</integralname>
+     <initialval> 1.0 </initialval> <!-- derived from steady state-->
+     <dervname> dmRNA24 </dervname>
      <errorlim> .01 </errorlim>
   </diffeq>
 
@@ -197,6 +207,14 @@ Schema : DES V1.0
      <initialval>  7.854    </initialval>
      <dervname> dCYP27B1 </dervname>
      <errorlim> .1 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> CYP24 </name>  
+     <integralname> CYP24 </integralname>
+     <initialval>  6    </initialval>
+     <dervname> dCYP24 </dervname>
+     <errorlim> .05 </errorlim>
   </diffeq>
 
   <diffeq>
@@ -251,8 +269,8 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> [Calcitriol->nmol/L] </name>
-  <val> [Calcitriol->ng/L] / 416  </val>  <!-- 416 is the m.w. of calcitriol -->
+  <name> [Calcitriol->pmol/L] </name>
+  <val> [Calcitriol->ng/L] / .416  </val>  <!-- 416 is the m.w. of calcitriol -->
 </def>
 
 <def>
@@ -261,8 +279,8 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> [FreeCalcitriol->nmol/L] </name>
-  <val> ( 1 - ( Kaff125 * VDP / ( Kaff125 * VDP + 1 ) ) ) * [Calcitriol->nmol/L]  </val>  <!-- simplified solution of affinity equation -->
+  <name> [FreeCalcitriol->pmol/L] </name>
+  <val> ( 1 - ( Kaff125 * VDP / ( Kaff125 * VDP + 1 ) ) ) * [Calcitriol->pmol/L]  </val>  <!-- simplified solution of affinity equation -->
 </def>
 
 <def>
@@ -290,15 +308,15 @@ Schema : DES V1.0
   <test> ( FGF GE MaxFGF ) OR ( System.X GE Ftimer )</test>
   <true> 
     <def><name> MaxFGF </name><val> FGF </val></def>
-    <def><name> FGFeffectCYP </name><val> 40 / ( FGF + 40 ) + .6 </val></def>
+    <def><name> FGFeffectCYP </name><val> 1 - ( .4 * ( FGF ^ 3 ) / ( ( FGF ^ 3 ) + ( 4.5 ^ 3 ) ) ) </val></def><!-- good Perwad and Portale -->
     <def><name> Ftimer </name><val> System.X + 60 </val></def>
   </true>
-</if>
+</if><!-- good-->
 
 <def>
   <name> FGFeffect24 </name>
-  <val> 3 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 40  ^ 2 ) ) </val>
-</def>
+  <val> 1 + ( 2.5 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 60  ^ 2 ) ) ) </val>
+</def><!-- good -->
 
 <def>
   <name> PTHeffect24 </name>
@@ -324,14 +342,26 @@ Schema : DES V1.0
 </def> 
 
 <def>
-  <name>dmRNA</name>
-  <val> Deffect * PTHeffect  -  ( .1 * mRNA ) </val>
+  <name>dmRNAalpha</name>
+  <val> Deffect * PTHeffect  -  ( .00321 * mRNA ) </val>
 </def> 
+
+<def>
+  <name>dmRNA24</name>
+  <val> .00321 * ( FGFeffect24 - mRNA24 ) </val>
+</def> <!-- good -->
 
 <def>
   <name>dCYP27B1 </name>
   <val> ( mRNA * FGFeffectCYP ) - ( .13 * CYP27B1 )   </val>
 </def>
+
+<def>
+  <name>dCYP24 </name>
+  <val> ( mRNA24 * 1 ) - ( .13 * CYP24 )   </val>
+</def>
+
+
 
 <def>
   <name> dCalcitriol  </name>
@@ -351,8 +381,8 @@ Schema : DES V1.0
       <val> LastDose + Interval </val>
     </def>
     <def>
-      <name> v125OH2D </name>
-      <val> v125OH2D + DDose </val>
+      <name> Calcitriol </name>
+      <val> Calcitriol + DDose </val>
     </def>
   </true>
 </if>

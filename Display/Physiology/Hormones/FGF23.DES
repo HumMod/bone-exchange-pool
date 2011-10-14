@@ -64,6 +64,20 @@
    <label> Secretion amount (ng/min) </label>
  </editbox>
 
+ <showvalue>
+   <row> 20.0 </row><col> 1 </col>
+   <name> mrna </name>
+   <format><decimal> 3 </decimal></format>
+   <label> mrna </label>
+ </showvalue>
+
+<showvalue>
+   <row> 21.0 </row><col> 1 </col>
+   <name> Signal </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Signal </label>
+ </showvalue>
+
 
 
 </groupbox>
