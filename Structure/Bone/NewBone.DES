@@ -15,7 +15,7 @@ Schema : DES V1.0
 <!-- solubility constant parms -->
  <!-- PTH -->
   <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
-  <var><name> Kx </name><val> .85 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
+  <var><name> Kx </name><val> .6 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
   <parm><name> SP </name><val> 50 </val></parm>
   <parm><name> nh </name><val> 3 </val></parm>
 
@@ -27,7 +27,7 @@ Schema : DES V1.0
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> Baseline </name><val> .6 </val></parm>
+  <parm><name> Baseline </name><val> .9 </val></parm>
   <var><name> Product </name></var>
 
 
@@ -126,10 +126,10 @@ Schema : DES V1.0
    <def><name>TargetC</name><val> Ky * ( ( SQ ^ mh ) / ( ( CTN ^ mh ) + ( SQ ^ mh ) ) ) </val></def>
    <def><name> dSetP </name><val> 1 * DelayP * ( TargetP - SetP ) </val></def>
    <def><name> dSetC </name><val> 1 * DelayC * ( TargetC - SetC ) </val></def>
-   <def><name>Target</name><val> SetP + SetC + Baseline </val></def>
+   <def><name>Target</name><val> SetP + Baseline </val></def>
 
-   <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
-   <def><name> Hprime </name><val> ( ( - ( C + P ) ) - SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
+   <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) MAX 0 ) ) / 2 </val></def> <!-- mmol/L-->
+   <def><name> Hprime </name><val> ( ( - ( C + P ) ) - SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) MAX 0  ) ) / 2 </val></def> <!-- mmol/L-->
 
 
 

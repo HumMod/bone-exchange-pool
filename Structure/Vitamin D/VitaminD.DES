@@ -72,7 +72,7 @@ Schema : DES V1.0
 </parm> 
 
 <var>
-  <name> FGFeffect24 </name>
+  <name> FGFeffect24Target </name>
 </var>
 
 <var>
@@ -178,6 +178,14 @@ Schema : DES V1.0
   </diffeq>
 
   <diffeq>
+    <name> FGFeffect24 </name>  
+     <integralname> FGFeffect24 </integralname>
+     <initialval>  1.0    </initialval>
+     <dervname> dFGFeffect24 </dervname>
+     <errorlim> .01 </errorlim>
+  </diffeq>
+
+  <diffeq>
     <name> CYP27B1 </name>  
      <integralname> CYP27B1 </integralname>
      <initialval>  7.854    </initialval>
@@ -188,9 +196,9 @@ Schema : DES V1.0
   <diffeq>
     <name> CYP24 </name>  
      <integralname> CYP24 </integralname>
-     <initialval>  6    </initialval>
+     <initialval>  5.5    </initialval>
      <dervname> dCYP24 </dervname>
-     <errorlim> .05 </errorlim>
+     <errorlim> .055 </errorlim>
   </diffeq>
 
   <diffeq>
@@ -290,9 +298,9 @@ Schema : DES V1.0
 </if><!-- good-->
 
 <def>
-  <name> FGFeffect24 </name>
-  <val> 1 + ( 2.5 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 60  ^ 2 ) ) ) </val>
-</def><!-- good -->
+  <name> FGFeffect24Target </name>
+  <val>  .0253 * ( FGF MAX 4 ) - .1261 </val> <!-- derived from mouse data; perwad et al -->
+</def><!-- good -->  <!-- 1 + ( 2.5 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 60  ^ 2 ) ) ) -->
 
 <def>
   <name> PTHeffect24 </name>
@@ -310,6 +318,11 @@ Schema : DES V1.0
 <def>
   <name> dPTHeffect </name>
   <val> .001 * ( PTHeffectTarget - PTHeffect ) </val>
+</def>
+
+<def>
+  <name> dFGFeffect24 </name>
+  <val> 0.003 * ( FGFeffect24Target - FGFeffect24 ) </val>
 </def>
 
 <def>
@@ -341,7 +354,7 @@ Schema : DES V1.0
 
 <def>
   <name> dCalcitriol  </name>
-  <val> ( 0.0255 * CYP27B1 ) + ( CalcitriolDecay * FGFeffect24 * PTHeffect24 * Calcitriol ) </val>
+  <val> ( 0.0255 * CYP27B1 ) + ( CalcitriolDecay * FGFeffect24 * PTHeffect24 * Calcitriol ) - ( .5 * CYP24 * 120.2 * [Calcifediol->umol/L] / ( [Calcifediol->umol/L] + 20.9 ) ) </val>
 </def> <!-- ug/min -->
 
 </block>

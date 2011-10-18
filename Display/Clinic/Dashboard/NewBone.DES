@@ -8,7 +8,7 @@ Solver : Digital Human (V1.0)
 
 <structurename> NewBone </structurename>
 <groupbox>
-   <row> 26.5 </row>
+   <row> 26.</row>
    <col> 2.0 </col>
    <high> 22.0 </high>
    <wide> 45.0 </wide>
@@ -45,8 +45,6 @@ Solver : Digital Human (V1.0)
   </yaxis>
  </showgraph>
 
-
-
  <showgraph>
   <row> 10.5 </row><col> 1.0 </col>
   <high> 8 </high><wide> 40 </wide>
@@ -69,20 +67,26 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 19 </row><col> 1 </col>
-  <name> Common </name>
-  <label> common </label>
+  <name> SetP </name>
+  <label> set pth </label>
 </showvalue>
 
 <showvalue>
   <row> 20 </row><col> 1 </col>
-  <name> PermToSerum </name>
-  <label> perm to serum </label>
+  <name> SetC </name>
+  <label> set ctn </label>
 </showvalue>
 
 <showvalue>
   <row> 21 </row><col> 1 </col>
-  <name> BoneExchange </name>
-  <label> bone exchange </label>
+  <name> TargetP </name>
+  <label> Target pth </label>
+</showvalue>
+
+<showvalue>
+  <row> 22 </row><col> 1 </col>
+  <name> TargetC </name>
+  <label> Target ctn </label>
 </showvalue>
 
 

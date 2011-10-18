@@ -24,6 +24,10 @@ Schema : DES V1.0
   <var><name> SecretionTarget </name></var>  <!-- secretion target is altered by mutations to Phex gene;-->
   <var><name> VitD </name> </var>
   <var><name> [FGF] </name><val> 30 </val> </var>
+  <var><name> PTH </name></var>
+  <var><name> PTHeffect </name></var> 
+  <var><name> PO4 </name></var>
+  <var><name> PO4effect</name></var>
 
  <var>
   <name> Signal </name>
@@ -46,9 +50,9 @@ Schema : DES V1.0
  <diffeq>
      <name> mrna </name>  
      <integralname> mrna </integralname>
-     <initialval> 1100 </initialval>
+     <initialval> 1 </initialval>
      <dervname> dmrna </dervname>
-     <errorlim> 1.1 </errorlim>
+     <errorlim> .01 </errorlim>
  </diffeq>
 
 
@@ -65,24 +69,48 @@ Schema : DES V1.0
      <def><name> Secretor </name><val> 0 </val></def>
   </false>
  </if>
-
   </block>
+
   <block>
    <name> Dervs </name>    
 
-    <def><name> VitD </name><val> VitaminD.[Calcitriol->pmol/L]</val></def>
+<def>
+  <name> VitD </name>
+  <val> VitaminD.[Calcitriol->ng/L] </val>
+</def>
+
+<def>
+  <name> PTH </name>
+  <val> TalmagePTHormone.[PTHwt] </val>
+</def>
+
+<def>
+  <name> PO4 </name>
+  <val> TalmagePO4Pool.[PO4] </val>
+</def>
 
 <def>
   <name> Signal </name>
-  <val> ( VitD ^ 2 ) / ( ( VitD ^ 2 ) + ( 14 ^ 2 ) ) </val>
+  <val> .95 * ( VitD ^ 2 ) / ( ( VitD ^ 2 ) + ( 5700 ^ 2 ) ) + .0001 </val>
+</def>
+
+
+<def>
+  <name> PTHeffect </name>
+  <val> 4.5 * ( PTH ^ 2 ) / ( ( PTH ^ 2 ) + ( 564 ^ 2 ) ) + 1 </val>
+</def>
+
+<def>
+  <name> PO4effect </name>
+  <val> 1 * ( .6 + ( 1.4 * ( PO4 ^ 10 ) / ( ( PO4 ^ 10 ) + ( 1.1 ^ 10 ) ) ) ) </val>
 </def>
 
 <def>
   <name> dmrna </name>
-  <val> Signal - ( .00321 * mrna ) </val>
+  <val> Signal + ( .005 * ( PTHeffect - mrna ) ) - ( .000321 * mrna ) </val>
 </def>
 
-    <def><name> Secretion </name><val> .027 * mrna </val></def>
+    <def><name> Secretion </name><val> mrna * PO4effect </val></def>
     <def><name> dFGF </name><val> Secretion + Tumor - ( DecayRate * FGF23 ) </val></def> 
     <def><name> [FGF] </name><val> FGF23 / 3 </val></def>
   </block>

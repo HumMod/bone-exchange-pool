@@ -77,7 +77,7 @@ Schema : DES V1.0
       </if>    
 
 
-     <def><name>dPTH/dt</name><val> ( TalmagePTpool.Switch * TalmagePTpool.PTSec ) + PTHpumpRate + ( PTHDegRate * PTH ) </val></def>
+     <def><name>dPTH/dt</name><val> ( TalmagePTpool.Switch * TalmagePTpool.PTSec * TalmagePO4Pool.[PO4] ) + PTHpumpRate + ( PTHDegRate * PTH ) </val></def>
 
      <def><name>[PTHwt]</name><val>PTH / Vol </val></def>
      <def><name>[PTH]</name><val>[PTHwt] / 9.400 </val></def><!--pmol/L MW is 9.4kD -->

@@ -14,6 +14,13 @@ Schema : DES V1.0
   <var><name> GFR </name><val> .125</val></var>
   <parm><name> FilterFraction </name><val> .2 </val></parm>
   <var><name> ModGFR </name><val> .125</val></var>
+  <parm><name> Nephrons </name><val> 1200000 </val></parm>
+  <constant><name> PTLength </name><val> 14 </val></constant> <!-- mm -->
+  <constant><name> PTCellCSA </name><val> .01175 </val></constant> <!-- mm^2;14 mm long, .065 mmwide, with 1/3 of width the tubule itself, calculated CSA as annulus -->
+  <var><name> PTCellVolume </name></var>  <!-- mL=cm^3-->
+  <constant><name> Protein/mm </name><val> .000425 </val></constant>
+  <parm><name> VDR-Expression </name><val> 100 </val></parm><!-- fmol/mg protein-->
+  <var><name> [VDR-pt] </name></var>
 </variables>
 
 
@@ -24,10 +31,10 @@ Schema : DES V1.0
  <name>Dervs </name>
    <def><name> GFR </name><val> RenalBloodFlow * FilterFraction </val></def>
    <def><name> ModGFR </name> <val> GFR </val></def>
+  <def><name> PTCellVolume </name><val> PTLength * PTCellCSA / 1000 </val></def>
+  <def><name> [VDR-pt] </name><val> VDR-Expression * Protein/mm * PTLength / PTCellVolume </val></def>
  </block>
 
 </definitions>  
 
-</structure>                                                                                                                                                                                                  
-                         
-                                                                                                                                                                                                               
+</structure> 
