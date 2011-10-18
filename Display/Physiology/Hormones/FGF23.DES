@@ -78,6 +78,21 @@
    <label> Signal </label>
  </showvalue>
 
+<showvalue>
+   <row> 22.0 </row><col> 1 </col>
+   <name> PTHeffect </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PTHeffect </label>
+ </showvalue>
+
+<showvalue>
+   <row> 23.0 </row><col> 1 </col>
+   <name> PO4effect </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4Effect </label>
+ </showvalue>
+
+
 
 
 </groupbox>
