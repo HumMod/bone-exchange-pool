@@ -15,11 +15,11 @@ Schema : DES V1.0
   <var><name> PO4Filt </name><val> 0 </val></var>
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
-  <parm><name> a </name><val> 5 </val></parm>45
+  <parm><name> a </name><val> 0 </val></parm>45
   <parm><name> s </name><val> 35 </val></parm>
   <parm><name> n </name><val> 2 </val></parm>
 
-  <parm><name> af </name><val> 15. </val></parm>45
+  <parm><name> af </name><val> 20 </val></parm>45
   <parm><name> sf </name><val> 40 </val></parm>
   <parm><name> nf </name><val> 2 </val></parm>
 
@@ -80,7 +80,7 @@ Schema : DES V1.0
   <def><name> Excretion </name><val> RenalParms.ModGFR * PO4Gradient MAX 0 </val></def>
    <def><name> Excretionmmol </name><val> Excretion / 95 </val></def>
    <def><name> RA </name><val> PO4Filt - Excretion </val></def>
-   <def><name> FracExcretionPO4 </name><val> Excretionmmol / ( RenalParms.ModGFR * .75 * TalmagePO4Pool.[PO4] ) </val></def>
+   <def><name> FracExcretionPO4 </name><val> Excretionmmol * .9 / ( RenalParms.ModGFR * TalmagePO4Pool.[PO4] ) </val></def>
 
  </block>
 

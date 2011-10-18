@@ -81,6 +81,7 @@ Schema : DES V1.0
 
 <var>
   <name> [Calcifediol->ug/L] </name>
+  <val> 40 </val>
 </var>
 
 <var>
@@ -317,7 +318,7 @@ Schema : DES V1.0
 
 <def>
   <name> dPTHeffect </name>
-  <val> .001 * ( PTHeffectTarget - PTHeffect ) </val>
+  <val>  .001 * ( PTHeffectTarget - PTHeffect ) </val>
 </def>
 
 <def>
@@ -332,12 +333,12 @@ Schema : DES V1.0
 
 <def>
   <name>dmRNAalpha</name>
-  <val> Deffect * PTHeffect  -  ( .00321 * mRNA ) </val>
+  <val> Deffect * PTHeffect  -  ( .000321 * mRNA ) </val>
 </def> 
 
 <def>
   <name>dmRNA24</name>
-  <val> .00321 * ( FGFeffect24 - mRNA24 ) </val>
+  <val> .000321 * ( FGFeffect24 - mRNA24 ) </val>
 </def> <!-- good -->
 
 <def>

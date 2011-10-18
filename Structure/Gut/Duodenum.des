@@ -76,7 +76,7 @@ Schema : DES V1.0
 
    <def>
 	<name> Outflow </name> 
-	<val> ( Mass - Absorption ) * WashOut </val>
+	<val> ( Mass - Absorption ) * WashOut MAX 0</val>
    </def>
 
    <def>

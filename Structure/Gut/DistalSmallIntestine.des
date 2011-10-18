@@ -36,16 +36,11 @@ Schema : DES V1.0
   <var><name>NetIntake</name></var>
 
 <!-- timer vars -->
+   <parm><name> AbTime </name><val>180</val></parm>
  
- 
-  <parm><name> AbTime </name><val>180</val></parm>
- 
-
-
 </variables>
 
 <equations>
-
  <diffeq>
   <name> Mass </name>  
      <integralname> Mass </integralname>
@@ -53,12 +48,9 @@ Schema : DES V1.0
      <dervname> Change </dervname>
      <errorlim> .5 </errorlim>
  </diffeq>
-
 </equations>
 
-
 <definitions>
-
  <block>
  <name>Dervs </name>
 
@@ -75,7 +67,7 @@ Schema : DES V1.0
 
    <def>
 	<name> EntericAbsorption </name> 
-	<val> Mass * AbsFrac </val>
+	<val> Mass * AbsFrac MAX 0</val>
    </def>
 
    <def>

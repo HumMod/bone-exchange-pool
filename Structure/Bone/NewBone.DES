@@ -15,9 +15,9 @@ Schema : DES V1.0
 <!-- solubility constant parms -->
  <!-- PTH -->
   <var><name> TargetP </name> </var><!-- Target is K_sp as a function of PTH -->
-  <var><name> Kx </name><val> .6 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
-  <parm><name> SP </name><val> 50 </val></parm>
-  <parm><name> nh </name><val> 3 </val></parm>
+  <var><name> Kx </name><val> 0.75 </val></var> (.95, 43) (1.3, 53) (1.5, 57)
+  <parm><name> SP </name><val> 45 </val></parm>
+  <parm><name> nh </name><val> 2 </val></parm>
 
  <!-- CTN -->
   <var><name> TargetC </name></var><!-- Target is K_sp as a function of CT -->
@@ -27,7 +27,7 @@ Schema : DES V1.0
 
  <!-- Target -->
   <var><name> Target </name></var><!-- Target is K_sp as a function of CT&PTH -->
-  <parm><name> Baseline </name><val> .9 </val></parm>
+  <parm><name> Baseline </name><val> .95 </val></parm>
   <var><name> Product </name></var>
 
 
@@ -51,7 +51,7 @@ Schema : DES V1.0
   <var><name> CO </name><val> 3 </val></var><!-- cardiac (plasma) output; 3L/min-->
   <var><name> BoneFlow </name><val> .04 </val></var> <!-- serum flow to bone; 4% of total-->
   <var><name>PermP</name><val> .159 </val></var>
-  <var><name>DelayP </name><val> .0001 </val></var>
+  <var><name>DelayP </name><val> .0025 </val></var>
   <var><name>DelayC</name></var>
   <var><name>dP</name></var>
   <var><name>dC</name></var>
