@@ -1,0 +1,94 @@
+ HumMod / Kidney
+
+Created : 11-Sep-10
+Last Modified : 7-Jun-11
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+   
+<structure><name>RenalPO4</name>
+
+<variables>
+
+<!-- Reabsorption parms -->
+  <var><name> PO4Filt </name><val> 0 </val></var>
+  <var><name>PO4Gradient</name></var>
+  <var><name> PTH </name></var>
+  <parm><name> a </name><val> .5 </val></parm>45
+  <parm><name> s </name><val> 45 </val></parm>
+  <parm><name> n </name><val> 2 </val></parm>
+
+  <parm><name> af </name><val> 1. </val></parm>45
+  <parm><name> sf </name><val> 50 </val></parm>
+  <parm><name> nf </name><val> 2 </val></parm>
+
+  <parm><name> b </name><val> .05 </val></parm>85,45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+  <var><name> Mult </name></var>
+  <parm><name> BaseVmax </name><val> .25 </val></parm>
+  <parm><name> BaseKm </name><val> .18 </val></parm>
+  <var><name> Vmax </name></var>
+  <var><name> Km </name></var>
+  <var><name> EffTmP/GFR </name></var>
+
+
+
+<!-- TmP/GFR parms-->
+  <var><name> TargetPTH </name></var>
+  <var><name> TargetFGF </name></var>
+
+<!-- Excretion parms -->  
+  <var><name>Excretionmmol</name><val> 0 </val></var><!-- excreted PO4 in mmol/min-->                                                      
+  <var><name>Excretion</name><val>0</val></var><!-- excreted PO4 mass mg/min-->
+  <var><name> FracExcretionPO4 </name></var>  
+  <var><name> RA </name><val> 0 </val></var>
+  <var><name> TargetPTNaRA </name></var>
+  <var><name> NaFilt </name></var>
+</variables>
+
+<definitions>
+
+ <block>
+ <name>Dervs</name>
+
+<def>
+  <name> PTH </name>
+  <val> TalmagePTHormone.[PTH] </val>
+</def>
+
+<!-- Filtration-->
+   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .8 * RenalParms.ModGFR </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
+   <def><name> NaFilt </name><val> 141 * RenalParms.ModGFR </val></def> <!-- mmol/min -->
+
+<!-- Calculate TmP/GFR -->
+<def>
+  <name> TargetPTH </name>
+  <val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  </val>  
+</def>  
+
+<def>
+  <name> TargetFGF </name>
+  <val> af * ( sf ^ nf ) / ( ( sf ^ nf ) + ( FGF23.[FGF] ^ nf ) ) </val>  
+</def>  
+
+<def>
+  <name> Mult </name>
+  <val> TargetPTH + TargetFGF + b </val>
+</def>
+
+<def><name> Vmax </name><val> BaseVmax * Mult </val></def>
+<def><name> Km </name><val> BaseKm * Mult</val></def>
+
+  <def><name> RA </name><val> ( Vmax * RenalParms.NephronMult ) * PO4Filt / ( PO4Filt + Km ) MAX PO4Filt</val></def>
+  <def><name> Excretion </name><val> 95 * ( PO4Filt - RA ) </val></def>
+   <def><name> Excretionmmol </name><val> Excretion / 95 </val></def>
+   <def><name> FracExcretionPO4 </name><val> Excretionmmol * .9 / ( RenalParms.ModGFR * TalmagePO4Pool.[PO4] ) </val></def>
+
+  <def><name> EffTmP/GFR </name><val> ( PO4Filt / RenalParms.ModGFR ) - Excretionmmol </val></def>
+
+ </block>
+
+</definitions>  
+
+</structure>  
+

@@ -13,7 +13,7 @@ Schema : DES V1.0
 
  <!-- Absorption parameters -->
 
-  <parm><name> WashOut </name><val> .0145 </val></parm> 92.5% washout in 120 minutes
+  <parm><name> WashOut </name><val> .035 </val></parm> 90% washout in 60 minutes
   <parm><name> MealTime </name><val>30</val></parm>
 
  </variables>

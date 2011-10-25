@@ -64,11 +64,11 @@ Schema : DES V1.0
 <!-- tubule -->
 
   <def><name> TargetTRPV </name><val> .00149 * ( .02 * PTH + .4  ) * TRPVMult </val></def>
- <def><name> dTRPV </name><val> .004 * ( TargetTRPV - TRPV ) </val></def><!-- ~180 minutes to adjust levels of absorption -->
+ <def><name> dTRPV </name><val> .05 * ( TargetTRPV - TRPV ) </val></def><!-- ~15 minutes to adjust levels of absorption -->
 
-  <def><name> RApassive </name><val> .9 + ( 0 * .012 * RenalPO4.RA / ( .125 * RenalPO4.TmP/GFR  ) ) </val></def>
+  <def><name> RApassive </name><val> .9  </val></def>
   <def><name> CaToDT </name><val> Ca++filt * ( 1 - RApassive ) </val></def>
-  <def><name> ActiveRA </name> <val> CaToDT * TRPV  / ( TRPV + .000161 ) </val></def>
+  <def><name> ActiveRA </name> <val> RenalParms.NephronMult * 10 * CaToDT * TRPV  / ( CaToDT + .000161 ) </val></def>  <!-- 10 is a normalizing factor; nephron damage should affect this-->
  <def><name> RA </name><val> ActiveRA + ( Ca++filt * RApassive )</val></def>
 
  <def><name> Excretionmmol </name><val> Ca++filt - RA  MAX 0 </val></def>

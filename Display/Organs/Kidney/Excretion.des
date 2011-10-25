@@ -38,21 +38,8 @@ Solver : Digital Human (V1.0)
   <line>  mmol/min </line>
  </infobutton>
 
-<showvalue>
-   <row> 4.0 </row><col> 1 </col>
-   <name> RenalPO4.TmP/GFR </name>
-   <format><decimal> 3 </decimal></format>
-   <label> TmP/GFR </label>
-</showvalue>
- <infobutton>
-  <row> 4.0 </row><col> 25 </col>
-  <line>  </line>
-  <line>  mg.min/L </line>
- </infobutton>
-
-
 <showgraph>
-  <row> 6.0 </row><col> 1 </col>
+  <row> 5.0 </row><col> 1 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 12 </leftmargin>
   <xaxis>
@@ -81,6 +68,14 @@ Solver : Digital Human (V1.0)
     <scale><min> 0</min><max> .1 </max></scale>
   </yaxis>
 </showgraph>
+
+ <editbox>
+   <row> 16 </row><col> 1 </col>
+   <name> RenalParms.NephronMult </name>
+   <label> Nephron Multiplier </label>
+ </editbox>
+
+
 
 <showgraph>
   <row> 26.0 </row><col> 1 </col>

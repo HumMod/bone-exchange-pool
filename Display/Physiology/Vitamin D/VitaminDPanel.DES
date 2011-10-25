@@ -86,7 +86,7 @@ Solver : Digital Human (V1.0)
      <label> 1A(OH)ase </label>
      <linecolor> BLUE </linecolor>
   </yvar>
-  <scale><min> 0 </min><max> 10 </max></scale>
+  <scale><min> 0 </min><max> 1.0 </max></scale>
  </yaxis>
 </showgraph>
  <infobutton>
@@ -106,86 +106,98 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>   
   <yvar>
-     <name> mRNA </name>
-     <label> mRNA </label>
+     <name> mRNAalpha </name>
+     <label> mRNAalpha </label>
      <linecolor> BLUE </linecolor>
   </yvar>
-  <scale><min> 0 </min><max> 10 </max></scale>
+  <scale><min> 0 </min><max> 1.0 </max></scale>
  </yaxis>
 </showgraph>
 
 <showvalue>
    <row> 24.0 </row><col> 1.0 </col>
-   <name> Ftimer </name>
+   <name> FGFeffect24 </name>
    <format><decimal> 3 </decimal></format>
-   <label> Ftimer </label>
+   <label> FGFeffect24 (1.0)  </label>
 </showvalue>
 
 <showvalue>
    <row> 25.0 </row><col> 1.0 </col>
-   <name> MaxFGF </name>
+   <name> PTHeffect24 </name>
    <format><decimal> 3 </decimal></format>
-   <label> MaxFGF </label>
+   <label> PTHeffect24 (1.0) </label>
 </showvalue>
 
 <showvalue>
    <row> 26.0 </row><col> 1.0 </col>
-   <name> PTHeffect </name>
+   <name> mRNA24 </name>
    <format><decimal> 3 </decimal></format>
-   <label> PTH effect </label>
+   <label> mRNA24 (1.0) </label>
 </showvalue>
 
 <showvalue>
    <row> 27.0 </row><col> 1.0 </col>
-   <name> Deffect </name>
+   <name> CYP24 </name>
    <format><decimal> 3 </decimal></format>
-   <label> D effect </label>
+   <label> CYP24 (5.5) </label>
 </showvalue>
 
-<showvalue>
-   <row> 28.0 </row><col> 1.0 </col>
-   <name> FGFeffectCYP </name>
-   <format><decimal> 3 </decimal></format>
-   <label> FGF effect CYP </label>
-</showvalue>
+
+
+
 
 <showvalue>
    <row> 29.0 </row><col> 1.0 </col>
-   <name> FGFeffect24 </name>
+   <name> Deffect </name>
    <format><decimal> 3 </decimal></format>
-   <label> FGF effect24 </label>
+   <label> Deffect (1.6) </label>
 </showvalue>
 
-<showgraph>
-  <row> 24.0 </row><col> 45.0 </col>
-  <high> 9 </high><wide> 42 </wide>
-  <leftmargin> 10 </leftmargin>
-  <xaxis>
-     <name> System.X </name>
-     <label> Time </label>
-     <scale><min> 0 </min><max> 360 </max></scale>
-  </xaxis>
-  <yaxis>   
-  <yvar>
-     <name> PTHeffect </name>
-     <label> PTHeffect </label>
-     <linecolor> BLUE </linecolor>
-  </yvar>
-  <yvar>
-     <name> PTHeffectTarget </name>
-     <label> PTHeffectTarget </label>
-     <linecolor> BLACK </linecolor>
-  </yvar>
+<showvalue>
+   <row> 30.0 </row><col> 1.0 </col>
+   <name> PTHeffect </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PTHeffect (.5) </label>
+</showvalue>
 
-<!--  <yvar>
-     <name> PTHeffect24 </name>
-     <label> PTHeffect24 </label>
-     <linecolor> RED </linecolor>
-  </yvar>
--->
-  <scale><min> 0 </min><max> 1.0 </max></scale>
- </yaxis>
-</showgraph>
+<showvalue>
+   <row> 31.0 </row><col> 1.0 </col>
+   <name> FGFeffectCYP </name>
+   <format><decimal> 3 </decimal></format>
+   <label> FGFeffectCYP (.8)  </label>
+</showvalue>
+
+<showvalue>
+   <row> 32.0 </row><col> 1.0 </col>
+   <name> mRNAalpha </name>
+   <format><decimal> 3 </decimal></format>
+   <label> mRNAalpha (1.0)  </label>
+</showvalue>
+
+<showvalue>
+   <row> 33.0 </row><col> 1.0 </col>
+   <name> CalcitriolLoss </name>
+   <format><decimal> 3 </decimal></format>
+   <label> CalcLoss </label>
+</showvalue>
+
+<showvalue>
+   <row> 34.0 </row><col> 1.0 </col>
+   <name> Ptimer </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Ptimer </label>
+</showvalue>
+
+<showvalue>
+   <row> 35.0 </row><col> 1.0 </col>
+   <name> System.X </name>
+   <format><decimal> 3 </decimal></format>
+   <label> X </label>
+</showvalue>
+
+
+
+
 
 </groupbox>
 </panel>

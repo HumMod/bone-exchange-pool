@@ -17,7 +17,7 @@ Schema : DES V1.0
 
 <!-- passive factors -->
 
-  <parm><name> Intake </name><val> 1500 </val></parm>
+  <parm><name> Intake </name><val> 1000 </val></parm>
   <var><name> PM </name><val> 1.1 </val> </var><!--per minute intake-->
   <var><name> ToIntestine </name><val> 0 </val></var>
 

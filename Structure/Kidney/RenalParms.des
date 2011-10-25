@@ -21,6 +21,8 @@ Schema : DES V1.0
   <constant><name> Protein/mm </name><val> .000425 </val></constant>
   <parm><name> VDR-Expression </name><val> .100 </val></parm><!-- pmol/mg protein-->
   <var><name> [VDR-pt] </name></var>
+
+  <parm><name> NephronMult </name><val> 1.0 </val></parm>
 </variables>
 
 

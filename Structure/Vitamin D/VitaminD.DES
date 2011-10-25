@@ -106,21 +106,6 @@ Schema : DES V1.0
   <name> [FreeCalcitriol->pmol/L] </name>
 </var>
 
-<parm>
-  <name> VDP </name>
-  <val> .000006 </val>
-</parm>
-
-<parm>
-  <name> Kaff125 </name>
-  <val> 40000000 </val>
-</parm>
-
-<parm>
-  <name> KaffOth </name>
-  <val> 500000000 </val>
-</parm>
-
 <var>
   <name> MaxPTH </name>
   <val> 30 </val>
@@ -141,15 +126,27 @@ Schema : DES V1.0
   <val> 0 </val>
 </var>
 
+<var>
+  <name> Eff_T1/2 </name>
+</var>
+
+<var>
+  <name> CalcitriolLoss </name>
+</var>
+
+<var>
+  <name> PTHeffect </name>
+</var>
+
  </variables>
 
  <equations>
 
   <diffeq>
-    <name>mRNA</name>  
-     <integralname>mRNA</integralname>
+    <name> mRNAalpha </name>  
+     <integralname> mRNAalpha </integralname>
      <initialval> 1.0 </initialval> <!-- derived from steady state-->
-     <dervname> dmRNAalpha</dervname>
+     <dervname> dmRNAalpha </dervname>
      <errorlim> .01 </errorlim>
   </diffeq>
 
@@ -202,14 +199,6 @@ Schema : DES V1.0
      <errorlim> .055 </errorlim>
   </diffeq>
 
-  <diffeq>
-    <name> PTHeffect </name>  
-     <integralname> PTHeffect </integralname>
-     <initialval>  1   </initialval>
-     <dervname> dPTHeffect </dervname>
-     <errorlim> .01 </errorlim>
-  </diffeq>
-
  </equations>
 
  <definitions>
@@ -233,6 +222,8 @@ Schema : DES V1.0
     </if>
 
   <def><name> Ptimer </name><val> 0 </val></def>
+  <def><name> Ftimer </name><val> 0 </val></def>
+
  </block>
 
 ============================================================
@@ -244,7 +235,7 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> [Calcifediol->umol/L] </name>
+-  <name> [Calcifediol->umol/L] </name>
   <val> [Calcifediol->ug/L] / 401  </val>  <!-- 401 is the m.w. of calcifediol -->
 </def>
 
@@ -259,16 +250,6 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> [FreeCalcifediol->umol/L] </name>
-  <val> ( 1 - ( KaffOth * VDP / ( KaffOth * VDP + 1 ) ) ) * [Calcifediol->umol/L]  </val>  <!-- simplified solution of affinity equation -->
-</def>
-
-<def>
-  <name> [FreeCalcitriol->pmol/L] </name>
-  <val> ( 1 - ( Kaff125 * VDP / ( Kaff125 * VDP + 1 ) ) ) * [Calcitriol->pmol/L]  </val>  <!-- simplified solution of affinity equation -->
-</def>
-
-<def>
   <name> PTH </name>
   <val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val>
 </def>
@@ -278,48 +259,35 @@ Schema : DES V1.0
   <val> FGF23.[FGF]  </val>
 </def>
 
+<def>
+  <name> dCalcifediol </name>
+  <val>  0 </val>
+</def> 
+
 ==================================================================
 
 <if>
   <test> ( PTH GE MaxPTH ) OR ( System.X GE Ptimer )</test>
   <true> 
     <def><name> MaxPTH </name><val> PTH </val></def>
-    <def><name> PTHeffectTarget </name><val> .75 * ( MaxPTH ^ 3 ) / ( ( MaxPTH ^ 3 ) + ( 60 ^ 3 ) ) </val></def>
     <def><name> Ptimer </name><val> System.X + 60 </val></def>
   </true>
 </if>
        
 <if>
-  <test> ( FGF GE MaxFGF ) OR ( System.X GE Ftimer )</test>
+  <test> ( FGF GE MaxFGF ) OR ( System.X GE Ftimer ) OR ( System.X EQ 0 )</test>
   <true> 
     <def><name> MaxFGF </name><val> FGF </val></def>
-    <def><name> FGFeffectCYP </name><val> 1 - ( .4 * ( FGF ^ 3 ) / ( ( FGF ^ 3 ) + ( 4.5 ^ 3 ) ) ) </val></def><!-- good Perwad and Portale -->
     <def><name> Ftimer </name><val> System.X + 60 </val></def>
   </true>
 </if><!-- good-->
 
+===================================================
+===================================================
 <def>
   <name> FGFeffect24Target </name>
-  <val>  .0253 * ( FGF MAX 4 ) - .1261 </val> <!-- derived from mouse data; perwad et al -->
+  <val>  .0253 * ( MaxFGF MAX .4 ) - .1261 </val> <!-- derived from mouse data; perwad et al -->
 </def><!-- good -->  <!-- 1 + ( 2.5 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 60  ^ 2 ) ) ) -->
-
-<def>
-  <name> PTHeffect24 </name>
-  <val> 2 * ( 30 ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
-</def>
-
-<def>
-  <name> Deffect </name>
-  <val> 2 * ( 40 ^ 2 ) / ( ( [Calcitriol->ng/L] ^ 2 ) + ( 40 ^ 2 ) )  </val>
-</def>
-
-=======================================================================
-=======================================================================
-
-<def>
-  <name> dPTHeffect </name>
-  <val>  .001 * ( PTHeffectTarget - PTHeffect ) </val>
-</def>
 
 <def>
   <name> dFGFeffect24 </name>
@@ -327,36 +295,69 @@ Schema : DES V1.0
 </def>
 
 <def>
-  <name> dCalcifediol </name>
-  <val>  0 </val>
-</def> 
-
-<def>
-  <name>dmRNAalpha</name>
-  <val> Deffect * PTHeffect  -  ( .000321 * mRNA ) </val>
-</def> 
+  <name> PTHeffect24 </name>
+  <val> 2 * ( 30 ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
+</def>
 
 <def>
   <name>dmRNA24</name>
-  <val> .000321 * ( FGFeffect24 - mRNA24 ) </val>
+  <val> .000321 * ( FGFeffect24 - ( PTHeffect24 * mRNA24 ) ) </val>
 </def> <!-- good -->
-
-<def>
-  <name>dCYP27B1 </name>
-  <val> ( mRNA * FGFeffectCYP ) - ( .13 * CYP27B1 )   </val>
-</def>
 
 <def>
   <name>dCYP24 </name>
   <val> ( mRNA24 * 1 ) - ( .13 * CYP24 )   </val>
 </def>
 
+=======================================================
+
+=======================================================================
+
+<def>
+  <name> Deffect </name>
+  <val> 2 * ( 90 ^ 2 ) / ( ( [Calcitriol->ng/L] ^ 2 ) + ( 90 ^ 2 ) )  </val>
+</def>
+
+<def>
+  <name> PTHeffect </name>
+  <val> .75 * ( MaxPTH ^ 3 ) / ( ( MaxPTH ^ 3 ) + ( 60 ^ 3 ) ) </val>
+</def>
+
+<def>
+  <name> FGFeffectCYP </name>
+  <val> 1 - ( .4 * ( MaxFGF ^ 3 ) / ( ( MaxFGF ^ 3 ) + ( 45 ^ 3 ) ) ) </val>
+</def><!-- good Perwad and Portale -->
 
 
 <def>
+  <name>dmRNAalpha</name>
+  <val> .005 * ( Deffect + PTHeffect - mRNAalpha )</val>
+</def> 
+
+
+<def>
+  <name>dCYP27B1 </name>
+  <val> ( mRNAalpha * FGFeffectCYP * RenalParms.NephronMult ) - ( .13 * CYP27B1 )   </val>
+</def>
+
+<def>
+  <name> CalcitriolLoss </name>
+  <val> .5 * CYP24 * 120.2 * [Calcitriol->pmol/L] / ( [Calcitriol->pmol/L] + 20900 ) </val>
+</def>
+
+<def>
   <name> dCalcitriol  </name>
-  <val> ( 0.0255 * CYP27B1 ) + ( CalcitriolDecay * FGFeffect24 * PTHeffect24 * Calcitriol ) - ( .5 * CYP24 * 120.2 * [Calcifediol->umol/L] / ( [Calcifediol->umol/L] + 20.9 ) ) </val>
-</def> <!-- ug/min -->
+  <val> ( 0.0275 * 9.5 * CYP27B1 * [Calcifediol->ug/L] / ( [Calcifediol->ug/L] + .00675 ) ) - CalcitriolLoss </val>
+</def> <!-- ng/min -->
+
+
+=======================================================================
+
+
+<def>
+  <name> Eff_T1/2 </name>
+  <val> .69 * Calcitriol / CalcitriolLoss </val>
+</def>
 
 </block>
 
