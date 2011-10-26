@@ -27,19 +27,40 @@ Solver : Digital Human (V1.0)
  </infobutton>
 
 <showvalue>
-   <row> 2.5 </row><col> 1 </col>
+   <row> 2. </row><col> 1 </col>
    <name>RenalPO4.Excretionmmol</name>
    <format><decimal> 3 </decimal></format>
    <label> PO4 Excretion </label>
 </showvalue>
  <infobutton>
-  <row> 2.5 </row><col> 25 </col>
+  <row> 2. </row><col> 25 </col>
   <line>  </line>
   <line>  mmol/min </line>
  </infobutton>
 
+<showvalue>
+   <row> 3.0 </row><col> 1 </col>
+   <name>RenalPO4.PO4Filt </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PO4 filtered </label>
+</showvalue>
+
+<showvalue>
+   <row> 4.0 </row><col> 1 </col>
+   <name>RenalPO4.ActiveRA </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Active RA PO4 </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.0 </row><col> 1 </col>
+   <name>RenalPO4.Excretion </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Excretion</label>
+</showvalue>
+
 <showgraph>
-  <row> 5.0 </row><col> 1 </col>
+  <row> 6.0 </row><col> 1 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 12 </leftmargin>
   <xaxis>
@@ -58,13 +79,6 @@ Solver : Digital Human (V1.0)
      <label> Excreted PO4</label>
      <linecolor> BLUE </linecolor>
     </yvar>
-
-<yvar>
-     <name> RenalPO4.PO4Filt</name>
-     <label> Filtered PO4</label>
-     <linecolor> BLACK </linecolor>
-    </yvar>
-
     <scale><min> 0</min><max> .1 </max></scale>
   </yaxis>
 </showgraph>
@@ -127,9 +141,9 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
    <row> 38.0 </row><col> 1 </col>
-   <name> System.X </name>
+   <name> RenalPO4.Eff_TmP/GFR </name>
    <format><decimal> 3 </decimal></format>
-   <label> system x </label>
+   <label> tmp/gfr </label>
 </showvalue>
 
 </groupbox>

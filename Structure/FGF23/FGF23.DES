@@ -29,6 +29,11 @@ Schema : DES V1.0
   <var><name> PO4 </name></var>
   <var><name> PO4effect</name></var>
 
+<parm>
+  <name> InactivationMult </name>
+  <val> 1.0 </val>
+</parm>
+
  <var>
   <name> Signal </name>
  </var>
@@ -42,7 +47,7 @@ Schema : DES V1.0
  <diffeq>
      <name> FGF23 </name>  
      <integralname> FGF23 </integralname>
-     <initialval> 90.0 </initialval>
+     <initialval> 160.0 </initialval>
      <dervname> dFGF </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>
@@ -50,7 +55,7 @@ Schema : DES V1.0
  <diffeq>
      <name> mrna </name>  
      <integralname> mrna </integralname>
-     <initialval> 1 </initialval>
+     <initialval> 2.0 </initialval>
      <dervname> dmrna </dervname>
      <errorlim> .01 </errorlim>
  </diffeq>
@@ -97,7 +102,7 @@ Schema : DES V1.0
 
 <def>
   <name> PTHeffect </name>
-  <val> 4.5 * ( PTH ^ 2 ) / ( ( PTH ^ 2 ) + ( 564 ^ 2 ) ) + 1 </val>
+  <val> 4.5 * ( PTH ^ 2 ) / ( ( PTH ^ 2 ) + ( 164 ^ 2 ) ) + 1 </val>
 </def>
 
 <def>
@@ -111,7 +116,7 @@ Schema : DES V1.0
 </def>
 
     <def><name> Secretion </name><val> mrna * PO4effect </val></def>
-    <def><name> dFGF </name><val> Secretion + Tumor - ( DecayRate * FGF23 ) </val></def> 
+    <def><name> dFGF </name><val> Secretion + Tumor - ( InactivationMult * DecayRate * FGF23 ) </val></def> 
     <def><name> [FGF] </name><val> FGF23 / 3 </val></def>
   </block>
 </definitions>

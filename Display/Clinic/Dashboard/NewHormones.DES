@@ -7,33 +7,25 @@ By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
 <groupbox>
-   <row> 26.5 </row>
-   <col> 47.0 </col>
-   <high> 18.5 </high>
-   <wide> 45.0 </wide>
+   <row> 27.0 </row>
+   <col> 2.0 </col>
+   <high> 16.5 </high>
+   <wide> 90.0 </wide>
    <title> Hormone Overview </title>
 
  <showvalue>
    <row> 1.0 </row><col> 1 </col>
    <name> TalmagePTHormone.[PTHwt]</name>
    <format><decimal> 3 </decimal></format>
-   <label> Parathyroid hormone concentration </label>
+   <label> [PTH] (ng/L) </label>
  </showvalue>
- <infobutton>
-  <row> 1.0 </row><col> 35 </col>
-  <line>  ng/L </line>
- </infobutton>
 
  <showvalue>
    <row> 2. </row><col> 1 </col>
-   <name> TalmageCalcitonin.[CTNwt]</name>
+   <name> FGF23.[FGF]</name>
    <format><decimal> 3 </decimal></format>
-   <label> Calcitonin concentration </label>
+   <label> [FGF-23] (ng/L) </label>
  </showvalue>
- <infobutton>
-  <row> 2.5 </row><col> 35 </col>
-  <line>  ng/L </line>
- </infobutton>
 
  <showgraph>
   <row> 3.5 </row><col> 1 </col>
@@ -48,11 +40,6 @@ Solver : Digital Human (V1.0)
     <yvar>
      <name> TalmagePTHormone.[PTHwt]</name>
      <label> serum [PTHwt] </label>
-     <linecolor> RED </linecolor>
-    </yvar>
-   <yvar>
-     <name> TalmageCalcitonin.[CTNwt]</name>
-     <label> serum [CTwt] </label>
      <linecolor> BLUE </linecolor>
     </yvar>
  <yvar>
@@ -64,48 +51,70 @@ Solver : Digital Human (V1.0)
   </yaxis>
  </showgraph>
 
+ <radiobuttons>
+  <row> 13.0 </row><col> 1.0 </col>
+  <name> TalmagePTpool.Switch </name>
+  <listname> Common.Switch </listname>
+  <label> Parathyroidectomize </label>
+ </radiobuttons>
 
- <showvalue>
-   <row> 15 </row><col> 1 </col>
-   <name> NewBone.SetP </name>
-   <format><decimal> 3 </decimal></format>
-   <label> targetp</label>
- </showvalue>
+ <editbox>
+   <row> 14.5 </row><col> 1.0 </col>
+   <name> FGF23.InactivationMult </name>
+   <label> InactivationDegree </label>
+ </editbox>
 
- <showvalue>
-   <row> 15 </row><col> 26 </col>
-   <name> NewBone.Perm </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Perm </label>
- </showvalue>
 
- <showvalue>
-   <row> 16 </row><col> 1 </col>
-   <name> NewBone.SetC </name>
-   <format><decimal> 3 </decimal></format>
-   <label> targetc </label>
- </showvalue>
+<structurename> VitaminD </structurename>
 
- <showvalue>
-   <row> 17 </row><col> 1 </col>
-   <name> NewBone.H </name>
+<showvalue>
+   <row> 1.0 </row><col> 46.0 </col>
+     <name> CYP27B1 </name>
    <format><decimal> 3 </decimal></format>
-   <label> h</label>
- </showvalue>
+     <label> 1A(OH)ase </label>
+</showvalue>
 
- <showvalue>
-   <row> 17 </row><col> 26 </col>
-   <name> NewBone.Hprime </name>
+<showvalue>
+   <row> 2.0 </row><col> 46.0 </col>
+     <name> CYP24 </name>
    <format><decimal> 3 </decimal></format>
-   <label> h`</label>
- </showvalue>
+     <label> 24(OH)ase </label>
+</showvalue>
 
- <showvalue>
-   <row> 18 </row><col> 1 </col>
-   <name> NewBone.Target </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Target </label>
- </showvalue>
+<showgraph>
+  <row> 3.5 </row><col> 46 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+      <name> [Calcitriol->ng/L]</name>
+      <label> [Calcitriol] </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 20</min><max> 40 </max></scale>
+  </yaxis>
+</showgraph>
+
+ <radiobuttons>
+  <row> 13.0 </row><col> 46.0 </col>
+  <name> FGF23.Switch </name>
+  <listname> Common.Switch </listname>
+  <label> FGF secreting tumor </label>
+ </radiobuttons>
+
+ <editbox>
+   <row> 14.5 </row><col> 46.0 </col>
+   <name> FGF23.Secretor </name>
+   <label> Secretion amount (ng/min) </label>
+ </editbox>
+
+
+
 
 </groupbox>
 

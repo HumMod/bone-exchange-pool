@@ -36,8 +36,9 @@ Solver : Digital Human (V1.0)
 <?include NewGut.DES ?>
 <?include NewRenal.DES ?>
 <?include NewHormones.DES ?> 
-<?include NewAUC.DES?>
-     
+<?include NewAUC.DES ?> 
+<?include NewBolus.DES ?> 
+
 </panel>
 
 End

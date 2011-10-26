@@ -15,32 +15,50 @@ Schema : DES V1.0
   <var><name> PO4Filt </name><val> 0 </val></var>
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
-  <parm><name> a </name><val> 10 </val></parm>45
+  <parm><name> a </name><val> .05 </val></parm>45
   <parm><name> s </name><val> 35 </val></parm>
   <parm><name> n </name><val> 2 </val></parm>
 
-  <parm><name> af </name><val> 30 </val></parm>45
-  <parm><name> sf </name><val> 40 </val></parm>
+  <parm><name> af </name><val> .18 </val></parm>45
+  <parm><name> sf </name><val> 50 </val></parm>
   <parm><name> nf </name><val> 2 </val></parm>
+  <var><name> Vmax </name></var>  <!-- target .12 -->
 
-  <parm><name> b </name><val> 60.0 </val></parm>85,45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+  <parm><name> b </name><val> 0.0 </val></parm>85,45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
 
 
 <!-- TmP/GFR parms-->
-  <var><name> TargetTmP/GFR_PTH </name><val> 7 </val></var>
-  <var><name> TargetTmP/GFR_FGF </name><val> 7 </val></var>
+  <var><name> TargetPTH </name><val> 7 </val></var>
+  <var><name> TargetFGF </name><val> 7 </val></var>
+
+<var>
+  <name> ActiveRA </name>
+</var>
+
+<var>
+  <name> PassiveRA </name>
+</var>
+
+<var>
+  <name> RA </name>
+</var>
+
+<var>
+  <name> Eff_TmP/GFR </name>
+</var>
+
 
 <!-- Excretion parms -->  
   <var><name>Excretionmmol</name><val> 0 </val></var><!-- excreted PO4 in mmol/min-->                                                      
   <var><name>Excretion</name><val>0</val></var><!-- excreted PO4 mass mg/min-->
   <var><name> FracExcretionPO4 </name></var>  
-  <var><name> RA </name><val> 0 </val></var>
   <var><name> TargetPTNaRA </name></var>
   <var><name> NaFilt </name></var>
 </variables>
 
 <equations>
 
+<!--
  <diffeq>
   <name> TmP/GFR </name>  
      <integralname> TmP/GFR </integralname>
@@ -48,6 +66,7 @@ Schema : DES V1.0
      <dervname> dTmP </dervname>
      <errorlim> 1 </errorlim>
  </diffeq>
+-->
 
 </equations>
 
@@ -62,26 +81,37 @@ Schema : DES V1.0
 </def>
 
 <!-- Filtration-->
-   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * 91 </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
+   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
    <def><name> NaFilt </name><val> 141 * RenalParms.ModGFR </val></def> <!-- mmol/min -->
 
 <!-- Calculate TmP/GFR -->
-   <def><name> TargetTmP/GFR_PTH </name>
-	<val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  </val>  
-   </def>  
-
-   <def><name> TargetTmP/GFR_FGF </name>
-	<val> af * ( sf ^ nf ) / ( ( sf ^ nf ) + ( FGF23.[FGF] ^ nf ) )  </val>  
-   </def>  
-
+<!--
    <def><name> dTmP </name><val> .045 * ( b + TargetTmP/GFR_PTH + TargetTmP/GFR_FGF - TmP/GFR ) </val></def>
-
    <def><name> PO4Gradient </name><val> PO4Filt - TmP/GFR </val></def>
-  <def><name> Excretion </name><val> RenalParms.ModGFR * PO4Gradient MAX 0 </val></def>
-   <def><name> Excretionmmol </name><val> Excretion / 95 </val></def>
-   <def><name> RA </name><val> PO4Filt - Excretion </val></def>
-   <def><name> FracExcretionPO4 </name><val> Excretionmmol * .9 / ( RenalParms.ModGFR * TalmagePO4Pool.[PO4] ) </val></def>
+-->
 
+<def>
+  <name> TargetPTH </name>
+  <val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  </val>  
+</def>  
+
+<def>
+  <name> TargetFGF </name>
+  <val> af * ( sf ^ nf ) / ( ( sf ^ nf ) + ( FGF23.[FGF] ^ nf ) )  </val>  
+</def>  
+
+<def>
+  <name> Vmax </name>
+  <val> TargetPTH + TargetFGF + b </val>
+</def>
+
+  <def><name> ActiveRA </name><val> ( RenalParms.NephronMult * Vmax * PO4Filt / ( PO4Filt + 0.02 ) ) MAX 0 </val></def>
+  <def><name> PassiveRA </name><val> .1 * ( ( PO4Filt - ActiveRA ) ) </val></def>
+  <def><name> RA </name><val> ( ActiveRA + PassiveRA ) MIN PO4Filt </val></def>
+  <def><name> Excretionmmol </name><val> PO4Filt - RA </val></def>
+   <def><name> Excretion </name><val> Excretionmmol * 95 </val></def>
+   <def><name> FracExcretionPO4 </name><val> Excretionmmol * .9 / ( RenalParms.ModGFR * TalmagePO4Pool.[PO4] ) </val></def>
+  <def><name> Eff_TmP/GFR </name><val> (  PO4Filt / RenalParms.ModGFR ) - Excretionmmol </val></def>
  </block>
 
 </definitions>  

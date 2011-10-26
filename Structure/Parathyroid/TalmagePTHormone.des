@@ -38,7 +38,7 @@ Schema : DES V1.0
 <diffeq>
      <name> PTH </name>  <!-- serum-->
      <integralname> PTH </integralname>
-     <initialval>105 </initialval><!-- ng-->
+     <initialval>125 </initialval><!-- ng-->
      <dervname> dPTH/dt</dervname>
      <errorlim>1 </errorlim>
   </diffeq>

@@ -8,48 +8,66 @@ Solver : Digital Human (V1.0)
 
 <structurename> NewBone </structurename>
 <groupbox>
-   <row> 26.</row>
-   <col> 2.0 </col>
-   <high> 22.0 </high>
+   <row> 2.0 </row>
+   <col> 47.0 </col>
+   <high> 24.5 </high>
    <wide> 45.0 </wide>
    <title> Bone balance </title>
 
-<label><row> 1.0 </row><col> 1.0</col>
+<label><row> 1.0 </row><col> 5.0</col>
   <text> Pool </text></label>
 
-<label><row> 1.0 </row><col> 17.0</col>
+<label><row> 1.0 </row><col> 27.0</col>
   <text> Quantity </text></label>
 
-<label><row> 2.0 </row><col> 1.0</col>
+<label><row> 2.0 </row><col> 5.0</col>
   <text> Brushite->Apatite </text></label>
 
-<label><row> 3.0 </row><col> 1.0</col>
+<label><row> 3.0 </row><col> 5.0</col>
   <text> Resorbed </text></label>
 
-<label><row> 4.0 </row><col> 1.0</col>
+<label><row> 4.0 </row><col> 5.0</col>
   <text> Gradient </text></label>
 
+<label><row> 5.0 </row><col> 5.0</col>
+  <text> Labile Exchange </text></label>
+
+<label><row> 6.0 </row><col> 5.0</col>
+  <text> Mature bone </text></label>
+
 <showvalue>
-  <row> 2.0 </row><col> 17.0 </col>
+  <row> 2.0 </row><col> 27.0 </col>
   <name> PoolToPerm </name>
   <nolabel/>
 </showvalue>
 
 <showvalue>
-  <row> 3.0 </row><col> 17.0 </col>
+  <row> 3.0 </row><col> 27.0 </col>
   <name> PermToSerum </name>
   <nolabel/>
 </showvalue>
 
 <showvalue>
-  <row> 4.0 </row><col> 17.0 </col>
+  <row> 4.0 </row><col> 27.0 </col>
   <name> BoneGradient </name>
   <nolabel/>
 </showvalue>
 
+<showvalue>
+  <row> 5.0 </row><col> 27.0 </col>
+  <name> BoneX </name>
+  <nolabel/>
+</showvalue>
+
+<showvalue>
+  <row> 6.0 </row><col> 27.0 </col>
+  <name> Perm </name>
+  <nolabel/>
+</showvalue>
+
  <showgraph>
-  <row> 5. </row><col> 1.0 </col>
-  <high> 7 </high><wide> 40 </wide>
+  <row> 7. </row><col> 1.0 </col>
+  <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
      <name> System.X </name>
@@ -73,7 +91,7 @@ Solver : Digital Human (V1.0)
  </showgraph>
 
  <showgraph>
-  <row> 13.5 </row><col> 1.0 </col>
+  <row> 15.5 </row><col> 1.0 </col>
   <high> 8 </high><wide> 40 </wide>
   <leftmargin> 15 </leftmargin>
   <xaxis>
@@ -87,7 +105,6 @@ Solver : Digital Human (V1.0)
       <label> Exchange Pool </label>
       <linecolor> BLUE </linecolor>
     </yvar>
-
   <scale><min> 2950 </min><max> 3050 </max></scale>
   </yaxis>
  </showgraph>

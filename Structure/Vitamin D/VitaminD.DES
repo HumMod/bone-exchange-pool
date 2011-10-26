@@ -31,16 +31,6 @@ Schema : DES V1.0
 <var>
   <name> PTHeffect24 </name>
 </var>
-
-<parm>
-  <name> CalcitriolDecay </name>
-  <val> -.00165 </val>
-</parm>  <!-- derived from half life of 7 hours, assumption of steady state  -->
-  
-<parm>
-  <name> k3 </name>
-  <val> .07584 </val>
-</parm>  
   
 <parm>
   <name> CYP27A1Decay </name> <!-- normalized form?  -->
@@ -145,7 +135,7 @@ Schema : DES V1.0
   <diffeq>
     <name> mRNAalpha </name>  
      <integralname> mRNAalpha </integralname>
-     <initialval> 1.0 </initialval> <!-- derived from steady state-->
+     <initialval> 1.7 </initialval> <!-- derived from steady state-->
      <dervname> dmRNAalpha </dervname>
      <errorlim> .01 </errorlim>
   </diffeq>
@@ -154,7 +144,7 @@ Schema : DES V1.0
   <diffeq>
     <name>mRNA24</name>  
      <integralname>mRNA24</integralname>
-     <initialval> 1.0 </initialval> <!-- derived from steady state-->
+     <initialval> 1.06 </initialval> <!-- derived from steady state-->
      <dervname> dmRNA24 </dervname>
      <errorlim> .01 </errorlim>
   </diffeq>
@@ -186,7 +176,7 @@ Schema : DES V1.0
   <diffeq>
     <name> CYP27B1 </name>  
      <integralname> CYP27B1 </integralname>
-     <initialval>  7.854    </initialval>
+     <initialval>  9.8    </initialval>
      <dervname> dCYP27B1 </dervname>
      <errorlim> .1 </errorlim>
   </diffeq>
@@ -194,7 +184,7 @@ Schema : DES V1.0
   <diffeq>
     <name> CYP24 </name>  
      <integralname> CYP24 </integralname>
-     <initialval>  5.5    </initialval>
+     <initialval>  8.1    </initialval>
      <dervname> dCYP24 </dervname>
      <errorlim> .055 </errorlim>
   </diffeq>
@@ -296,7 +286,7 @@ Schema : DES V1.0
 
 <def>
   <name> PTHeffect24 </name>
-  <val> 2 * ( 30 ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
+  <val> 1.5 * ( PTH ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
 </def>
 
 <def>
@@ -320,7 +310,7 @@ Schema : DES V1.0
 
 <def>
   <name> PTHeffect </name>
-  <val> .75 * ( MaxPTH ^ 3 ) / ( ( MaxPTH ^ 3 ) + ( 60 ^ 3 ) ) </val>
+  <val> 1.0 * ( MaxPTH ^ 3 ) / ( ( MaxPTH ^ 3 ) + ( 70 ^ 3 ) ) </val>
 </def>
 
 <def>

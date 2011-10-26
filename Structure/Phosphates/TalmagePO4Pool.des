@@ -33,7 +33,7 @@ Schema : DES V1.0
  <diffeq>
    <name> Mass </name>
    <integralname> Mass </integralname>
-   <initialval> 350 </initialval>
+   <initialval> 410 </initialval>
    <dervname> Change </dervname>
    <errorlim> 3 </errorlim>
  </diffeq>
