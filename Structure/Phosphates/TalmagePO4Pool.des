@@ -80,16 +80,49 @@ Schema : DES V1.0
     <def><name> PExch  </name><val> .4 * ( [EPO4] - [PO4] - [PO4Comp] )</val></def>
     <def><name> Mass   </name><val> Mass + ( 95 * PExch )  </val></def>
     <def><name> EMass  </name><val> EMass - ( 95 * PExch ) </val></def>
-    <def><name> [PO4]  </name><val> .88 * Mass / ( 95 * 3 )      </val></def><!--mmol/L-->
+    <def><name> [PO4]  </name><val> .88 * Mass / ( 95 * 3 )      </val></def>--> 
+<!--mmol/L-->
     <def><name> [PO4Comp]  </name><val> .12 * Mass / ( 95 * 3 )      </val></def>
-    <def><name> [EPO4] </name><val> EMass / ( 95 * 11 )    </val></def><!-- mmol/L-->
+    <def><name> [EPO4] </name><val> EMass / ( 95 * 11 )    </val></def>-->
+<!-- mmol/L-->
     <def><name>[MassPO4] </name><val> Mass / 30 </val></def>
  </block>
 
 
+<!--
+<block>
+    <name> CalcConc </name>
+<def>
+  <name> PExch </name>
+  <val> ( Mass / 3 ) - ( ( Mass + EMass ) / 14 )  </val>
+</def>
+
+<def>
+  <name> Mass </name> 
+  <val> Mass - ( .8 * 3 * PExch ) </val>
+</def>
+
+<def>
+  <name> EMass </name>
+  <val> EMass + ( .8 * 3 * PExch ) </val>
+</def>
+
+<def>
+  <name> [PO4]  </name>
+  <val> .88 * Mass / ( 95 * 3 )      </val>
+</def>
+
+<def>
+  <name> [PO4Comp]  </name>
+  <val> .12 * Mass / ( 95 * 3 )      </val>
+</def>
+
+<def>
+  <name> [EPO4] </name>
+  <val> EMass / ( 95 * 11 )    </val>
+</def>
+</block>
+-->
+
 </definitions>
 </structure>
-
-End                                                                                                                                                                                                                                                                                                                               
-   
-                                                                             

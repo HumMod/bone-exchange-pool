@@ -160,7 +160,7 @@ Schema : DES V1.0
   <diffeq>
     <name> Calcitriol </name>  
      <integralname> Calcitriol </integralname>
-     <initialval> 120 </initialval>  <!-- ng: Omdahl et al 2002 -->
+     <initialval> 90 </initialval>  <!-- ng: Omdahl et al 2002 -->
      <dervname> dCalcitriol </dervname>
      <errorlim> .6 </errorlim>
   </diffeq>
@@ -176,7 +176,7 @@ Schema : DES V1.0
   <diffeq>
     <name> CYP27B1 </name>  
      <integralname> CYP27B1 </integralname>
-     <initialval>  9.8    </initialval>
+     <initialval>  10    </initialval>
      <dervname> dCYP27B1 </dervname>
      <errorlim> .1 </errorlim>
   </diffeq>
@@ -184,7 +184,7 @@ Schema : DES V1.0
   <diffeq>
     <name> CYP24 </name>  
      <integralname> CYP24 </integralname>
-     <initialval>  8.1    </initialval>
+     <initialval> 10    </initialval>
      <dervname> dCYP24 </dervname>
      <errorlim> .055 </errorlim>
   </diffeq>
@@ -254,6 +254,19 @@ Schema : DES V1.0
   <val>  0 </val>
 </def> 
 
+<if>
+  <test> System.X EQ 0 </test>
+ <true>
+   <def><name> CYP27B1 </name><val> 10 </val></def>
+   <def><name> CYP24 </name><val> 10 </val></def>
+  <def><name> mRNA24 </name><val> 1 </val></def>
+   <def><name> Calcitriol </name><val> 90 </val></def>
+  <def><name> MaxFGF </name><val> 0 </val></def>
+  <def><name> FGFeffect24 </name><val> 1.0 </val></def>
+
+ </true>
+</if>
+
 ==================================================================
 
 <if>
@@ -276,7 +289,7 @@ Schema : DES V1.0
 ===================================================
 <def>
   <name> FGFeffect24Target </name>
-  <val>  .0253 * ( MaxFGF MAX .4 ) - .1261 </val> <!-- derived from mouse data; perwad et al -->
+  <val>  .0153 * MaxFGF - .1261 </val> <!-- derived from mouse data; perwad et al -->
 </def><!-- good -->  <!-- 1 + ( 2.5 * ( FGF ^ 2 ) / ( ( FGF ^ 2 ) + ( 60  ^ 2 ) ) ) -->
 
 <def>
@@ -286,7 +299,7 @@ Schema : DES V1.0
 
 <def>
   <name> PTHeffect24 </name>
-  <val> 1.5 * ( PTH ^ 2 ) / ( ( PTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
+  <val> 1.5 * ( 30 ^ 2 ) / ( ( MaxPTH ^ 2 ) + ( 30  ^ 2 ) ) </val>
 </def>
 
 <def>
@@ -296,6 +309,7 @@ Schema : DES V1.0
 
 <def>
   <name>dCYP24 </name>
+<!--  <val> 0 </val>-->
   <val> ( mRNA24 * 1 ) - ( .13 * CYP24 )   </val>
 </def>
 
@@ -305,7 +319,7 @@ Schema : DES V1.0
 
 <def>
   <name> Deffect </name>
-  <val> 2 * ( 90 ^ 2 ) / ( ( [Calcitriol->ng/L] ^ 2 ) + ( 90 ^ 2 ) )  </val>
+  <val> 2.0 * ( 90 ^ 2 ) / ( ( [Calcitriol->ng/L] ^ 2 ) + ( 90 ^ 2 ) )  </val>
 </def>
 
 <def>
@@ -315,8 +329,8 @@ Schema : DES V1.0
 
 <def>
   <name> FGFeffectCYP </name>
-  <val> 1 - ( .4 * ( MaxFGF ^ 3 ) / ( ( MaxFGF ^ 3 ) + ( 45 ^ 3 ) ) ) </val>
-</def><!-- good Perwad and Portale -->
+  <val> 1.0 - ( .6 * ( MaxFGF ^ 3 ) / ( ( MaxFGF ^ 3 ) + ( 55 ^ 3 ) ) ) </val>
+</def><!-- good Perwad and Portale -->45
 
 
 <def>

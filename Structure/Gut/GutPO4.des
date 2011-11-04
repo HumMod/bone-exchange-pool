@@ -31,7 +31,7 @@ Schema : DES V1.0
 
  <block>
  <name>Dervs </name>
-   <def><name> Absorption </name> <val> Frac * Mass </val></def>
+   <def><name> Absorption </name> <val> Frac * Mass * .025 * VitaminD.[Calcitriol->ng/L] </val></def>
    <def><name> FecalPO4 </name><val> Mass * DistalSmallIntestine.WashOut </val></def>
    <def><name> Change </name><val> StomachPO4.ToIntestine - Absorption - FecalPO4 </val></def>
 

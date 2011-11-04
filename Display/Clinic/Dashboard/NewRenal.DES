@@ -8,9 +8,9 @@ Solver : Digital Human (V1.0)
 
 
 <groupbox>
-   <row> 19.5 </row>
+   <row> 18.5 </row>
    <col> 92.0 </col>
-   <high> 11.5 </high>
+   <high> 13.5 </high>
    <wide> 45.0 </wide>
    <title> Renal Overview </title>
 
@@ -51,6 +51,12 @@ Solver : Digital Human (V1.0)
   <scale><min> 0 </min><max> .01 </max></scale>
   </yaxis>
  </showgraph>
+
+ <editbox>
+   <row> 11.5 </row><col> 1 </col>
+   <name> RenalParms.NephronMult </name>
+   <label> Nephron Multiplier </label>
+ </editbox>
 
 </groupbox>
    

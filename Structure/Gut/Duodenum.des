@@ -72,6 +72,10 @@ Schema : DES V1.0
    </true>
   </if>
 
+<def>
+  <name> Vm </name>
+  <val> VitaminD.[Calcitriol->ng/L] * .02 </val>
+</def>
 
    <def>
 	<name> Absorption </name> 
