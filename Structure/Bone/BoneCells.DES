@@ -1,0 +1,61 @@
+ HumMod / BoneCells
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> BoneCells </name>
+<!-- Schemes BL, Kx, Ky : iCa 24hr : ica fasted 30 : response to PTH 6 hr -->
+
+<variables>
+
+  <var><name> ClastActivation </name><val> 0.0020833 </val></var>
+  <var><name> BlastActivation </name><val> 0.0027778  </val></var>
+  <var><name> ClastDeactivation </name><val> 0.0013889 </val></var>
+  <var><name> BlastDeactivation </name><val> 0.00013889 </val></var>
+  <var><name> g11 </name><val> 0.5 </val></var>
+  <var><name> g21 </name><val> -0.5 </val></var>
+  <var><name> g12 </name><val> 1.0 </val></var>
+  <var><name> g22 </name><val> 0.0 </val></var>
+  <var><name> PTH </name></var>
+
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> Clasts </name>
+     <integralname> Clasts </integralname>
+     <initialval> 3 </initialval>
+     <dervname> dClasts </dervname>
+     <errorlim> 0.03 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> Blasts </name>
+     <integralname> Blasts </integralname>
+     <initialval> 150 </initialval>
+     <dervname> dBlasts </dervname>
+     <errorlim> 1.5 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+ <block>
+  <name>Dervs</name>
+  <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] </val></def>
+
+  <def><name> g21 </name><val> ( ( ( 0.01333 * PTH - 0.81 ) MIN 0.5 ) MAX -0.5 ) </val></def>
+  <def><name> dClasts </name><val> ( ClastActivation * ( Clasts ^ g11 ) * ( Blasts ^ g21 ) ) - ( ClastDeactivation  * Clasts ) </val></def>
+  <def><name> dBlasts </name><val> ( BlastActivation * ( Clasts ^ g12 ) * ( Blasts ^ g22 ) ) - ( BlastDeactivation  * Blasts ) </val></def>
+
+</block>
+</definitions>
+</structure>
+
+

@@ -47,10 +47,6 @@ Schema : DES V1.0
   <var><name>dP</name></var>
   <var><name> CProd </name></var>
   <var><name> BoneGradient</name></var>
-
-  <var><name> k1 </name><val> 0.06944 </val></var><!-- clast resorption rate per million cells-->
-  <var><name> k2 </name><val> 0.000534 </val></var><!-- blast production rate per million cells-->
-
 </variables>
 
 <equations>
@@ -84,6 +80,7 @@ Schema : DES V1.0
  <block>
   <name>Dervs</name>
     <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
+    <def><name> CTN </name><val> TalmageCalcitonin.[CTNwt] </val></def> <!-- ng/L-->
     <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> <!-- mmol/L-->
     <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> <!-- mmol/L-->
     <def><name> Product </name><val> C * P </val></def> <!--mg-->  
@@ -91,7 +88,7 @@ Schema : DES V1.0
 
    <def><name>TargetP</name><val> Kx * ( ( PTH ^ nh ) / ( ( PTH ^ nh ) + ( SP ^ nh ) ) ) </val></def>
    <def><name> dSetP </name><val> 1 * DelayP * ( TargetP - SetP ) </val></def>
-   <def><name>Target</name><val> 1.325 </val></def> 
+   <def><name>Target</name><val> 1.35 </val></def> 
    <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> <!-- mmol/L-->
 
   <testcase>
@@ -134,9 +131,10 @@ Schema : DES V1.0
     </false>
   </if>
 
+
   <def><name> PoolToPerm </name><val> ( BoneX / 7 ) / 1440 </val></def>
-  <def><name> PermToSerum </name><val>  425 / 1440 </val></def> <!-- mmol/min; 425/1440 -->
-  <def><name> BoneExchange </name><val> Mult * BoneFlow * CO * H * 40 </val></def><!-- mmol/min-->
+  <def><name> PermToSerum </name><val>  300 / 1440 </val></def> <!-- mmol/min; 425/1440 -->
+  <def><name> BoneExchange </name><val> Mult * Common * BoneFlow * CO * H * 40 </val></def><!-- mmol/min-->
      <!-- 1/7 of BEX goes to bone each day, based on stability of brushite with o'nectin and o'calcin -->
   <def><name> CaChange </name><val> PermToSerum + BoneExchange  </val></def> 
   <def><name> PO4Change </name><val> CaChange * 95 / 40 </val></def> 		

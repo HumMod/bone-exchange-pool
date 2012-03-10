@@ -19,6 +19,9 @@ By : University of Mississippi Medical Center
 <?include Parathyroid\PTHReceptor.DES ?>
 <?include Calcitonin\Talmage calcitonin.DES ?>
 <?include Bone\NewBone.DES ?>
+<?include Bone\BoneCells.DES ?>
+<?include Bone\BoneInteraction.DES ?>
+
 <?include AUC\AUC.DES ?>
 <?include FGF23\FGF23.DES ?>
 
@@ -57,6 +60,8 @@ By : University of Mississippi Medical Center
   <call> TalmagePTpool.CalcSecretion </call>
   <call> FGF23.Dervs </call>
  <call> VitaminD.Dervs </call>
+  <call> BoneCells.Dervs </call>
+  <call> BoneInteraction.Dervs </call>
   <call> NewBone.Dervs </call>
   <call> RenalParms.Dervs </call>
   <call> RenalCa.Dervs </call>

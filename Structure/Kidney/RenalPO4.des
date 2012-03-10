@@ -15,16 +15,16 @@ Schema : DES V1.0
   <var><name> PO4Filt </name><val> 0 </val></var>
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
-  <parm><name> a </name><val> .05 </val></parm>45
-  <parm><name> s </name><val> 35 </val></parm>
-  <parm><name> n </name><val> 2 </val></parm>
+  <parm><name> a </name><val> 0.491 </val></parm>45
+  <parm><name> s </name><val> 375 </val></parm>
+  <parm><name> n </name><val> 1. </val></parm>
+  <parm><name> b </name><val> 0.504 </val></parm>
 
   <parm><name> af </name><val> .18 </val></parm>45
   <parm><name> sf </name><val> 50 </val></parm>
   <parm><name> nf </name><val> 2 </val></parm>
   <var><name> Vmax </name></var>  <!-- target .12 -->
-
-  <parm><name> b </name><val> 0.0 </val></parm>85,45<!-- fit in BM to JCEM July 88 vol 67 #1 pg 88-92; made smaller; + misconceptions 4-->
+  <var><name> TmP/GFR </name></var>
 
 
 <!-- TmP/GFR parms-->
@@ -56,20 +56,6 @@ Schema : DES V1.0
   <var><name> NaFilt </name></var>
 </variables>
 
-<equations>
-
-<!--
- <diffeq>
-  <name> TmP/GFR </name>  
-     <integralname> TmP/GFR </integralname>
-     <initialval> 81 </initialval>
-     <dervname> dTmP </dervname>
-     <errorlim> 1 </errorlim>
- </diffeq>
--->
-
-</equations>
-
 <definitions>
 
  <block>
@@ -77,22 +63,15 @@ Schema : DES V1.0
 
 <def>
   <name> PTH </name>
-  <val> TalmagePTHormone.[PTH] </val>
+  <val> TalmagePTHormone.[PTHwt] </val>
 </def>
 
 <!-- Filtration-->
    <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
-   <def><name> NaFilt </name><val> 141 * RenalParms.ModGFR </val></def> <!-- mmol/min -->
-
-<!-- Calculate TmP/GFR -->
-<!--
-   <def><name> dTmP </name><val> .045 * ( b + TargetTmP/GFR_PTH + TargetTmP/GFR_FGF - TmP/GFR ) </val></def>
-   <def><name> PO4Gradient </name><val> PO4Filt - TmP/GFR </val></def>
--->
 
 <def>
   <name> TargetPTH </name>
-  <val> a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  </val>  
+  <val> 0.17 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
 </def>  
 
 <def>
@@ -102,16 +81,17 @@ Schema : DES V1.0
 
 <def>
   <name> Vmax </name>
-  <val> TargetPTH + TargetFGF + b </val>
+  <val> TargetPTH </val>
 </def>
 
-  <def><name> ActiveRA </name><val> ( RenalParms.NephronMult * Vmax * PO4Filt / ( PO4Filt + 0.02 ) ) MAX 0 </val></def>
-  <def><name> PassiveRA </name><val> .1 * ( ( PO4Filt - ActiveRA ) ) </val></def>
+  <def><name> ActiveRA </name><val> Vmax * PO4Filt / ( PO4Filt + 0.06 ) MAX 0 </val></def>
+  <def><name> PassiveRA </name><val> 0 * ( ( PO4Filt - ActiveRA ) ) </val></def>
   <def><name> RA </name><val> ( ActiveRA + PassiveRA ) MIN PO4Filt </val></def>
   <def><name> Excretionmmol </name><val> PO4Filt - RA </val></def>
    <def><name> Excretion </name><val> Excretionmmol * 95 </val></def>
-   <def><name> FracExcretionPO4 </name><val> Excretionmmol * .9 / ( RenalParms.ModGFR * TalmagePO4Pool.[PO4] ) </val></def>
+   <def><name> FracExcretionPO4 </name><val> Excretionmmol / PO4Filt  </val></def>
   <def><name> Eff_TmP/GFR </name><val> (  PO4Filt / RenalParms.ModGFR ) - Excretionmmol </val></def>
+  <def><name> TmP/GFR </name><val> Vmax / RenalParms.ModGFR </val></def>
  </block>
 
 </definitions>  

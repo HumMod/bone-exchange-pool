@@ -102,14 +102,9 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-     <name> RenalCa.CaToDT</name>
-     <label> Ca to DT</label>
+     <name> BoneCells.Clasts</name>
+     <label> Clasts/BMU </label>
      <linecolor> RED </linecolor>
-    </yvar>
-    <yvar>
-     <name> RenalCa.ActiveRA</name>
-     <label> DT RA</label>
-     <linecolor> BLUE </linecolor>
     </yvar>
 </yaxis>
 </showgraph>
@@ -125,8 +120,8 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-     <name> RenalCa.RApassive</name>
-     <label> passive absorption </label>
+     <name> BoneCells.Blasts </name>
+     <label> blasts/BMU </label>
      <linecolor> RED </linecolor>
     </yvar>
 </yaxis>

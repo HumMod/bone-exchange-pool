@@ -14,6 +14,78 @@ Solver : Digital Human (V1.0)
    <high> 11.0 </high>
    <wide> 45.0 </wide>
    <title> TmP/GFR </title>
+
+<showvalue>
+   <row> 1 </row><col> 1 </col>
+   <name> RenalCa.Ca++filt </name>
+   <format><decimal> 3 </decimal></format>
+   <label> filtered Ca </label>
+</showvalue>
+
+<showvalue>
+   <row> 1 </row><col> 31 </col>
+   <name> TalmageCaPool.[Ca++] </name>
+   <format><decimal> 3 </decimal></format>
+   <label> iCa </label>
+</showvalue>
+
+<showvalue>
+   <row> 2 </row><col> 1 </col>
+   <name> RenalCa.RApassive </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Passive Ca reab </label>
+</showvalue>
+
+<showvalue>
+   <row> 3 </row><col> 1 </col>
+   <name> RenalCa.CaToDT </name>
+   <format><decimal> 3 </decimal></format>
+   <label> distal Ca delivery </label>
+</showvalue>
+
+<showvalue>
+   <row> 4 </row><col> 1 </col>
+   <name> RenalCa.ActiveRA </name>
+   <format><decimal> 3 </decimal></format>
+   <label> ActiveRA </label>
+</showvalue>
+
+<showvalue>
+   <row> 5.5 </row><col> 1 </col>
+   <name> RenalPO4.PO4Filt </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Filtered PO4 </label>
+</showvalue>
+
+<showvalue>
+   <row> 6.5 </row><col> 1 </col>
+   <name> RenalPO4.ActiveRA </name>
+   <format><decimal> 3 </decimal></format>
+   <label> ActiveRA </label>
+</showvalue>
+
+<showvalue>
+   <row> 7.5 </row><col> 1 </col>
+   <name> RenalPO4.Vmax </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Vmax </label>
+</showvalue>
+
+<showvalue>
+   <row> 8.5 </row><col> 1 </col>
+   <name> RenalPO4.TmP/GFR </name>
+   <format><decimal> 3 </decimal></format>
+   <label> TmP/GFR </label>
+</showvalue>
+
+<showvalue>
+   <row> 9.5 </row><col> 1 </col>
+   <name> RenalPO4.PTH </name>
+   <format><decimal> 3 </decimal></format>
+   <label> [PTH] </label>
+</showvalue>
+
+
 <!--
 <showgraph>
   <row> 1.0 </row><col> 1 </col>
