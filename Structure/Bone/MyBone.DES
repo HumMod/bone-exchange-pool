@@ -1,0 +1,102 @@
+ HumMod / Peterson and Riggs bone interactions
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> BoneCellDynamics </name>
+
+<variables>
+
+<parm><name> RANK0 </name><val> 10 </val></parm>
+<parm><name> RANKL0 </name><val> 0.4 </val></parm>
+<parm><name> OPG0 </name><val> 4.0 </val></parm>
+<parm><name> RANK~RANKL0 </name><val> 0.000214 </val></parm>
+<parm><name> OPG~RANKL0 </name><val> 0.0000857 </val></parm>
+<parm><name> kon</name><val> 0.0000001</val></parm>
+<parm><name> koff </name><val> 0.001867 </val></parm>
+
+<var><name> fTGF</name></var>
+<parm><name> ProdOCp </name> 0.00135 </val></parm>
+<parm><name> kdOCp </name><val> 0.00015 </val></parm>
+<parm><name> kdOCa </name><val> 0.0005 </val></parm>
+
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> RANK </name>
+     <integralname> RANK </integralname>
+     <initialval> 10 </initialval>
+     <dervname> dRANK </dervname>
+     <errorlim> 0.3 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> RANKL </name>
+     <integralname> RANKL </integralname>
+     <initialval> .4 </initialval>
+     <dervname> dRANKL </dervname>
+     <errorlim> 0.01 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OPG </name>
+     <integralname> OPG </integralname>
+     <initialval> 4 </initialval>
+     <dervname> dOPG </dervname>
+     <errorlim> 0.08 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> RANK~RANKL </name>
+     <integralname> RANK~RANKL </integralname>
+     <initialval> 0.000214  </initialval>
+     <dervname> dRANK~RANKL </dervname>
+     <errorlim> 0.00001 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OPG~RANKL </name>
+     <integralname> OPG~RANKL </integralname>
+     <initialval> 0.0000857  </initialval>
+     <dervname> dOPG~RANKL </dervname>
+     <errorlim> 0.000002 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OCp </name>
+     <integralname> OCp </integralname>
+     <initialval> 9 </initialval>
+     <dervname> dOCp </dervname>
+     <errorlim> 0.1 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OCa </name>
+     <integralname> OCa </integralname>
+     <initialval> 3 </initialval>
+     <dervname> dOCa </dervname>
+     <errorlim> 0.1 </errorlim>
+ </diffeq>
+
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+  <def><name> fTGF </name><val> 5 * ( aTGF ^ 2 ) / ( ( aTGF ^ 2 ) + ( 0.2 ^ 2 ) ) </val></def>
+  <def><name> dOCp </name><val> fTGF * ( ProductionOCp - ( 0.7 * RANK~RANKL * OCp ) ) </val></def>
+  <def><name> dOCa </name><val> fTGF * ( ( 0.7 * RANK~RANKL * OCp ) - ( kd_OCa * OCa ) ) </val></def>
+  <def><name> dROB </name><val> gTGF * OB0  </val></def>
+
+  <def><name> dRANK~RANKL </name><val> ( kon * RANK * RANKL ) - ( koff * RANK~RANKL ) </val></def>
+  <def><name> dRANK~OPG </name><val> ( kon * RAKN * OPG )- ( koff * RANK~OPG ) </val></def> 
+</block>
+</definitions>
+</structure>

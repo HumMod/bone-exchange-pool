@@ -1,0 +1,29 @@
+Kidney Panel
+
+Created : 29-Oct-10
+Last Modified : 3-Nov-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<panel><name> Bone Panel</name>
+
+<structurename> Bone Panel </structurename>
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+<?path Display\Organs\Skeleton\ ?>
+
+<?include Peterson_Riggs.DES ?>
+
+
+
+</panel>
+
+End
+                                                                                                                                                                                                      
+              
+                          

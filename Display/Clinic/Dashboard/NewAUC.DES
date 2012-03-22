@@ -51,13 +51,6 @@ Solver : Digital Human (V1.0)
    <format><decimal> 3 </decimal></format>
    <label> AUC PTH (ng) </label>
  </showvalue>
-
- <showvalue>
-   <row> 8.3 </row><col> 1.0 </col>
-   <name> AUC.AUCPoolToPerm </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Pool to Perm </label>
- </showvalue>
 </groupbox>
 
 End

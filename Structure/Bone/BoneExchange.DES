@@ -1,0 +1,43 @@
+ HumMod / BoneExchange
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> BoneExchange </name>
+
+<variables>
+  <var><name> PTH </name></var>
+  <var><name> C </name></var>
+  <var><name> P </name></var>
+  <var><name> Product </name></var>
+  <var><name> H </name> </var>
+  <parm><name> Target </name><val> 1.315 </val></parm>
+  <var><name> CO </name><val> 3 </val></var><!-- cardiac (plasma) output; 3L/min-->
+  <var><name> BoneFlow </name><val> .05 </val></var> <!-- serum flow to bone; 4% of total-->
+  <var><name> CaExchange </name></var>
+  <var><name> CaChange </name><val> 0 </val></var>
+  <var><name> PO4Change </name><val>0</val> </var>
+ <var><name> CaExchange(mmol) </name><val> 0 </val></var>
+</variables>
+
+<definitions>
+<block><name> Dervs </name>
+
+   <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
+    <def><name> C </name><val> TalmageCaPool.[Ca++] </val></def> 
+    <def><name> P </name><val>TalmagePO4Pool.[PO4] </val></def> 
+    <def><name> Product </name><val> C * P </val></def> 
+    <def><name> H </name><val> ( ( - ( C + P ) ) + SQRT ( ( ( C - P ) ^ 2 ) + ( 4 * Target ) ) ) / 2 </val></def> 
+  <def><name> CaExchange(mmol) </name><val> BoneFlow * CO * H </val></def>
+  <def><name> CaExchange </name><val>  40 * CaExchange(mmol) </val></def>
+  <def><name> CaChange </name><val> NewBone.CaResorption + CaExchange  </val></def> 
+  <def><name> PO4Change </name><val> ( ( 1.667 * NewBone.CaResorption ) + CaExchange - ( 0.667 * Osteoid.CaToPermanent ) ) * 95 / 40 </val></def> 
+
+</block>
+</definitions>
+</structure>

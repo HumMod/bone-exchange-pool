@@ -1,0 +1,120 @@
+ HumMod / buenzli
+
+Created : 20-Oct-10
+Last Modified : 16-Feb-11
+Author : W Pruett
+Copyright : 2010-2011
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> Buenzli </name>
+
+<variables>
+
+<var><name> DOCp</name></var>
+<var><name> AOCa </name></var>
+<var><name> DOBu </name></var>
+<var><name> DOBp </name></var>
+<var><name> POBp </name></var>
+<var><name> AOBa </name></var>
+<var><name> RANKL</name></var>
+
+<var><name> dOCp </name><val> 0.001458 </val></var>
+<var><name> aOCp </name><val> 0.003924 </val></var>
+<var><name> dOBu </name><val> 0.0002431</val></var>
+<var><name> dOBp </name><val> 0.000153 </val></var>
+<var><name>  kRANKL_OCp </name><val> 16.65 </val></var>
+<var><name> kTGF_OCa  </name><val> 0.000563 </val></var>
+<var><name> kTGF_OBu </name><val> 0.000563 </val></var>
+<var><name> kTGF_OBp </name><val> 0.000175 </val></var>
+<var><name> OBp_sat </name><val> 0.005</val></var>
+<var><name> pOBp </name><val> 0.0000375 </val></var>
+<var><name> OBp_0</name><val> 0.001 </val></var>
+<var><name> TGF0</name><val> </val></var>
+<var><name> nu </name><val> 0.5 </val></var>
+<var><name> ExternalTGF </name><val> </val></var>
+<var><name> n_bone_TGF </name><val> 0.01</val></var>
+<var><name> kres </name><val> 0.13889 </val></var>
+<var><name> kform </name><val> 0.0278 </val></var>
+<var><name> decayTGF </name><val> 0.001389 </val></var>
+<var><name> decayRANKL </name><val> 0.006944 </val></var>
+<var><name> decayRANK </name><val> </val></var>
+<var><name> decayOPG </name><val> 0.0002431 </val></var>
+
+<var><name> NOBp_RANKL </name><val> 2700000 </val></var>
+<var><name> NOCp_RANK </name><val> 100000 </val></var>
+
+<var><name> betaOBp_RANKL </name><val> 116.67 </val></var>
+<var><name> betaOBa_OPG </name><val> 112500 </val></var>
+
+<var><name> kOPG~RANKL </name><val> 0.001 </val></var>
+<var><name> kRANK~RANKL </name><val> 0.034 </val></var>
+<var><name> kPTH_rep </name><val> 0.222 </val></var>
+<var><name> kPTH_act </name><val> 150 </val></var>
+<var><name> PTH </name></var>
+<var><name> ExternalOPG </name><val> 0 </val></var>
+<var><name> betaOPG </name><val> 
+</variables>
+
+<equations>
+
+ <diffeq>
+  <name> OCa </name>
+     <integralname> OCa </integralname>
+     <initialval>  </initialval>
+     <dervname> dOCa </dervname>
+     <errorlim> 0.0005 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OBp </name>
+     <integralname> OBp </integralname>
+     <initialval>  </initialval>
+     <dervname> dervOBp </dervname>
+     <errorlim> 0.0005 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> OBa </name>
+     <integralname> OBa </integralname>
+     <initialval>  </initialval>
+     <dervname> dOBa </dervname>
+     <errorlim> 0.0005 </errorlim>
+ </diffeq>
+
+ <diffeq>
+  <name> TGF </name>
+     <integralname>TGF </integralname>
+     <initialval>  </initialval>
+     <dervname> dTGF </dervname>
+     <errorlim> 0.0005 </errorlim>
+ </diffeq>
+</equations>
+
+<definitions>
+<block><name> Dervs </name>
+
+<def><name> PTH </name><val> TalmagePTHormone.[PTHwt] / 9.4 </val></def>
+
+<def><name> dOPG </name><val> ExternalOPG + betaOBa_OPG * OBa / ( 1 + PTH / kPTH_rep ) - ( OPG * ( betaOPG * OBa / ( ( 1 + PTH / kPTH_rep ) / OPGsat ) + decayOPG ) )</val></def>
+<def><name> dRANK </name><val> NOCp_RANK * OCp </val></def>
+<def><name> dRANKL </name><val> ( ExternalRANKL + ( beta_RANKL~OPG * OBp ) / ( ( 1 + ( kRANK~RANKL * RANK ) + ( kOPG~RANKL * OPG ) ) * RANKL ) ) - ( ( decayRANKL + betaOBp_RANKL * OBp / ( NOBp_RANKL * OBp * ( PTH / kPTH_act ) / ( 1 + ( PTH / kPTH_act ) ) ) ) * RANKL ) </val></def>
+<def><name> dTGF </name><val> ExternalTGF + n_bone_TGF * kres * OCa - ( decayTGF * TGF ) </val></def>
+<def><name> dOBp </name><val> ( 1 - nu ) * dOBp * ( OBp_0 / OBp_sat ) * ( ( TGF / kTGF_OBu ) / ( 1 + ( TGF / kTGF_OBu ) ) ) / ( 1 + ( TGF0 / kTGF_OBp ) ) </val></def>
+<def><name> pOBp </name><val> nu * dOBp * ( 1 - ( OBp_0 / OBp_sat ) ) / ( 1 + ( TGF0 / kTGF_OBp ) ) </val></def>
+<def><name> POBp </name><val> pOBp * ( 1 - ( OBp / OBp_sat ) ) MAX 0 </val></def>
+
+<def><name> DOCp </name><val> dOCp * ( RANKL / kRANKL_OCp ) / ( 1 + ( RANKL / kRANKL_OCp ) ) </val></def>
+<def><name> AOCa </name><val> aOCp * ( TGF / kTGF_OCa ) / ( 1 + ( TGF / kTGF_OCa ) )  </val></def>
+<def><name> DOBu </name><val> dOBu * ( TGF / kTGF_OBu ) / ( 1 + ( TGF / kTGF_OBu ) )  </val></def>
+<def><name> DOBp </name><val> dOBp / ( 1 + ( TGF / kTGF_OBp ) )  </val></def>
+<def><name> POBp </name><val> pOBp * ( 1 - ( OBp / OBp_sat ) ) MAX 0 </val></def>
+<def><name> AOBa </name><val> 0.0001465 </val></def>
+
+<def><name> dOCa </name><val> ( DOCp * OCp ) - ( AOCa * OCa ) </val></def>
+<def><name> dervOBp </name><val> ( DOBu * OBu ) - ( DOBp * OBp ) + ( POBp * OBp ) </val></def>
+<def><name> dOBa </name><val> ( DOBp * OBp ) - ( AOBa * OBa ) </val></def>
+</block>
+</definitions>
+</structure>

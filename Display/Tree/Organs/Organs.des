@@ -25,5 +25,12 @@ By : University of Mississippi Medical Center
   <label> Gut </label>
   <parent> ORGANS </parent>
 </leaf>
+
+<leaf>
+  <name> Bone Panel </name>
+  <label> Skeleton </label>
+  <parent> ORGANS </parent>
+</leaf>
+
 End     
       

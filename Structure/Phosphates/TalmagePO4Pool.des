@@ -71,7 +71,7 @@ Schema : DES V1.0
         </false>
     </if>    
     <def><name> Loss </name><val> RenalPO4.Excretion </val></def><!-- should have a PO4 slough; how much?-->
-    <def><name> Change </name><val> Gain - Loss + NewBone.PO4Change  </val></def>
+    <def><name> Change </name><val> Gain - Loss + BoneExchange.PO4Change  </val></def>
                                         
  </block>
 

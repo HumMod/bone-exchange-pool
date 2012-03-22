@@ -16,19 +16,19 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 1.0 </row><col> 1.0 </col>
-   <name> TalmageBone.BoneX </name>
+   <name> Osteoid.ExchangableCa</name>
    <format><decimal> 3 </decimal></format>
    <label> Bone exchange pool size </label>
  </showvalue>
  <infobutton>
   <row> 1.0 </row><col> 35 </col>
   <line>  </line>
-  <line>  mmol/L </line>
+  <line>  mmol </line>
  </infobutton>
 
  <showvalue>
    <row> 2.0 </row><col> 1.0 </col>
-   <name> TalmageBone.H </name>
+   <name> BoneExchange.H </name>
    <format><decimal> 5 </decimal></format>
    <label> H </label>
  </showvalue>
@@ -40,25 +40,13 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 3.0 </row><col> 1.0 </col>
-   <name> TalmageBone.Target </name>
-   <format><decimal> 3 </decimal></format>
-   <label> Target(PTH) </label>
- </showvalue>
- <infobutton>
-  <row> 3.0 </row><col> 35 </col>
-  <line> Solubility product </line>
-  <line>  k_sp(PTH) </line>
- </infobutton>
-
- <showvalue>
-   <row> 4.0 </row><col> 1.0 </col>
-   <name> TalmageBone.Product </name>
+   <name> BoneExchange.Product </name>
    <format><decimal> 3 </decimal></format>
    <label> Molar Product </label>
  </showvalue>
  <infobutton>
-  <row> 4.0 </row><col> 35 </col>
-  <line> [Ca]^3*[PO4]^3 </line>
+  <row> 3.0 </row><col> 35 </col>
+  <line> [Ca]*[PO4] </line>
   <line>  mmol^2/L^2 </line>
  </infobutton>
 
@@ -73,16 +61,11 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
   <yvar>
-      <name> TalmageBone.Target</name>
-      <label> target </label>
+      <name> NewBone.BoneMass </name>
+      <label> Bone Mass </label>
       <linecolor> BLUE </linecolor>
     </yvar>
-  <yvar>
-      <name> TalmageBone.Product</name>
-      <label> Molar Product </label>
-      <linecolor> GREEN </linecolor>
-    </yvar>
-  <scale><min> .4</min><max> .6 </max></scale>
+  <scale><min> 4500 </min><max> 5000 </max></scale>
   </yaxis>
  </showgraph>
 

@@ -11,3 +11,4 @@ Schema : DES V1.0
 
 <?include Kidney\Talmage Kidney Panel.DES ?>
 <?include Gut\SimpleGutPanel.DES ?>
+<?include Skeleton\Bone Panel.DES ?>

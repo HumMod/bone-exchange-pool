@@ -1,0 +1,21 @@
+ HumMod / Kidney 
+
+Created : 2010-06-05
+Last Modified : 2010-06-06
+Author : Tom Coleman
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+
+<branch>
+  <name> Skeleton </name>
+  <label> Skeleton </label>
+  <parent> Organs </parent>
+</branch>
+
+<leaf>
+  <name> Bone Panel </name>
+  <label> Skeleton </label>
+  <parent> Skeleton </parent>
+</leaf>
+
+End       

@@ -1,0 +1,257 @@
+Bone Panel
+
+Created : 29-Oct-10
+Last Modified : 9-Mar-12
+Author : W Pruett
+Copyright : 2012
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 2.0 </col>
+   <high> 44.0 </high>
+   <wide> 45.0 </wide>
+   <title> Peterson and Riggs Model </title>
+
+<showgraph>
+  <row> 1.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.OC</name>
+     <label> OC </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> .001 </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 11.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.OB </name>
+     <label> OB </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.OBa </name>
+     <label> OBa </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.OBb </name>
+     <label> OBb </label>
+     <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.ROB </name>
+     <label> ROB </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> .001 </max></scale>
+</yaxis>
+</showgraph>
+
+<showvalue>
+   <row> 33 </row><col> 1 </col>
+   <name> Osteoid.CaToPermanent </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Ost.Ca to perm </label>
+</showvalue>
+
+<showvalue>
+   <row> 34 </row><col> 1 </col>
+   <name> Osteoid.BoneWater1 </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Ost.BW1 </label>
+</showvalue>
+
+<showvalue>
+   <row> 35 </row><col> 1 </col>
+   <name> Osteoid.Flow </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Ost.Flow </label>
+</showvalue>
+
+<showvalue>
+   <row> 36 </row><col> 1 </col>
+   <name> NewBone.OsteoidResorption </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Osteoid resorption </label>
+</showvalue>
+
+<showvalue>
+   <row> 37 </row><col> 1 </col>
+   <name> NewBone.RelativeBoneDensity </name>
+   <format><decimal> 3 </decimal></format>
+   <label> bone density </label>
+</showvalue>
+
+<showvalue>
+   <row> 38 </row><col> 1 </col>
+   <name> NewBone.CaResorption </name>
+   <format><decimal> 3 </decimal></format>
+   <label> resorbed ca </label>
+</showvalue>
+
+<showvalue>
+   <row> 39 </row><col> 1 </col>
+   <name> NewBone.BoneOsteoid </name>
+   <format><decimal> 3 </decimal></format>
+   <label> bone osteoid </label>
+</showvalue>
+
+<showgraph>
+  <row> 1.0 </row><col> 51 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.BCL-2 </name>
+     <label> BCL-2 </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 50 </min><max> 100  </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 1.0 </row><col> 101 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.RANKL </name>
+     <label> RANKL </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.RANK </name>
+     <label> RANK </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+   <yvar>
+     <name> BoneInteraction.OPG </name>
+     <label> OPG </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 1  </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 11.0 </row><col> 101 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.OPG~RANKL </name>
+     <label> OPG~RANKL </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.RANK~RANKL </name>
+     <label> RANK~RANKL </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0 </min><max> 0.0001  </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 11.0 </row><col> 51 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.Runx </name>
+     <label> Runx </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> BoneInteraction.CREB </name>
+     <label> CREB </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> .001 </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 22.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> Osteoid.dCa10 </name>
+     <label> Ost dCa10 </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> Osteoid.CaToPermanent </name>
+     <label> Ca to perm </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+     <name> Osteoid.CaTo10 </name>
+     <label> Ca to 10 </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> 0.01 </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 22.0 </row><col> 51 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> BoneInteraction.H28_17d </name>
+     <label> H28 17d </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> .001 </max></scale>
+</yaxis>
+</showgraph>
+
+</groupbox>
+
