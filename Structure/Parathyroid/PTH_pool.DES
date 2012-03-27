@@ -1,0 +1,81 @@
+  HumMod / Parathyroid
+
+Created : 26-Oct-10
+Last Modified : 29-Oct-10
+Author : W Pruett
+Copyright : 2010-2010
+By : University Of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure>
+  <name> PTH_pool </name>
+
+<variables>
+
+  <var><name>[PTH] </name><val> 3 </val></var>
+  <var><name>[PTHwt] </name><val> 30 </val></var>
+  <parm><name> PTHBolusValue </name><val>0</val></parm>
+  <parm><name> PTHDripValue </name><val>0</val></parm>
+  <parm><name> PTHDripTime </name><val>0</val></parm>
+  <parm><name> PTHDripStart </name><val>0</val></parm>
+  <var><name>PTHpumpRate</name><val>0</val></var>
+  <var><name>Test</name><val>1</val></var>
+  <var><name>TestDrip</name><val>1</val></var>
+  <parm><name> Vol </name><val> 3 </val></parm>
+  <parm><name>Switch</name><val> 1 </val></parm>
+
+</variables>
+
+<equations>
+ <diffeq>
+     <name> PTH </name>  <!-- serum-->
+     <integralname> PTH </integralname>
+     <initialval> 105 </initialval><!-- ng-->
+     <dervname> dPTH </dervname>
+     <errorlim>1 </errorlim>
+  </diffeq>
+
+</equations>
+
+<definitions>
+
+<block>
+  <name> CalcBolus </name>
+
+    <if><test>( PTHBolusValue NE 0 ) AND Test</test>
+      <true>
+       <def><name> PTH </name><val> PTH + PTHBolusValue </val></def>
+       <def><name>Test</name><val> 0 </val></def>
+       <def><name>PTHBolusValue</name><val> 0 </val></def>
+      </true>
+      <false>
+       <def><name>Test</name><val>1</val></def>
+      </false>
+    </if>    
+          <def><name>PTHDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+
+</block>
+  
+  <block>
+   <name> CalcPool </name>    
+
+     <if><test> ( ( System.X - PTHDripStart ) - 1 LT PTHDripTime ) AND TestDrip</test>
+        <true>
+          <def><name> PTHpumpRate </name><val> PTHDripValue  </val></def>
+        </true>
+        <false>
+          <def><name>PTHDripStart</name><val> System.X </val></def> <!-- accounts for settling time -->
+          <def><name>PTHDripValue</name><val> 0 </val></def>
+          <def><name>PTHDripTime</name><val> 0 </val></def>
+        </false>
+      </if>    
+
+   <def><name> dPTH </name><val>  PTH_secretion.Gain + PTHpumpRate - PTH_clearance.Loss </val></def>
+   <def><name>[PTHwt]</name><val>PTH / Vol </val></def><!-- ng/L-->
+   <def><name>[PTH]</name><val>[PTHwt] / 9.400 </val></def><!--pmol/L MW is 9.4kD -->
+
+  </block>
+</definitions>
+</structure>
+
+End      

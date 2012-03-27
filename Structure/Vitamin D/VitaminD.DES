@@ -351,7 +351,7 @@ Schema : DES V1.0
 
 <def>
   <name> dCalcitriol  </name>
-  <val> ( 0.0275 * 9.5 * CYP27B1 * [Calcifediol->ug/L] / ( [Calcifediol->ug/L] + .00675 ) ) - CalcitriolLoss </val>
+  <val> ( 0.0275 * 9.5 * CYP27B1 * [Calcifediol->ug/L] / ( [Calcifediol->ug/L] + .00675 ) ) - CalcitriolLoss * 0</val>
 </def> <!-- ng/min -->
 
 

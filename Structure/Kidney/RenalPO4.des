@@ -16,8 +16,8 @@ Schema : DES V1.0
   <var><name>PO4Gradient</name></var>
   <var><name> PTH </name></var>
   <parm><name> a </name><val> 0.491 </val></parm>45
-  <parm><name> s </name><val> 175 </val></parm>
-  <parm><name> n </name><val> 1. </val></parm>
+  <parm><name> s </name><val> 75 </val></parm>
+  <parm><name> n </name><val> 1.5 </val></parm>
   <parm><name> b </name><val> 0.504 </val></parm>
 
   <parm><name> af </name><val> .18 </val></parm>45
@@ -63,7 +63,7 @@ Schema : DES V1.0
 
 <def>
   <name> PTH </name>
-  <val> TalmagePTHormone.[PTHwt] </val>
+  <val> PTH_pool.[PTHwt] </val>
 </def>
 
 <!-- Filtration-->
@@ -71,7 +71,7 @@ Schema : DES V1.0
 
 <def>
   <name> TargetPTH </name>
-  <val> 0.17 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
+  <val> 0.19 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
 </def>  
 
 <def>

@@ -234,7 +234,7 @@ Schema : DES V1.0
 
 <block><name> Dervs </name>
 
-<def><name> PTH </name><val> TalmagePTHormone.[PTHwt] / 9.4 </val></def>
+<def><name> PTH </name><val> PTH_pool.[PTHwt] / 9.4 </val></def>
 <def><name> H20_16 </name><val>  rho20_16 + ( ( alpha20_16 - rho20_16 ) * ( aTGF ^ gamma20_16 ) / ( ( aTGF ^ gamma20_16 ) + ( delta20_16 ^ gamma20_16 ) ) ) </val></def>
 <def><name> H28_17d</name><val> alpha28_17d - ( ( alpha28_17d - rho28_17d ) * ( BCL-2 ^ gamma28_17d ) / ( ( BCL-2 ^ gamma28_17d ) + ( delta28_17d ^ gamma28_17d ) ) ) </val></def>
 <def><name> H20_17d </name><val>  alpha20_17d - ( ( alpha20_17d - rho20_17d ) * ( aTGF ^ gamma20_17d ) / ( ( aTGF ^ gamma20_17d ) + ( delta20_17d ^ gamma20_17d ) ) ) </val></def>
@@ -253,7 +253,7 @@ Schema : DES V1.0
 <def><name> OB </name><val> OBa + OBb </val></def>
 <def><name> dOBa </name><val> ( ( k17d * OB0 * Pi0C * ROB * phi17a * ( k17ad / k17dprime )  ) / ( ROB0 * H20_17 ) ) - ( k17ad * OBa ) </val></def>
 <def><name> dOBb </name><val> ( (  k17d * OB0 * Pi0C * ROB * ( 1 - phi17a ) * phik17d ) / ( ROB0 * H20_17 ) ) - ( k17dprime * phik17d * OBb )  </val></def>
-<def><name> dOC </name><val> ( k18d * Pi0C * OC0 * H24_18 ) - ( k18d * H20_18 * H22_18 * OC )  </val></def>
+<def><name> dOC </name><val> ( 3 * k18d * Pi0C * OC0 * H24_18 ) - ( k18d * H20_18 * H22_18 * OC )  </val></def>
 <def><name> dlTGF </name><val> ( k19_20 * lTGF0 * ( ( OB / OB0 ) ^ gamma17_19S ) ) - ( k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) </val></def>
 <def><name> daTGF </name><val> ( k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) - ( 1000 * k19_20 * aTGF )  </val></def>
 <def><name> dRANK~RANKL </name><val> ( k21_24 * RANK * RANKL ) - ( k24_21 * RANK~RANKL )  </val></def>

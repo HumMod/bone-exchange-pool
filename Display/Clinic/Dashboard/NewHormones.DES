@@ -15,7 +15,7 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 1.0 </row><col> 1 </col>
-   <name> TalmagePTHormone.[PTHwt]</name>
+   <name> PTH_pool.[PTHwt]</name>
    <format><decimal> 3 </decimal></format>
    <label> [PTH] (ng/L) </label>
  </showvalue>
@@ -38,7 +38,7 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-     <name> TalmagePTHormone.[PTHwt]</name>
+     <name> PTH_pool.[PTHwt]</name>
      <label> serum [PTHwt] </label>
      <linecolor> BLUE </linecolor>
     </yvar>
@@ -53,7 +53,7 @@ Solver : Digital Human (V1.0)
 
  <radiobuttons>
   <row> 13.0 </row><col> 1.0 </col>
-  <name> TalmagePTpool.Switch </name>
+  <name> PTH_pool.Switch </name>
   <listname> Common.Switch </listname>
   <label> Parathyroidectomize </label>
  </radiobuttons>

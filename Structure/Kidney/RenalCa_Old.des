@@ -57,7 +57,7 @@ Schema : DES V1.0
 
 <!-- filtration-->
   <def><name> Ca++filt </name> <val> ( TalmageCaPool.[Ca++] + TalmageCaPool.[CaComp] ) * RenalParms.ModGFR </val></def><!-- mmol/min-->
-  <def><name>PTH</name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
+  <def><name>PTH</name><val> PTH_pool.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
 
 
 <!-- tubule -->

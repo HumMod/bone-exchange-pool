@@ -179,7 +179,7 @@ Schema : DES V1.0
 
  <block><name>Dervs</name>
 
-     <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
+     <def><name> PTH </name><val> PTH_pool.[PTHwt] * PTHReceptor.PTHrExpression </val></def> <!-- ng/L-->
     <def><name> FGFeffect </name><val> 4 * ( Sq ^ 2 ) / ( ( Sq ^ 2 ) + ( FGF23.[FGF] ^ 2 )  ) </val></def>
     <def>
       <name>[VitD]</name>
@@ -193,7 +193,7 @@ Schema : DES V1.0
 
     <def>
       <name>dPTHeffect</name>
-      <val> .5 * ( 2.5 * ( 51 ^ 3 ) / ( ( 51 ^ 3 ) + ( ( PTH ) ^ 3 ) ) - PTHeffect )</val>1.2
+      <val> .5 * ( 2.5 * ( 35 ^ 3 ) / ( ( 35 ^ 3 ) + ( ( PTH ) ^ 3 ) ) - PTHeffect ) </val>1.2
     </def> 
 
     <def>
@@ -213,7 +213,7 @@ Schema : DES V1.0
 
     <def>
       <name> d125OH2D/dt </name>
-      <val> 1 * ( ( Knormal * [25OHD] * 3 * v1A(OH)ase ) + ( v125DecayRate * v125OH2D ) ) </val>
+      <val> ( ( Knormal * [25OHD] * 3 * v1A(OH)ase ) + ( v125DecayRate * v125OH2D ) )* 0 </val>
     </def> 
 
     <def>

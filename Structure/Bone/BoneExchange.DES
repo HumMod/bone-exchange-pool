@@ -16,7 +16,7 @@ Schema : DES V1.0
   <var><name> P </name></var>
   <var><name> Product </name></var>
   <var><name> H </name> </var>
-  <parm><name> Target </name><val> 1.315 </val></parm>
+  <parm><name> Target </name><val> 1.32 </val></parm>
   <var><name> CO </name><val> 3 </val></var><!-- cardiac (plasma) output; 3L/min-->
   <var><name> BoneFlow </name><val> .05 </val></var> <!-- serum flow to bone; 4% of total-->
   <var><name> CaExchange </name></var>

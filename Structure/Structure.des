@@ -14,6 +14,7 @@ By : University of Mississippi Medical Center
 <?include Kidney\TalmageSimpleKidney.DES ?>
 <?include Phosphates\TalmagePO4Pool.DES ?>
 <?include Vitamin D\VitaminD.DES ?>
+<?include Parathyroid\Parathyroid.DES ?>
 <?include Parathyroid\Talmage PTPool.DES ?>
 <?include Parathyroid\TalmagePTHormone.DES ?>
 <?include Parathyroid\PTHReceptor.DES ?>
@@ -55,6 +56,7 @@ By : University of Mississippi Medical Center
   <call> TalmageCalcitonin.Dervs </call>
   <call> TalmagePTHormone.CalcPTH </call>
   <call> TalmagePTpool.CalcSecretion </call>
+  <call> Parathyroid.Dervs </call>
   <call> FGF23.Dervs </call>
  <call> VitaminD.Dervs </call>
   <call> BoneCells.Dervs </call>

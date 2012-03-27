@@ -12,7 +12,7 @@ Schema : DES V1.0
 
 <variables>
 
- <parm><name> k</name><val> 0.0003344 </val></parm>
+ <parm><name> k</name><val> 0.000544 </val></parm>
  <var><name> Calc1 </name></var>
  <var><name> Calc2 </name></var>
  <var><name> Calc3 </name></var>

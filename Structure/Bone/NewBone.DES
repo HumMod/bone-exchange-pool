@@ -12,7 +12,7 @@ Schema : DES V1.0
 
 <variables>
   <var><name> OsteoidResorption </name></var>
-  <parm><name> ResorptionRate </name><val> 0.4506 </val></parm>0.49475
+  <parm><name> ResorptionRate </name><val> 0.5416 </val></parm>0.49475
   <var><name> CaResorption </name><val> 0 </val></var>
   <var><name> RelativeBoneDensity </name><val> 0.2 </val></var>
   <var><name> CaFromBone </name><val> 0 </val></var>
