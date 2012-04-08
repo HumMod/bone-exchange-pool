@@ -60,6 +60,11 @@ Solver : Digital Human (V1.0)
       <label> [Calcitriol] </label>
       <linecolor> RED </linecolor>
     </yvar>
+    <yvar>
+      <name> [Calcifediol->ug/L] </name>
+      <label> [Calcidfediol] </label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
     <scale><min> 20</min><max> 40 </max></scale>
   </yaxis>
 </showgraph>

@@ -32,9 +32,10 @@ Schema : DES V1.0
  <parm><name> m </name><val> 0.1 </val></parm> <!-- Calcification factor; normally mature bone is 25000mmol Ca, 2500 g ground substance  -->
  <var><name> NewBone </name></var>
  <var><name> Flow </name></var>
- <var><name> ExchangableCa </name></var>
+ <var><name> ExchangableCa </name><val> 100 </val></var>
  <var><name> BoneWater1 </name></var>
  <var><name> CaTo10 </name></var>
+  <var><name> DailyCaToPerm </name></var>
 
 </variables>
 
@@ -128,70 +129,70 @@ Schema : DES V1.0
      <integralname> Ca1 </integralname>
      <initialval> 5 </initialval>
      <dervname> dCa1 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca2 </name>  
      <integralname> Ca2 </integralname>
      <initialval> 5.5 </initialval>
      <dervname> dCa2 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca3 </name>  
      <integralname> Ca3 </integralname>
      <initialval> 6 </initialval>
      <dervname> dCa3 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca4 </name>  
      <integralname> Ca4 </integralname>
      <initialval> 6.5 </initialval>
      <dervname> dCa4 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca5 </name>  
      <integralname> Ca5 </integralname>
      <initialval> 7 </initialval>
      <dervname> dCa5 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca6 </name>  
      <integralname> Ca6 </integralname>
      <initialval> 8 </initialval>
      <dervname> dCa6 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca7 </name>  
      <integralname> Ca7 </integralname>
      <initialval> 8.5 </initialval>
      <dervname> dCa7 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca8 </name>  
      <integralname> Ca8 </integralname>
      <initialval> 9 </initialval>
      <dervname> dCa8 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca9 </name>  
      <integralname> Ca9 </integralname>
      <initialval> 9.5 </initialval>
      <dervname> dCa9 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
  <diffeq>
   <name> Ca10 </name>  
      <integralname> Ca10 </integralname>
      <initialval> 10 </initialval>
      <dervname> dCa10 </dervname>
-     <errorlim> 0.2 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
 
 </equations>
@@ -200,19 +201,19 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 
 <def><name> Flow </name><val> BoneExchange.CaExchange(mmol) </val></def>
-<def><name> Apposition </name><val> AppRate * BoneInteraction.OB </val></def>
+<def><name> Apposition </name><val> AppRate * BoneCellDynamics.OB </val></def>
 
-<def><name> dOsteoid1 </name><val> Apposition - ( k * Osteoid1 ) </val></def>
-<def><name> dOsteoid2 </name><val> k * ( Osteoid1 - Osteoid2 ) </val></def>
- <def><name> dOsteoid3 </name><val> k * ( Osteoid2 - Osteoid3 ) </val></def>
-<def><name> dOsteoid4 </name><val> k * ( Osteoid3 - Osteoid4 ) </val></def>
-<def><name> dOsteoid5 </name><val> k * ( Osteoid4 - Osteoid5 ) </val></def>
-<def><name> dOsteoid6 </name><val> k * ( Osteoid5 - Osteoid6 ) </val></def>
-<def><name> dOsteoid7 </name><val> k * ( Osteoid6 - Osteoid7 ) </val></def>
-<def><name> dOsteoid8 </name><val> k * ( Osteoid7 - Osteoid8 ) </val></def>
-<def><name> dOsteoid9 </name><val> k * ( Osteoid8 - Osteoid9 ) </val></def>
-<def><name> dOsteoid10 </name><val> k * ( Osteoid9 - Osteoid10 ) </val></def>
-<def><name> OsteoidToPermanent </name><val> k * Osteoid10 </val></def>
+<def><name> dOsteoid1 </name><val> Apposition - ( k * Osteoid1 ) MIN Osteoid1</val></def>
+<def><name> dOsteoid2 </name><val> k * ( Osteoid1 - Osteoid2 ) MIN Osteoid2 </val></def>
+ <def><name> dOsteoid3 </name><val> k * ( Osteoid2 - Osteoid3 ) MIN Osteoid3</val></def>
+<def><name> dOsteoid4 </name><val> k * ( Osteoid3 - Osteoid4 ) MIN Osteoid4</val></def>
+<def><name> dOsteoid5 </name><val> k * ( Osteoid4 - Osteoid5 ) MIN Osteoid5</val></def>
+<def><name> dOsteoid6 </name><val> k * ( Osteoid5 - Osteoid6 ) MIN Osteoid6</val></def>
+<def><name> dOsteoid7 </name><val> k * ( Osteoid6 - Osteoid7 ) MIN Osteoid7</val></def>
+<def><name> dOsteoid8 </name><val> k * ( Osteoid7 - Osteoid8 ) MIN Osteoid8</val></def>
+<def><name> dOsteoid9 </name><val> k * ( Osteoid8 - Osteoid9 ) MIN Osteoid9</val></def>
+<def><name> dOsteoid10 </name><val> k * ( Osteoid9 - Osteoid10 ) MIN Osteoid10</val></def>
+<def><name> OsteoidToPermanent </name><val> k * Osteoid10 MIN Osteoid1</val></def>
 
 <def><name> Calc1 </name><val> m * Ca1 / Osteoid1 </val></def>
 <def><name> Calc2 </name><val> m * Ca2 / Osteoid2 </val></def>
@@ -228,7 +229,7 @@ Schema : DES V1.0
 <def><name> AverageCalc </name><val> ( Calc1 + Calc2 + Calc3 + Calc4 + Calc5 + Calc6 + Calc7 + Calc8 + Calc9 + Calc10 ) / 10 </val></def>
 <def><name> AverageBoneWater </name><val> BoneWater [ Calc1 ] + BoneWater [ Calc2 ] + BoneWater [ Calc3 ] + BoneWater [ Calc4 ] + BoneWater [ Calc5 ] + BoneWater [ Calc6 ] + BoneWater [ Calc7 ] + BoneWater [ Calc8 ] + BoneWater [ Calc9 ] + BoneWater [ Calc10 ] </val></def>
 <def><name> BoneWater1 </name><val> BoneWater [ Calc1 ] </val></def>
-<def><name> dCa1 </name><val> - ( Flow * BoneWater [ Calc1 ] / AverageBoneWater ) - ( k * Ca1 )</val></def>
+<def><name> dCa1 </name><val> - ( Flow * BoneWater [ Calc1 ] / AverageBoneWater ) - ( k * Ca1 ) </val></def>
 <def><name> dCa2 </name><val> - ( Flow * BoneWater [ Calc2 ] / AverageBoneWater ) + ( k * ( Ca1 - Ca2 ) ) </val></def>
 <def><name> dCa3 </name><val> - ( Flow * BoneWater [ Calc3 ] / AverageBoneWater ) + ( k * ( Ca2 - Ca3 ) ) </val></def>
 <def><name> dCa4 </name><val> - ( Flow * BoneWater [ Calc4 ] / AverageBoneWater ) + ( k * ( Ca3 - Ca4 ) ) </val></def>
@@ -239,9 +240,31 @@ Schema : DES V1.0
 <def><name> dCa9 </name><val> - ( Flow * BoneWater [ Calc9 ] / AverageBoneWater ) + ( k * ( Ca8 - Ca9 ) ) </val></def>
 <def><name> dCa10 </name><val> - ( Flow * BoneWater [ Calc10 ] / AverageBoneWater ) + ( k * ( Ca9 - Ca10 ) ) </val></def>
 <def><name> CaToPermanent </name><val> k * Ca10 </val></def>
+<def><name> DailyCaToPerm </name><val> 1440 * CaToPermanent </val></def>
 <def><name> CaTo10 </name><val> k * Ca9</val></def>
 <def><name> ExchangableCa </name><val> Ca1 + Ca2 + Ca3 + Ca4 + Ca5 + Ca6 + Ca7 + Ca8 + Ca9 + Ca10 </val></def>
 <def><name> NewBone </name><val> OsteoidToPermanent + (  ( 1.667 * CaToPermanent ) * 95  ) + ( CaToPermanent * 40 ) </val></def>
+
+<if><test> Ca1 LT 0 </test>
+ <true><def><name> Ca1 </name><val> 0 </val></def></true></if>
+<if><test> Ca2 LT 0 </test>
+ <true><def><name> Ca2 </name><val> 0 </val></def></true></if>
+<if><test> Ca3 LT 0 </test>
+ <true><def><name> Ca3 </name><val> 0 </val></def></true></if>
+<if><test> Ca4 LT 0 </test>
+ <true><def><name> Ca4 </name><val> 0 </val></def></true></if>
+<if><test> Ca5 LT 0 </test>
+ <true><def><name> Ca5 </name><val> 0 </val></def></true></if>
+<if><test> Ca6 LT 0 </test>
+ <true><def><name> Ca6 </name><val> 0 </val></def></true></if>
+<if><test> Ca7 LT 0 </test>
+ <true><def><name> Ca7 </name><val> 0 </val></def></true></if>
+<if><test> Ca8 LT 0 </test>
+ <true><def><name> Ca8 </name><val> 0 </val></def></true></if>
+<if><test> Ca9 LT 0 </test>
+ <true><def><name> Ca9 </name><val> 0 </val></def></true></if>
+<if><test> Ca10 LT 0 </test>
+ <true><def><name> Ca10 </name><val> 0 </val></def></true></if>
 
 </block>
 </definitions>

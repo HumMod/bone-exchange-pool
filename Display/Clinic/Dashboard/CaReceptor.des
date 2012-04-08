@@ -9,7 +9,7 @@ By : University of Mississippi Medical Center
 <structurename> CaReceptor </structurename>
 
 <groupbox>
-   <row> 21.0 </row>
+   <row> 35.0 </row>
    <col> 2.0 </col>
    <high> 4.5 </high>
    <wide> 45.0 </wide>

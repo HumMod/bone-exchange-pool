@@ -26,31 +26,39 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 3.5 </row><col> 1.0 </col>
-   <name> AUC.AUCAbsorption </name>
+   <name> AUC.AUCuCa </name>
    <format><decimal> 3 </decimal></format>
-   <label> AUC absorption </label>
+   <label> AUC uCa </label>
  </showvalue>
 
  <showvalue>
    <row> 4.7 </row><col> 1.0 </col>
-   <name> AUC.AUCuCa </name>
+   <name> AUC.AUCAbsorption </name>
    <format><decimal> 3 </decimal></format>
-   <label> AUC urine Ca (mg) </label>
+   <label> AUC net Ca absorption </label>
  </showvalue>
 
  <showvalue>
    <row> 5.9 </row><col> 1.0 </col>
-   <name> AUC.AUCuPO4 </name>
+   <name> AUC.AUCPassive </name>
    <format><decimal> 3 </decimal></format>
-   <label> AUC uPO4 </label>
+   <label> total gut absorption </label>
  </showvalue>
 
  <showvalue>
    <row> 7.1 </row><col> 1.0 </col>
-   <name> AUC.AUCPTH </name>
+   <name> AUC.AUCBoneExchange </name>
    <format><decimal> 3 </decimal></format>
-   <label> AUC PTH (ng) </label>
+   <label> AUC bone ca (mmol) </label>
  </showvalue>
+
+ <showvalue>
+   <row> 8.1 </row><col> 1.0 </col>
+   <name> TalmageCaPool.TotalMass </name>
+   <format><decimal> 3 </decimal></format>
+   <label> total Ca Mass (mmol) </label>
+ </showvalue>
+
 </groupbox>
 
 End

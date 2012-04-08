@@ -56,7 +56,7 @@ Schema : DES V1.0
 
    <def>
 	<name> FromDuodenum </name>
-	<val> Duodenum.Outflow </val>
+	<val> Duodenum.Outflow </val> <!-- mg/min-->
    </def>
 
    <def>
@@ -67,12 +67,12 @@ Schema : DES V1.0
 
    <def>
 	<name> EntericAbsorption </name> 
-	<val> Mass * AbsFrac MAX 0</val>
+	<val> Mass * AbsFrac MAX 0</val><!-- mg/min-->
    </def>
 
    <def>
 	<name> NetIntake </name>
-	<val> Duodenum.Absorption + EntericAbsorption - Slough </val>
+	<val> Duodenum.Absorption + EntericAbsorption - Slough </val><!-- mg/min-->
    </def>
 
    <def>

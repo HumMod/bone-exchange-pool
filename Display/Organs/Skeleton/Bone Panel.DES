@@ -17,7 +17,7 @@ Solver : Digital Human (V1.0)
 
 <?path Display\Organs\Skeleton\ ?>
 
-<?include Peterson_Riggs.DES ?>
+<?include MyBone.DES ?>
 
 
 

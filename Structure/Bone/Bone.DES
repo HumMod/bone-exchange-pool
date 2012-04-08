@@ -11,7 +11,7 @@ Schema : DES V1.0
 <?path Structure\Bone ?>
 
 <!--<?include Buenzli.DES ?>-->
-<?include BoneInteraction.DES ?>
+<?include MyBone.DES ?>
 <?include Osteoid.DES ?>
 <?include BoneExchange.DES ?>
 <?include NewBone.DES ?>

@@ -28,22 +28,34 @@ Solver : Digital Human (V1.0)
  </infobutton>
 
  <showvalue>
-   <row> 2.5 </row><col> 2 </col>
+   <row> 2 </row><col> 2 </col>
    <name> TalmagePO4Pool.[PO4Comp] </name>
    <format><decimal> 3 </decimal></format>
    <label> Complexed PO4 (mmol/L) </label>
  </showvalue>
  <infobutton>
-  <row> 2.5 </row><col> 35 </col>
+  <row> 2 </row><col> 35 </col>
   <line>  </line>
   <line>  mmol/L </line>
  </infobutton>
 
  <showvalue>
-   <row> 4.0 </row><col> 2 </col>
+   <row> 3.0 </row><col> 2 </col>
    <name> TalmagePO4Pool.Mass </name>
    <format><decimal> 3 </decimal></format>
    <label> Total serum PO4 (mg) </label>
+ </showvalue>
+ <infobutton>
+  <row> 3.0 </row><col> 35 </col>
+  <line>  </line>
+  <line>  mg </line>
+ </infobutton>
+
+<showvalue>
+   <row> 4.0 </row><col> 2 </col>
+   <name> TalmagePO4Pool.EMass </name>
+   <format><decimal> 3 </decimal></format>
+   <label> Total extracellular PO4 (mg) </label>
  </showvalue>
  <infobutton>
   <row> 4.0 </row><col> 35 </col>

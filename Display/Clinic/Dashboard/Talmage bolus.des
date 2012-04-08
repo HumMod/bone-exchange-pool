@@ -71,13 +71,6 @@ Schema :
   <line>  Time </line>
  </infobutton>
 
- <radiobuttons>
-  <row> 6.0 </row><col> 1.0 </col>
-  <name> TalmageCaPool.AccelSwitch </name>
-  <listname> Common.Switch </listname>
-  <label> Accelerate </label>
- </radiobuttons>
-
 
 </groupbox>
 

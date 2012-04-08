@@ -7,18 +7,6 @@ HumMod / GoFor
    By : University of Mississippi Medical Center
 
 <gofor>
-  <solutionint> 1 </solutionint>
-  <displayint> 0.1666666 </displayint>
-  <menuitem> 1 Min </menuitem>
-</gofor>
-
-<gofor>
-  <solutionint> 5.0 </solutionint>
-  <displayint> 0.5 </displayint>
-  <menuitem> 5 Min </menuitem>
-</gofor>
-
-<gofor>
   <solutionint> 10 </solutionint>
   <displayint> 0.5 </displayint>
   <menuitem> 10 Min </menuitem>
@@ -45,13 +33,6 @@ HumMod / GoFor
   <displayint> 3.0 </displayint>
   <storageint> 30.0 </storageint>
   <menuitem> 3 Hours </menuitem>
-</gofor>
-
-<gofor>
-  <solutionint> 300.0 </solutionint>
-  <displayint> 5.0 </displayint>
-  <storageint> 30.0 </storageint>
-  <menuitem> 5 Hours </menuitem>
 </gofor>
 
 <gofor>
@@ -87,7 +68,27 @@ HumMod / GoFor
 <gofor>
   <solutionint> 20160 </solutionint>
   <displayint> 1440 </displayint>
-  <storageint> 360 </storageint>
   <menuitem> 2 Weeks </menuitem>
 </gofor>
+
+<gobar/>
+
+<gofor>
+  <solutionint> 40320 </solutionint>
+  <displayint> 2880 </displayint>
+  <menuitem> 1 Month </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 40320 </solutionint>
+  <displayint> 5760 </displayint>
+  <menuitem> 3 Months </menuitem>
+</gofor>
+
+<gofor>
+  <solutionint> 161280 </solutionint>
+  <displayint> 20160 </displayint>
+  <menuitem> 1 Year </menuitem>
+</gofor>
+
 End         

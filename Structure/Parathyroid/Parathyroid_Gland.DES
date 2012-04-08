@@ -15,14 +15,34 @@ Schema : DES V1.0
   <var><name> PO4Effect </name></var>
   <var><name> ProductionRate </name></var>
   <parm><name> BaseProductionRate </name><val> 89 </val></parm>
+  <parm><name> PTCellNumber </name><val> 90000000 </val></parm>
+  <parm><name> PTCellDeathRate </name><val> 5.285 </val></parm><!-- from Parfitt, PT growth, in Parathyroids 1994 edition-->
+  <var><name> PTGrowthRate </name></var>
+  <var><name> PTCellApopRate </name></var>
+  <var><name> InitCellNumber </name><val> 90000000 </val></var>
 
-  <var><name>Vol</name><val> 3 </val></var> <!-- plasma volume-->
-  <var><name>PTHpumpRate</name><val>0</val></var>
-  <var><name>Test</name><val>1</val></var>
-  <var><name>TestDrip</name><val>1</val></var>
   <var><name>[PTH] </name><val>.003</val></var>
   <var><name>[PTHwt] </name></var>
 </variables>
+
+<functions>
+
+<curve>
+  <name> PTGrowthRate </name>
+  <point><x>  1 </x><y> 4.5 </y><slope> 0.25 </slope></point>
+  <point><x> 1.3 </x><y> 6. </y><slope> 1 </slope></point>
+  <point><x> 1.75 </x><y> 100 </y><slope> 1 </slope></point>
+</curve>
+
+<curve>
+  <name> PTCellApopRate </name>
+  <point><x>   10 </x><y> 4 </y><slope> 0.01 </slope></point>
+  <point><x> 50 </x><y> 8 </y><slope> .075 </slope></point>
+  <point><x> 100 </x><y> 25 </y><slope> .5 </slope></point>
+  <point><x> 150  </x><y> 50 </y><slope> 1 </slope></point>
+
+</curve>
+</functions>
 
 <equations>
 <diffeq>
@@ -33,14 +53,25 @@ Schema : DES V1.0
      <errorlim>1 </errorlim>
   </diffeq>
 
+<diffeq>
+     <name> CellNumber </name>  <!-- serum-->
+     <integralname> CellNumber </integralname>
+     <initialval> 90000000 </initialval><!-- ng-->
+     <dervname> dCellNum </dervname>
+     <errorlim> 10 </errorlim>
+  </diffeq>
+
 </equations>
 
 <definitions>
 
  <block>
    <name> CalcVPTH</name>
+  <def><name> PTGrowthRate </name><val> PTGrowthRate [ TalmagePO4Pool.[PO4] ] </val></def>
+  <def><name> PTCellApopRate </name><val> PTCellApopRate [ VitaminD.[Calcitriol->ng/L] ] </val></def>
+  <def><name> dCellNum </name><val> PTGrowthRate - PTCellApopRate </val></def>
   <def><name> PO4Effect </name><val> ( TalmagePO4Pool.[PO4] * 0.1 ) + 0.9 </val></def>
-  <def><name> ProductionRate </name><val> BaseProductionRate * PO4Effect </val></def>
+  <def><name> ProductionRate </name><val> BaseProductionRate * PO4Effect * CellNumber / InitCellNumber</val></def>
   <def><name> dVPTH </name><val> ProductionRate - ( VPTHDegRate * VPTH ) </val></def>
  </block>
 

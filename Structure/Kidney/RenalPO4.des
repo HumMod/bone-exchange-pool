@@ -67,11 +67,11 @@ Schema : DES V1.0
 </def>
 
 <!-- Filtration-->
-   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .75 * RenalParms.ModGFR </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
+   <def><name> PO4Filt </name> <val> TalmagePO4Pool.[PO4] * .88 * RenalParms.ModGFR </val></def><!-- mg/min--><!-- 75% of plasma phosphate is ultrafiltrable; Brenner and Rector p 196-->
 
 <def>
   <name> TargetPTH </name>
-  <val> 0.19 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
+  <val> 0.16 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
 </def>  
 
 <def>
@@ -81,16 +81,15 @@ Schema : DES V1.0
 
 <def>
   <name> Vmax </name>
-  <val> TargetPTH </val>
+  <val> RenalParms.RAMult * TargetPTH</val>
 </def>
 
-  <def><name> ActiveRA </name><val> Vmax * PO4Filt / ( PO4Filt + 0.06 ) MAX 0 </val></def>
-  <def><name> PassiveRA </name><val> 0 * ( ( PO4Filt - ActiveRA ) ) </val></def>
+  <def><name> ActiveRA </name><val> Vmax * PO4Filt / ( PO4Filt + 0.01 ) MIN Vmax </val></def>
+  <def><name> PassiveRA </name><val> 0.1 * ( ( PO4Filt - ActiveRA ) ) </val></def>
   <def><name> RA </name><val> ( ActiveRA + PassiveRA ) MIN PO4Filt </val></def>
   <def><name> Excretionmmol </name><val> PO4Filt - RA </val></def>
    <def><name> Excretion </name><val> Excretionmmol * 95 </val></def>
    <def><name> FracExcretionPO4 </name><val> Excretionmmol / PO4Filt  </val></def>
-  <def><name> Eff_TmP/GFR </name><val> (  PO4Filt / RenalParms.ModGFR ) - Excretionmmol </val></def>
   <def><name> TmP/GFR </name><val> Vmax / RenalParms.ModGFR </val></def>
  </block>
 

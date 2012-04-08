@@ -20,20 +20,13 @@ Schema : DES V1.0
 
 <equations>
 
- <diffeq>
-   <name> AUCCa </name>
-   <integralname> AUCCa </integralname>
-   <initialval> 0 </initialval>
-   <dervname> ChangeCa </dervname>
-   <errorlim> 0.01 </errorlim>
- </diffeq>
 
  <diffeq>
-   <name> AUCPTH </name>
-   <integralname> AUCPTH </integralname>
+   <name> AUCBoneExchange </name>
+   <integralname> AUCBoneExchange </integralname>
    <initialval> 0 </initialval>
-   <dervname> ChangePTH </dervname>
-   <errorlim> 0.01 </errorlim>
+   <dervname> ChangeBE </dervname>
+   <errorlim> 0.0001 </errorlim>
  </diffeq>
 
  <diffeq>
@@ -117,17 +110,15 @@ Schema : DES V1.0
 <block>
  <name> Dervs </name> 
   <def><name> dx </name><val> System.Dx </val></def>
- <def><name> ChangeCa </name><val> Test * TalmageCaPool.[CaMass] </val></def>
  <def><name> ChangePO4 </name><val> Test * TalmagePO4Pool.[MassPO4] </val></def>
- <def><name> ChangePTH</name><val> Test * TalmagePTHormone.PTH / 3  </val></def>
+ <def><name> ChangeBE</name><val> Test * BoneExchange.CaExchange(mmol)  </val></def>
  <def><name> ChangeuCa </name><val> Test * RenalCa.Excretion </val></def>
  <def><name> ChangeuPO4 </name><val> Test * RenalPO4.Excretion </val></def> 
  <def><name> ChangeFecalCa </name><val> Test * DistalSmallIntestine.FecalCa </val></def>
-<def><name> ChangeAbsorption </name><val> Test * DistalSmallIntestine.Absorption </val></def> 
+<def><name> ChangeAbsorption </name><val> Test * DistalSmallIntestine.NetIntake </val></def> 
 <def><name> ChangeActive </name><val> Test * Duodenum.Absorption </val></def> 
-<def><name> ChangePassive</name><val> Test * DistalSmallIntestine.EntericAbsorption </val></def> 
+<def><name> ChangePassive</name><val> Test * DistalSmallIntestine.Absorption </val></def> 
 <def><name> ChangePO4Abs</name><val> Test * GutPO4.Absorption </val></def> 
- <def><name>AvCa </name><val> AUCCa / ( System.X - StartTime ) </val></def>
 
 
 </block>

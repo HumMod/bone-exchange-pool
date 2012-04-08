@@ -30,7 +30,7 @@ Schema : DES V1.0
 
 <parm><name> alpha20_16 </name><val> 4.176 </val></parm>
 <parm><name> alpha20_17d </name><val> 0.7114 </val></parm>
-<parm><name> alpha28_17d </name><val> 0.001802 </val></parm>
+<parm><name> alpha28_17d </name><val> 0.1802 </val></parm>0.001802
 <parm><name> alpha20_17 </name><val> 0.2517 </val></parm>
 <parm><name> alpha22_18</name><val> 3.803 </val></parm>
 <parm><name> alpha20_18</name><val> 2.175 </val></parm>
@@ -65,8 +65,8 @@ Schema : DES V1.0
 <parm><name> delta22_18</name><val> 0.4 </val></parm>
 <parm><name> delta20_18</name><val> 0.2281 </val></parm>
 <parm><name> delta24_18</name><val> 0.000084  </val></parm>
-<parm><name> delta7_26</name><val> 25 </val></parm>
-<parm><name> delta7_27</name><val> 5 </val></parm>
+<parm><name> delta7_26</name><val> 15 </val></parm>
+<parm><name> delta7_27</name><val> 15 </val></parm>
 
 <parm><name> gamma17_22 </name><val> 0.1738 </val></parm>
 <parm><name> alpha7_22 </name><val> 1.307 </val></parm>
@@ -111,6 +111,9 @@ Schema : DES V1.0
 <var><name> k17ad </name></var>
 
 <var><name> k22S </name></var>
+<var><name> TotalRANK </name></var>
+<var><name> TotalRANKL </name></var>
+<var><name> TotalOPG </name></var>
 
 </variables>
 
@@ -247,23 +250,37 @@ Schema : DES V1.0
 
 <def><name> k17dprime </name><val> phi28k17d * k17d * H20_17d / ( Pi0C - H28_17d ) </val></def>
 <def><name> k17ad </name><val> ( ( ( k17d * OB0 ) + ( k17dprime * phik17d * OBa0 * phi17a ) ) - ( k17dprime * phik17d * OB0 ) ) / ( OBa0 )</val></def>
-<def><name> k22S </name><val> k22d * RANKL0 * ( ( OB / OB0 ) ^ gamma17_22 ) * alpha7_22 * PTH / ( alpha7_22 * ( ( RANKL / RANKL0 ) ^ gamma17_22 ) + PTH ) </val></def>
+<def><name> k22S </name><val> k22d * RANKL0 * ( ( OB / OB0 ) ^ gamma17_22 ) * alpha7_22 * PTH / ( alpha7_22 * ( 1.5 * ( OB / OB0 ) ^ gamma17_22 ) + PTH ) </val></def>
 
 <def><name> dROB </name><val> ( ( k17d * OB0 * Pi0C ) * H20_16 ) - ( ( k17d * OB0 * ROB * Pi0C ) / ( ROB0 * H20_17 ) )  </val></def>
 <def><name> OB </name><val> OBa + OBb </val></def>
 <def><name> dOBa </name><val> ( ( k17d * OB0 * Pi0C * ROB * phi17a * ( k17ad / k17dprime )  ) / ( ROB0 * H20_17 ) ) - ( k17ad * OBa ) </val></def>
 <def><name> dOBb </name><val> ( (  k17d * OB0 * Pi0C * ROB * ( 1 - phi17a ) * phik17d ) / ( ROB0 * H20_17 ) ) - ( k17dprime * phik17d * OBb )  </val></def>
 <def><name> dOC </name><val> ( 3 * k18d * Pi0C * OC0 * H24_18 ) - ( k18d * H20_18 * H22_18 * OC )  </val></def>
-<def><name> dlTGF </name><val> ( k19_20 * lTGF0 * ( ( OB / OB0 ) ^ gamma17_19S ) ) - ( k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) </val></def>
-<def><name> daTGF </name><val> ( k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) - ( 1000 * k19_20 * aTGF )  </val></def>
-<def><name> dRANK~RANKL </name><val> ( k21_24 * RANK * RANKL ) - ( k24_21 * RANK~RANKL )  </val></def>
+<def><name> dlTGF </name><val> ( ( 8 * PTH / ( PTH + 30 ) ) * ( k19_20 * lTGF0 * ( ( OB / OB0 ) ^ gamma17_19S ) ) ) - ( k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) </val></def>
+<def><name> daTGF </name><val> ( ( 8 * PTH / ( PTH + 30 ) ) * k19_20 * ( ( lTGF / lTGF0 ) ^ gamma19_20 ) * ( ( OC / OC0 ) ^ gamma1819_20 ) * lTGF ) - ( 1000 * k19_20 * aTGF )  </val></def>
 <def><name> dOPG~RANKL </name><val> ( k21_24 * OPG * RANKL ) - ( k24_21 * OPG~RANKL ) </val></def>
-<def><name> dRANK </name><val> ( ( ( k21d * RANK0 ) + ( k21_24 * RANK0 * RANKL0 ) - ( k24_21 * RANK~RANKL0 ) ) / ( aTGF0 ^ gamma20_21 ) ) - ( k21d * RANK ) - dRANK~RANKL </val></def>
-<def><name> dRANKL </name><val> k22S - ( k22d * RANKL ) - dRANK~RANKL - dOPG~RANKL </val></def>
-<def><name> dOPG </name><val> k23d * OPG0 * ( ROB / ROB0 ) / ( ( PTH + ( delta7_23 * ROB / ROB0 ) ) / ( 2 * PTH ) ) - dOPG~RANKL - ( k23d * OPG )  </val></def>
+
+<def><name> dRANK~RANKL </name><val> ( k21_24 * RANK * RANKL ) - ( k24_21 * RANK~RANKL )  </val></def>
+
+
+
+<def><name> dRANK </name><val> ( ( aTGF ^ gamma20_21 ) / ( aTGF0 ^ gamma20_21 ) ) * ( ( k21d * RANK0 ) + ( k21_24 * RANK0 * RANKL0 ) - ( k24_21 * RANK~RANKL0 ) ) - ( k21d * RANK ) - dRANK~RANKL </val></def>
+
+
+
+<def><name> dRANKL </name><val>  k22S - ( k22d * RANKL ) - dRANK~RANKL - dOPG~RANKL </val></def>
+
+
+
+<def><name> dOPG </name><val> k23d * OPG0 * ( ROB / ROB0 ) * ( ( PTH + ( delta7_23 * ROB / ROB0 ) ) / ( 2 * PTH ) ) - dOPG~RANKL - ( k23d * OPG )  </val></def>
 <def><name> dRunx </name><val> k26s - ( H7_26 * Runx / 60 ) </val></def>
 <def><name> dCREB </name><val> ( k27s * H7_27 ) - ( k27d * CREB / 60 ) </val></def>
 <def><name> dBCL-2 </name><val> ( k28d * Runx * CREB ) - ( k28d * BCL-2 ) </val></def>
+
+<def><name> TotalRANK </name><val> RANK + RANK~RANKL </val></def>
+<def><name> TotalRANKL </name><val>  RANKL + RANK~RANKL + OPG~RANKL </val></def>
+<def><name> TotalOPG </name><val>  OPG + OPG~RANKL </val></def>
 
 </block>
 

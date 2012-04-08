@@ -18,6 +18,7 @@ Schema : DES V1.0
   <var><name> CaFromBone </name><val> 0 </val></var>
  <var><name> BoneMass </name></var>
   <var><name> Resorbed </name></var>
+  <var><name> DailyCaResorption </name></var>
 </variables>
 
 <equations>
@@ -44,14 +45,15 @@ Schema : DES V1.0
  <block>
   <name>Dervs</name>
 
-  <def><name> OsteoidResorption </name><val> ResorptionRate * BoneInteraction.OC </val></def>
-  <def><name> CaResorption </name><val> ( BoneCa / BoneOsteoid ) * OsteoidResorption </val></def>
-  <def><name> dBoneOsteoid </name><val> Osteoid.OsteoidToPermanent - OsteoidResorption </val></def>
-  <def><name> dBoneCa </name><val> Osteoid.CaToPermanent - CaResorption </val></def>
-  <def><name> RelativeBoneDensity </name><val> BoneCa / BoneOsteoid </val></def>
-  <def><name> CaFromBone </name><val> OsteoidResorption * RelativeBoneDensity </val></def> 
+  <def><name> OsteoidResorption </name><val> ResorptionRate * BoneCellDynamics.OC </val></def>
+  <def><name> CaResorption </name><val> ( BoneCa / BoneOsteoid ) * OsteoidResorption </val></def><!-- mmol/min-->
+  <def><name> dBoneOsteoid </name><val> Osteoid.OsteoidToPermanent - OsteoidResorption </val></def><!-- mmol/min-->
+  <def><name> dBoneCa </name><val> Osteoid.CaToPermanent - CaResorption </val></def><!-- mmol/min-->
+  <def><name> RelativeBoneDensity </name><val> BoneCa / BoneOsteoid </val></def><!-- mmol/mg-->
+  <def><name> CaFromBone </name><val> OsteoidResorption * RelativeBoneDensity </val></def> <!--mmol/min-->
   <def><name> BoneMass </name><val> BoneOsteoid + ( 40 * BoneCa ) + ( 1.667 * 95 * BoneCa ) </val></def>
   <def><name> Resorbed </name><val> OsteoidResorption + ( 40 * CaResorption ) + ( 95 * 1.6667 * CaResorption ) </val></def>
+  <def><name> DailyCaResorption </name><val> CaResorption * 1440 </val></def>
 
  </block>
 </definitions>

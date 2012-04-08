@@ -36,19 +36,19 @@ Schema :
 
  <editbox>
    <row> 5.0 </row><col> 1 </col>
-   <name> TalmagePTHormone.PTHDripValue </name>
+   <name> PTH_pool.PTHDripValue </name>
    <label> PTHDripValue </label>
  </editbox>
 
  <editbox>
    <row> 6.5 </row><col> 1 </col>
-   <name> TalmagePTHormone.PTHDripTime </name>
+   <name> PTH_pool.PTHDripTime </name>
    <label> PTHDripTime </label>
  </editbox>
 
  <showvalue>
    <row> 6.5 </row><col> 30.5 </col>
-   <name> TalmagePTHormone.PTHDripStart </name>
+   <name> PTH_pool.PTHDripStart </name>
    <format><decimal> 0 </decimal></format>
    <label> Start </label>
  </showvalue>

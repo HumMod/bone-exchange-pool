@@ -20,6 +20,7 @@ Solver : Digital Human (V1.0)
 <?include Excretion.DES ?>
 <?include PTH-Effect.DES ?>
 <?include TmP-GFR.DES ?>
+<?include Curves.DES ?>
 <!--<?include Dialysis.DES ?>-->
 
 

@@ -50,6 +50,17 @@ Solver : Digital Human (V1.0)
       <linecolor> GREEN </linecolor>
    </yvar>
   <yvar>
+      <name> TalmageCaPool.Gain </name>
+      <label> Gain </label>
+      <linecolor> MAGENTA </linecolor>
+   </yvar>
+  <yvar>
+      <name> TalmageCaPool.Loss </name>
+      <label> LOSS </label>
+      <linecolor> BLACK </linecolor>
+   </yvar>
+
+  <yvar>
       <name> Duodenum.Absorption </name>
       <label> duodenum absorption </label>
       <linecolor> RED </linecolor>

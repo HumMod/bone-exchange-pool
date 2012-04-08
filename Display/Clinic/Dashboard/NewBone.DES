@@ -21,10 +21,10 @@ Solver : Digital Human (V1.0)
   <text> Quantity </text></label>
 
 <label><row> 2.0 </row><col> 5.0</col>
-  <text> New bone </text></label>
+  <text> Ca To bone </text></label>
 
 <label><row> 3.0 </row><col> 5.0</col>
-  <text> Resorbed bone </text></label>
+  <text> Ca From bone </text></label>
 
 <label><row> 4.0 </row><col> 5.0</col>
   <text> Bone Mass </text></label>
@@ -37,13 +37,13 @@ Solver : Digital Human (V1.0)
 
 <showvalue>
   <row> 2.0 </row><col> 27.0 </col>
-  <name> Osteoid.NewBone </name>
+  <name> BoneExchange.CaExchange(mmol) </name>
   <nolabel/>
 </showvalue>
 
 <showvalue>
   <row> 3.0 </row><col> 27.0 </col>
-  <name> Resorbed </name>
+  <name> CaFromBone </name>
   <nolabel/>
 </showvalue>
 
@@ -121,18 +121,30 @@ Solver : Digital Human (V1.0)
       <linecolor> MAGENTA </linecolor>
     </yvar>
   <yvar>
-      <name> CaToPermanent </name>
-      <label> CaToPermanent </label>
+      <name> BoneExchange.NetExchange </name>
+      <label> Net bone exchange (mmol)  </label>
       <linecolor> GREEN </linecolor>
     </yvar>
   <yvar>
-      <name> CaTo10 </name>
-      <label> CaTo10 </label>
-      <linecolor> RED </linecolor>
+      <name> TalmageCaPool.Balance </name>
+      <label> Ca bone balance  </label>
+      <linecolor> BLACK </linecolor>
     </yvar>
-  <scale><min> 0.0 </min><max> 0.005 </max></scale>
+  <scale><min> 0.0 </min><max> 0.001 </max></scale>
   </yaxis>
  </showgraph>
+
+<showvalue>
+  <row> 23.5 </row><col> 1.0 </col>
+  <name> Osteoid.DailyCaToPerm  </name>
+  <label> daily Ca resorption </label>
+</showvalue>
+
+<showvalue>
+  <row> 23.5 </row><col> 27.0 </col>
+  <name> NewBone.DailyCaResorption  </name>
+  <label> daily Ca resorption </label>
+</showvalue>
 
 
 </groupbox>
