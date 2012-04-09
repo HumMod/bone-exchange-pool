@@ -37,6 +37,7 @@ Schema : DES V1.0
   <var><name> TRPVMult </name></var>
   <var><name> m </name><val> 2 </val></var>
   <var><name> Vmax </name></var>
+  <var><name> Delta </name></var>
 
 
 </variables>
@@ -60,7 +61,7 @@ Schema : DES V1.0
 <!-- filtration-->
   <def><name> Ca++filt </name> <val> ( TalmageCaPool.[Ca++] + TalmageCaPool.[CaComp] ) * RenalParms.ModGFR </val></def><!-- mmol/min-->
   <def><name>PTH</name><val> PTH_pool.[PTHwt] * PTHReceptor.PTHrExpression </val></def> 
-  <def><name> TRPVMult </name><val> ( .025 ^ 10 ) / ( ( .025 ^ 10 ) + ( ActiveRA ^ 10 ) ) </val></def>
+ <!-- <def><name> TRPVMult </name><val> ( .025 ^ 10 ) / ( ( .025 ^ 10 ) + ( ActiveRA ^ 10 ) ) </val></def>-->
      <!-- this term seeks to capture the negative effect of excessive calcium intake on the TRPV constitutively open status -->
 
 <!-- tubule -->
@@ -71,7 +72,7 @@ Schema : DES V1.0
 
   <def><name> RApassive </name><val> ( RenalParms.ModGFR * .9 * 1.47 ) + ( 0.4 * ( Ca++filt - ( 1.47 * RenalParms.GFR ) ) ) </val></def>
   <def><name> CaToDT </name><val> Ca++filt - RApassive </val></def>
-  <def><name> Vmax </name><val> 0.05 * PTH / ( PTH + 25 ) </val></def>
+  <def><name> Vmax </name><val> 0.05 * PTH / ( PTH + 25 ) * 0 + 0.025 </val></def>
 
   <def><name> ActiveRA </name> <val> RenalParms.RAMult * Vmax * ( CaToDT ^ m ) / ( ( CaToDT ^ m ) + ( 0.01 ^ m ) ) </val></def>  
  <def><name> RA </name><val> ActiveRA + RApassive </val></def>
@@ -81,6 +82,7 @@ Schema : DES V1.0
 <!-- excretion -->
    <def><name> Excretion</name><val> Excretionmmol * 40 </val></def><!-- mg/min-->
    <def><name> FracExcretionCa </name><val> Excretionmmol / Ca++filt  </val></def>
+  <def><name> Delta </name><val> - Excretion </val></def>
 
  </block>
 

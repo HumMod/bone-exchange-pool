@@ -23,7 +23,7 @@ Schema : DES V1.0
   <parm><name> af </name><val> .18 </val></parm>45
   <parm><name> sf </name><val> 50 </val></parm>
   <parm><name> nf </name><val> 2 </val></parm>
-  <var><name> Vmax </name></var>  <!-- target .12 -->
+<!--  <var><name> Vmax </name></var>   -->
   <var><name> TmP/GFR </name></var>
 
 
@@ -56,6 +56,16 @@ Schema : DES V1.0
   <var><name> NaFilt </name></var>
 </variables>
 
+<equations>
+ <diffeq>
+   <name> Vmax </name>
+   <integralname> Vmax </integralname>
+   <initialval> 0.15 </initialval>
+   <dervname> dVmax </dervname>
+   <errorlim> 0.0005 </errorlim>
+ </diffeq>
+</equations>
+
 <definitions>
 
  <block>
@@ -71,7 +81,7 @@ Schema : DES V1.0
 
 <def>
   <name> TargetPTH </name>
-  <val> 0.16 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  
+  <val> 0.15 * ( a * ( s ^ n ) / ( ( s ^ n ) + ( PTH ^ n ) )  + b ) </val>  0.16
 </def>  
 
 <def>
@@ -80,8 +90,8 @@ Schema : DES V1.0
 </def>  
 
 <def>
-  <name> Vmax </name>
-  <val> RenalParms.RAMult * TargetPTH</val>
+  <name> dVmax </name>
+  <val> 0.0005 * ( RenalParms.RAMult * TargetPTH - Vmax ) </val>
 </def>
 
   <def><name> ActiveRA </name><val> Vmax * PO4Filt / ( PO4Filt + 0.01 ) MIN Vmax </val></def>

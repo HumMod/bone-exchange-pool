@@ -50,7 +50,7 @@ Schema : DES V1.0
   <def><name> dBoneOsteoid </name><val> Osteoid.OsteoidToPermanent - OsteoidResorption </val></def><!-- mmol/min-->
   <def><name> dBoneCa </name><val> Osteoid.CaToPermanent - CaResorption </val></def><!-- mmol/min-->
   <def><name> RelativeBoneDensity </name><val> BoneCa / BoneOsteoid </val></def><!-- mmol/mg-->
-  <def><name> CaFromBone </name><val> OsteoidResorption * RelativeBoneDensity </val></def> <!--mmol/min-->
+  <def><name> CaFromBone </name><val> OsteoidResorption * RelativeBoneDensity * 40 </val></def> <!--mmol/min-->
   <def><name> BoneMass </name><val> BoneOsteoid + ( 40 * BoneCa ) + ( 1.667 * 95 * BoneCa ) </val></def>
   <def><name> Resorbed </name><val> OsteoidResorption + ( 40 * CaResorption ) + ( 95 * 1.6667 * CaResorption ) </val></def>
   <def><name> DailyCaResorption </name><val> CaResorption * 1440 </val></def>

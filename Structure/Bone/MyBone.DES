@@ -17,13 +17,14 @@ Schema : DES V1.0
 <var><name> OBsig </name></var>
 
 <parm><name> PTH </name><val> 10 </val></parm>
-<parm><name> k1 </name><val> 0.08 </val></parm>
-<parm><name> k2 </name><val> 0.01 </val></parm>
-<parm><name> k3 </name><val> 0.125 </val></parm>
-<parm><name> k4 </name><val> 0.125 </val></parm>
+<parm><name> k1 </name><val> 0.1 </val></parm>
+<parm><name> k2 </name><val> 0.001</val></parm>
+<parm><name> k3 </name><val> 0.1 </val></parm>
+<parm><name> k4 </name><val> 0.01 </val></parm>
 
-<parm><name> delay </name><val> 0.01 </val></parm>
+<parm><name> delay </name><val> 0.006 </val></parm>
 <parm><name> m </name><val> 1 </val></parm>
+<parm><name> kOB </name><val> 0.03 </val></parm>
 
 </variables>
 
@@ -32,7 +33,7 @@ Schema : DES V1.0
  <diffeq>
   <name> a </name>
      <integralname> a </integralname>
-     <initialval> 10 </initialval>
+     <initialval> 20 </initialval>
      <dervname> da </dervname>
      <errorlim> 0.1 </errorlim>
  </diffeq>
@@ -40,7 +41,7 @@ Schema : DES V1.0
  <diffeq>
   <name> b </name>
      <integralname> b </integralname>
-     <initialval> 10 </initialval>
+     <initialval> 2.66 </initialval>
      <dervname> db </dervname>
      <errorlim> 0.1 </errorlim>
  </diffeq>
@@ -53,6 +54,15 @@ Schema : DES V1.0
      <errorlim> 0.01 </errorlim>
  </diffeq>
 
+<!--
+ <diffeq>
+  <name> OBsig </name>
+     <integralname> OBsig </integralname>
+     <initialval> 10.2 </initialval>
+     <dervname> dOBsig </dervname>
+     <errorlim> 0.01 </errorlim>
+ </diffeq>
+-->
  <diffeq>
   <name> OC </name>
      <integralname> OC </integralname>
@@ -77,10 +87,10 @@ Schema : DES V1.0
 <def><name> PTH </name><val> PTH_pool.[PTHwt] / 9.4 </val></def>
   <def><name> da </name><val> ( k1 * PTH ) - ( k2 * a * b ) </val></def>
   <def><name> db </name><val> ( k3 * PTH ) - ( k4 * b ) </val></def>
-  <def><name> dOCsig </name><val> delay * ( ( .125 * PTH  ) - ( .2 * OCsig ) ) </val></def>
-  <def><name> OBsig </name><val> m * ( a + b )</val></def>
+  <def><name> dOCsig </name><val> delay * ( ( .125 * PTH  ) - ( .5 * OCsig ) ) </val></def>
+  <def><name> OBsig </name><val>  ( m * ( a + b ) )</val></def>
 
-  <def><name> dOB </name><val> 0.002 * ( ( OBsig * OB0 ) - OB ) </val></def>
+  <def><name> dOB </name><val> 0.0002 * ( ( kOB * OBsig * OB0 ) - OB ) </val></def>
   <def><name> dOC </name><val> 0.005 * ( ( OCsig * OC0 ) - OC ) </val></def>
 
 </block>
