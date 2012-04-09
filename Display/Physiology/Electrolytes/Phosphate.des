@@ -11,7 +11,7 @@ Solver : Digital Human (V1.0)
 <groupbox>
    <row> 2.0 </row>
    <col> 46.0 </col>
-   <high> 17.0 </high>
+   <high> 30.0 </high>
    <wide> 44.0 </wide>
    <title> Phosphates </title>
 
@@ -81,6 +81,44 @@ Solver : Digital Human (V1.0)
    <scale><min> 1</min><max> 1.5 </max></scale>
   </yaxis>
  </showgraph>
+
+<showgraph>
+  <row> 21. </row><col> 1 </col>
+  <high> 12 </high><wide> 42 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>
+    <yvar>
+    <name> BoneExchange.PO4Exchange </name>
+   <label> Exchange / m </label>
+      <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+    <name> NewBone.PO4FromBone </name>
+   <label> Ca resorption / m</label>
+      <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+    <name> GutPO4.Absorption </name>
+   <label> Absorption / m </label>
+      <linecolor> GREEN </linecolor>
+    </yvar>
+
+    <yvar>
+    <name> RenalPO4.Delta </name>
+   <label> Renal excretion / m </label>
+      <linecolor> BLACK </linecolor>
+    </yvar>
+
+    <scale><min> 0 </min><max> 0.1  </max></scale>
+  </yaxis>
+</showgraph>
+
+
 </groupbox>
 
 End

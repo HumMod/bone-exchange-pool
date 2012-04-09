@@ -26,6 +26,8 @@ Schema : DES V1.0
 <!--  <var><name> Vmax </name></var>   -->
   <var><name> TmP/GFR </name></var>
 
+<var><name> Delta </name></var>
+
 
 <!-- TmP/GFR parms-->
   <var><name> TargetPTH </name><val> 7 </val></var>
@@ -99,6 +101,7 @@ Schema : DES V1.0
   <def><name> RA </name><val> ( ActiveRA + PassiveRA ) MIN PO4Filt </val></def>
   <def><name> Excretionmmol </name><val> PO4Filt - RA </val></def>
    <def><name> Excretion </name><val> Excretionmmol * 95 </val></def>
+  <def><name> Delta </name><val> - Excretion </val></def>
    <def><name> FracExcretionPO4 </name><val> Excretionmmol / PO4Filt  </val></def>
   <def><name> TmP/GFR </name><val> Vmax / RenalParms.ModGFR </val></def>
  </block>

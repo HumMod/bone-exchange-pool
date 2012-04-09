@@ -26,7 +26,7 @@ Schema : DES V1.0
  <var><name> AverageCalc </name></var>
  <var><name> AverageBoneWater </name></var>
  <var><name> Apposition </name></var>
- <parm><name> AppRate </name><val> 0.4546 </val></parm> 0.4566, 0.114
+ <parm><name> AppRate </name><val> 0.4148 </val></parm> 0.4566, 0.114
  <var><name> OsteoidToPermanent </name></var>
  <var><name> CaToPermanent </name></var>
  <parm><name> m </name><val> 0.1 </val></parm> <!-- Calcification factor; normally mature bone is 25000mmol Ca, 2500 g ground substance  -->

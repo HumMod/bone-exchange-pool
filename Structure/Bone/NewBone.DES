@@ -12,13 +12,16 @@ Schema : DES V1.0
 
 <variables>
   <var><name> OsteoidResorption </name></var>
-  <parm><name> ResorptionRate </name><val> 0.5416 </val></parm>0.49475
+  <parm><name> ResorptionRate </name><val> 0.7276 </val></parm>0.49475,.5416
   <var><name> CaResorption </name><val> 0 </val></var>
-  <var><name> RelativeBoneDensity </name><val> 0.2 </val></var>
   <var><name> CaFromBone </name><val> 0 </val></var>
+  <var><name> DailyCaResorption </name></var>
+  <var><name> PO4Resorption </name><val> 0 </val></var>
+  <var><name> PO4FromBone </name><val> 0 </val></var>
+  <var><name> DailyPO4Resorption </name></var>
+  <var><name> RelativeBoneDensity </name><val> 0.2 </val></var>
  <var><name> BoneMass </name></var>
   <var><name> Resorbed </name></var>
-  <var><name> DailyCaResorption </name></var>
 </variables>
 
 <equations>
@@ -47,13 +50,16 @@ Schema : DES V1.0
 
   <def><name> OsteoidResorption </name><val> ResorptionRate * BoneCellDynamics.OC </val></def>
   <def><name> CaResorption </name><val> ( BoneCa / BoneOsteoid ) * OsteoidResorption </val></def><!-- mmol/min-->
+  <def><name> PO4Resorption </name><val> 1.667 * CaResorption </val></def><!-- mmol/min-->
   <def><name> dBoneOsteoid </name><val> Osteoid.OsteoidToPermanent - OsteoidResorption </val></def><!-- mmol/min-->
   <def><name> dBoneCa </name><val> Osteoid.CaToPermanent - CaResorption </val></def><!-- mmol/min-->
   <def><name> RelativeBoneDensity </name><val> BoneCa / BoneOsteoid </val></def><!-- mmol/mg-->
-  <def><name> CaFromBone </name><val> OsteoidResorption * RelativeBoneDensity * 40 </val></def> <!--mmol/min-->
+  <def><name> CaFromBone </name><val> CaResorption * 40 </val></def> <!--mg /min-->
+  <def><name> PO4FromBone </name><val> PO4Resorption * 95 </val></def> <!--mg/min-->
   <def><name> BoneMass </name><val> BoneOsteoid + ( 40 * BoneCa ) + ( 1.667 * 95 * BoneCa ) </val></def>
   <def><name> Resorbed </name><val> OsteoidResorption + ( 40 * CaResorption ) + ( 95 * 1.6667 * CaResorption ) </val></def>
   <def><name> DailyCaResorption </name><val> CaResorption * 1440 </val></def>
+  <def><name> DailyPO4Resorption </name><val> PO4Resorption * 1440 </val></def>
 
  </block>
 </definitions>
