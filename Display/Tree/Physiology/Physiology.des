@@ -15,7 +15,7 @@ By : University of Mississippi Medical Center
 <?path Display\Tree\Physiology ?>
 
 <leaf>
-  <name> Talmage PTH Panel </name>
+  <name> Talmage_PTH_Panel </name>
   <label> Hormones </label>
   <parent> PHYSIOLOGY </parent>
 </leaf>
@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <leaf>
-  <name> TalmageElectrolytes panel </name>
+  <name> TalmageElectrolytesPanel </name>
   <label> Electrolytes </label>
   <parent> PHYSIOLOGY </parent>
 </leaf>

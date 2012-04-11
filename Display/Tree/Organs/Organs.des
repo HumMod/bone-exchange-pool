@@ -27,7 +27,7 @@ By : University of Mississippi Medical Center
 </leaf>
 
 <leaf>
-  <name> Bone Panel </name>
+  <name> BonePanel </name>
   <label> Skeleton </label>
   <parent> ORGANS </parent>
 </leaf>

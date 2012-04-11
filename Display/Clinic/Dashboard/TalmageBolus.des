@@ -113,7 +113,7 @@ Schema :
  </infobutton>
 
 </groupbox>
-
+<!--
 <groupbox>
    <row> 2.0 </row>
    <col> 40.0 </col>
@@ -163,7 +163,7 @@ Schema :
   <line>  Time </line>
  </infobutton>
  </groupbox>
-
+-->
 <groupbox>
    <row> 10.0 </row>
    <col> 40.0 </col>
@@ -173,7 +173,7 @@ Schema :
 
  <editbox>
    <row> 1 </row><col> 1 </col>
-   <name> TalmageCalcitonin.CTBolusValue </name>
+   <name> Calcitonin.CTBolusValue </name>
    <label> CTBolusValue </label>
  </editbox>
  <infobutton>
@@ -184,7 +184,7 @@ Schema :
 
  <editbox>
    <row> 2.5 </row><col> 1 </col>
-   <name> TalmageCalcitonin.CTDripValue </name>
+   <name> Calcitonin.CTDripValue </name>
    <label> Calcitonin DripValue </label>
  </editbox>
  <infobutton>
@@ -194,7 +194,7 @@ Schema :
 
  <editbox>
    <row> 3.5 </row><col> 1 </col>
-   <name> TalmageCalcitonin.CTDripTime </name>
+   <name> Calcitonin.CTDripTime </name>
    <label> Calcitonin DripTime </label>
  </editbox>
  <infobutton>
@@ -204,7 +204,7 @@ Schema :
 
  <showvalue>
    <row> 5.0 </row><col> 1 </col>
-   <name> TalmageCalcitonin.CTDripStart </name>
+   <name> Calcitonin.CTDripStart </name>
    <format><decimal> 0 </decimal></format>
    <label> drip start </label>
  </showvalue>

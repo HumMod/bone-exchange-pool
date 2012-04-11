@@ -1,0 +1,34 @@
+Vit D Panel
+
+Created : 2-Nov-10
+Last Modified : 2-Nov-10
+Author : W Pruett
+Copyright : 2010
+By : University of Mississippi Medical Center
+Solver : Digital Human (V1.0)
+
+<panel><name> TalmageElectrolytesPanel </name>
+
+<structurename> Electrolytes </structurename>
+
+<showpanelname>
+  <row> 0.5 </row><col> 1.0 </col>
+</showpanelname>
+
+<showclock>
+   <row> 0.5 </row><col> 36 </col>
+   <name> System.X </name>
+   <ampm/>
+   <days/>
+</showclock>
+
+<?path Display\Physiology\Electrolytes\ ?>
+<?include Calcium.DES ?>
+<?include Phosphate.DES ?>
+
+
+</panel>
+End
+                                                                                                                                                                                                                       
+   
+                                                                            

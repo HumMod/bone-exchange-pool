@@ -26,7 +26,7 @@ Schema : DES V1.0
  <var><name> AverageCalc </name></var>
  <var><name> AverageBoneWater </name></var>
  <var><name> Apposition </name></var>
- <parm><name> AppRate </name><val> 0.4148 </val></parm> 0.4566, 0.114
+ <parm><name> AppRate </name><val> 0.00007 </val></parm> 0.4566, 0.114,.4148
  <var><name> OsteoidToPermanent </name></var>
  <var><name> CaToPermanent </name></var>
  <parm><name> m </name><val> 0.1 </val></parm> <!-- Calcification factor; normally mature bone is 25000mmol Ca, 2500 g ground substance  -->
@@ -36,6 +36,9 @@ Schema : DES V1.0
  <var><name> BoneWater1 </name></var>
  <var><name> CaTo10 </name></var>
   <var><name> DailyCaToPerm </name></var>
+  <var><name> DailyApposition </name></var>
+  <var><name> TotalOsteoid </name></var>
+  <var><name> ExchangeDensity </name></var>
 
 </variables>
 
@@ -202,6 +205,7 @@ Schema : DES V1.0
 
 <def><name> Flow </name><val> BoneExchange.CaExchange(mmol) </val></def>
 <def><name> Apposition </name><val> AppRate * BoneCellDynamics.OB </val></def>
+  <def><name> DailyApposition </name><val> Apposition * 1440 </val></def>
 
 <def><name> dOsteoid1 </name><val> Apposition - ( k * Osteoid1 ) MIN Osteoid1</val></def>
 <def><name> dOsteoid2 </name><val> k * ( Osteoid1 - Osteoid2 ) MIN Osteoid2 </val></def>
@@ -214,6 +218,7 @@ Schema : DES V1.0
 <def><name> dOsteoid9 </name><val> k * ( Osteoid8 - Osteoid9 ) MIN Osteoid9</val></def>
 <def><name> dOsteoid10 </name><val> k * ( Osteoid9 - Osteoid10 ) MIN Osteoid10</val></def>
 <def><name> OsteoidToPermanent </name><val> k * Osteoid10 MIN Osteoid1</val></def>
+<def><name> TotalOsteoid </name><val> Osteoid1 + Osteoid2 + Osteoid3 + Osteoid4 + Osteoid5 + Osteoid6 + Osteoid7 + Osteoid8 + Osteoid9 + Osteoid10 </val></def>
 
 <def><name> Calc1 </name><val> m * Ca1 / Osteoid1 </val></def>
 <def><name> Calc2 </name><val> m * Ca2 / Osteoid2 </val></def>
@@ -244,6 +249,7 @@ Schema : DES V1.0
 <def><name> CaTo10 </name><val> k * Ca9</val></def>
 <def><name> ExchangableCa </name><val> Ca1 + Ca2 + Ca3 + Ca4 + Ca5 + Ca6 + Ca7 + Ca8 + Ca9 + Ca10 </val></def>
 <def><name> NewBone </name><val> OsteoidToPermanent + (  ( 1.667 * CaToPermanent ) * 95  ) + ( CaToPermanent * 40 ) </val></def>
+<def><name> ExchangeDensity </name><val> Ca10 / Osteoid10 </val></def>
 
 <if><test> Ca1 LT 0 </test>
  <true><def><name> Ca1 </name><val> 0 </val></def></true></if>

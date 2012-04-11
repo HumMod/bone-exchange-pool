@@ -7,9 +7,9 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<panel><name> Bone Panel</name>
+<panel><name> BonePanel</name>
 
-<structurename> Bone Panel </structurename>
+<structurename> BonePanel </structurename>
 
 <showpanelname>
   <row> 0.5 </row><col> 1.0 </col>

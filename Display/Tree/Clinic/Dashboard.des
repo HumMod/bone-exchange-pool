@@ -13,13 +13,13 @@ By : University Of Mississippi Medical Center
 </branch>
 
 <leaf>
-  <name> Talmage calcium panel</name>
+  <name> TalmageCalciumPanel</name>
   <label> Calcium </label>
   <parent> Dashboard </parent>
 </leaf>
 
 <leaf>
-  <name> Talmage bolus</name>
+  <name> TalmageBolus</name>
   <label> Bolus </label>
   <parent> Dashboard </parent>
 </leaf>

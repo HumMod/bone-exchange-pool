@@ -35,13 +35,14 @@ Solver : Digital Human (V1.0)
      <label> b </label>
      <linecolor> BLUE </linecolor>
     </yvar>
-    <scale><min> 0</min><max> 1 </max></scale>
+    <scale><min> 0</min><max> 0.01 </max></scale>
 </yaxis>
 </showgraph>
 
 
+
 <showgraph>
-  <row> 11.0 </row><col> 1 </col>
+  <row> 10.0 </row><col> 1 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 12 </leftmargin>
   <xaxis>
@@ -50,19 +51,135 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
     <yvar>
-     <name> OBsig </name>
-     <label> OB sig </label>
+     <name> OB </name>
+     <label> OB </label>
      <linecolor> RED </linecolor>
     </yvar>
     <yvar>
-     <name> OCsig </name>
-     <label> OC sig </label>
+     <name> OC </name>
+     <label> OC</label>
      <linecolor> BLUE </linecolor>
     </yvar>
-    <scale><min> 0</min><max> 1 </max></scale>
+     <scale><min> 0</min><max> 0.01 </max></scale>
 </yaxis>
 </showgraph>
 
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 50.0 </col>
+   <high> 44.0 </high>
+   <wide> 45.0 </wide>
+   <title> Bone Dynamics</title>
+
+<showgraph>
+  <row> 1.0 </row><col> 1.0 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> Osteoid.Apposition </name>
+     <label> osteoid app </label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> NewBone.OsteoidResorption </name>
+     <label> Osteoid Resorption </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <yvar>
+     <name> Osteoid.OsteoidToPermanent </name>
+     <label> osteoid to perm </label>
+     <linecolor> GREEN </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> 0.001 </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 10.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> NewBone.DailyCaResorption  </name>
+     <label> Ca resorption</label>
+     <linecolor> RED </linecolor>
+    </yvar>
+    <yvar>
+     <name> Osteoid.DailyCaToPerm </name>
+     <label> BoneX2perm </label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+    <scale><min> 0</min><max> .01 </max></scale>
+</yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 20.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> NewBone.RelativeBoneDensity  </name>
+     <label> Ca/Ground ratio</label>
+     <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+     <name> Osteoid.ExchangeDensity  </name>
+     <label> Ca/Osteoid ratio</label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+     <scale><min> 8.3 </min><max> 8.4 </max></scale>
+</yaxis>
+</showgraph>
+
+</groupbox>
+
+<groupbox>
+   <row> 2.0 </row>
+   <col> 100.0 </col>
+   <high> 14.0 </high>
+   <wide> 45.0 </wide>
+   <title> Bone Parameters </title>
+
+<showvalue>
+   <row> 1.0 </row><col> 1 </col>
+   <name> NewBone.DailyOstRes</name>
+   <format><decimal> 3 </decimal></format>
+   <label> daily ost resorption </label>
+</showvalue>
+<showvalue>
+   <row> 2 </row><col> 1 </col>
+   <name> Osteoid.DailyApposition</name>
+   <format><decimal> 3 </decimal></format>
+   <label> daily ost apposition </label>
+</showvalue>
+<showvalue>
+   <row> 3 </row><col> 1 </col>
+   <name> PTH </name>
+   <format><decimal> 3 </decimal></format>
+   <label> PTH [nMol] </label>
+</showvalue>
+<showvalue>
+   <row> 4 </row><col> 1 </col>
+   <name> Osteoid.TotalOsteoid </name>
+   <format><decimal> 3 </decimal></format>
+   <label> total Ost </label>
+</showvalue>
 <!--
 <showvalue>
    <row> 33 </row><col> 1 </col>
@@ -113,60 +230,6 @@ Solver : Digital Human (V1.0)
    <label> bone osteoid </label>
 </showvalue>
 
-<showvalue>
-   <row> 40 </row><col> 1 </col>
-   <name> PTH </name>
-   <format><decimal> 3 </decimal></format>
-   <label> pth </label>
-</showvalue>
 -->
-
-<showgraph>
-  <row> 22.0 </row><col> 1 </col>
-  <high> 9 </high><wide> 42 </wide>
-  <leftmargin> 12 </leftmargin>
-  <xaxis>
-     <name> System.X </name>
-     <label> Time </label>
-  </xaxis>
-  <yaxis>
-    <yvar>
-     <name> OB </name>
-     <label> OB </label>
-     <linecolor> RED </linecolor>
-    </yvar>
-    <yvar>
-     <name> OC </name>
-     <label> OC</label>
-     <linecolor> BLUE </linecolor>
-    </yvar>
-     <scale><min> 0</min><max> 0.01 </max></scale>
-</yaxis>
-</showgraph>
-
-<showgraph>
-  <row> 33.0 </row><col> 1 </col>
-  <high> 9 </high><wide> 42 </wide>
-  <leftmargin> 12 </leftmargin>
-  <xaxis>
-     <name> System.X </name>
-     <label> Time </label>
-  </xaxis>
-  <yaxis>
-    <yvar>
-     <name> NewBone.CaResorption  </name>
-     <label> Ca resorption</label>
-     <linecolor> RED </linecolor>
-    </yvar>
-    <yvar>
-     <name> Osteoid.CaToPermanent </name>
-     <label> BoneX2perm </label>
-     <linecolor> BLUE </linecolor>
-    </yvar>
-    <scale><min> 0</min><max> .01 </max></scale>
-</yaxis>
-</showgraph>
-
-
 </groupbox>
 

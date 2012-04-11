@@ -48,7 +48,7 @@ Schema : DES V1.0
 <definitions>
  <block>
   <name>Dervs</name>
-  <def><name> PTH </name><val> TalmagePTHormone.[PTHwt] </val></def>
+  <def><name> PTH </name><val> PTH_pool.[PTHwt] </val></def>
 
   <def><name> g21 </name><val> ( ( ( 0.01333 * PTH - 0.81 ) MIN 0.5 ) MAX -0.5 ) </val></def>
   <def><name> dClasts </name><val> ( ClastActivation * ( Clasts ^ g11 ) * ( Blasts ^ g21 ) ) - ( ClastDeactivation  * Clasts ) </val></def>

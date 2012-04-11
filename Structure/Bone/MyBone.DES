@@ -12,19 +12,19 @@ Schema : DES V1.0
 
 <variables>
 
-<parm><name> OB0 </name><val> 0.00625 </val></parm>
-<parm><name> OC0 </name><val> 0.001154  </val></parm>
+<parm><name> OB0 </name><val> 10 </val></parm>0.00625
+<parm><name> OC0 </name><val> 1  </val></parm>0.001154
 <var><name> OBsig </name></var>
 
 <parm><name> PTH </name><val> 10 </val></parm>
-<parm><name> k1 </name><val> 0.1 </val></parm>
-<parm><name> k2 </name><val> 0.001</val></parm>
-<parm><name> k3 </name><val> 0.1 </val></parm>
-<parm><name> k4 </name><val> 0.01 </val></parm>
+<parm><name> k1 </name><val> 0.0221 </val></parm>
+<parm><name> k2 </name><val> 0.0125 </val></parm>
+<parm><name> k3 </name><val> 0.00001 </val></parm>
+<parm><name> k4 </name><val> 0.000033 </val></parm>
 
-<parm><name> delay </name><val> 0.006 </val></parm>
-<parm><name> m </name><val> 1 </val></parm>
-<parm><name> kOB </name><val> 0.03 </val></parm>
+<parm><name> d1 </name><val> 0.1 </val></parm>
+<parm><name> d2 </name><val> 1.0 </val></parm>
+<parm><name> S </name><val> 6  </val></parm>
 
 </variables>
 
@@ -33,50 +33,33 @@ Schema : DES V1.0
  <diffeq>
   <name> a </name>
      <integralname> a </integralname>
-     <initialval> 10.68 </initialval>
+     <initialval> 0 </initialval>
      <dervname> da </dervname>
-     <errorlim> 0.1 </errorlim>
+     <errorlim> 0.0001 </errorlim>
  </diffeq>
 
  <diffeq>
   <name> b </name>
      <integralname> b </integralname>
-     <initialval> 25.66 </initialval>
+     <initialval> 0.0016 </initialval>
      <dervname> db </dervname>
-     <errorlim> 0.1 </errorlim>
+     <errorlim> 0.00001 </errorlim>
  </diffeq>
 
- <diffeq>
-  <name> OCsig </name>
-     <integralname> OCsig </integralname>
-     <initialval> 1 </initialval>
-     <dervname> dOCsig </dervname>
-     <errorlim> 0.01 </errorlim>
- </diffeq>
-
-<!--
- <diffeq>
-  <name> OBsig </name>
-     <integralname> OBsig </integralname>
-     <initialval> 10.2 </initialval>
-     <dervname> dOBsig </dervname>
-     <errorlim> 0.01 </errorlim>
- </diffeq>
--->
  <diffeq>
   <name> OC </name>
      <integralname> OC </integralname>
-     <initialval> 0.001154   </initialval>
+     <initialval> 1 </initialval>
      <dervname> dOC </dervname>
-     <errorlim> 0.00001 </errorlim>
+     <errorlim> 0.01 </errorlim>
  </diffeq>
 
  <diffeq>
   <name> OB </name>
      <integralname> OB </integralname>
-     <initialval> 0.00625  </initialval>
+     <initialval> 10.0  </initialval>
      <dervname> dOB </dervname>
-     <errorlim> 0.0005 </errorlim>
+     <errorlim> 0.1 </errorlim>
  </diffeq>
 
 </equations>
@@ -85,13 +68,11 @@ Schema : DES V1.0
 <block><name> Dervs </name>
 
 <def><name> PTH </name><val> PTH_pool.[PTHwt] / 9.4 </val></def>
-  <def><name> da </name><val> ( k1 * PTH ) - ( k2 * a * b ) </val></def>
-  <def><name> db </name><val> ( k3 * PTH ) - ( k4 * b ) </val></def>
-  <def><name> dOCsig </name><val> delay * ( ( .125 * PTH  ) - ( .5 * OCsig ) ) </val></def>
-  <def><name> OBsig </name><val>  ( m * ( a + b ) )</val></def>
+  <def><name> da </name><val> ( b * PTH / 60 ) - ( k2 * a ) </val></def>
+  <def><name> db </name><val> d1 * ( ( k4 * S / ( PTH + S ) ) - ( b / 60 ) ) </val></def>
 
-  <def><name> dOB </name><val> 0.0002 * ( ( kOB * OBsig * OB0 ) - OB ) </val></def>
-  <def><name> dOC </name><val> 0.005 * ( ( OCsig * OC0 ) - OC ) </val></def>
+  <def><name> dOB </name><val> d2 * ( ( k1 * a ) - ( k3 * OB ) ) </val></def>
+  <def><name> dOC </name><val> 0.0025 * ( ( OB / OB0 ) * ( OC0 * PTH / ( PTH + 2.5 ) ) - ( 0.5 * OC ) ) </val></def>
 
 </block>
 </definitions>

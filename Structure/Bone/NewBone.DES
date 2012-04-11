@@ -12,7 +12,7 @@ Schema : DES V1.0
 
 <variables>
   <var><name> OsteoidResorption </name></var>
-  <parm><name> ResorptionRate </name><val> 0.7276 </val></parm>0.49475,.5416
+  <parm><name> ResorptionRate </name><val> 0.0007 </val></parm>0.49475,.5416
   <var><name> CaResorption </name><val> 0 </val></var>
   <var><name> CaFromBone </name><val> 0 </val></var>
   <var><name> DailyCaResorption </name></var>
@@ -22,6 +22,7 @@ Schema : DES V1.0
   <var><name> RelativeBoneDensity </name><val> 0.2 </val></var>
  <var><name> BoneMass </name></var>
   <var><name> Resorbed </name></var>
+  <var><name> DailyOstRes </name></var>
 </variables>
 
 <equations>
@@ -60,6 +61,7 @@ Schema : DES V1.0
   <def><name> Resorbed </name><val> OsteoidResorption + ( 40 * CaResorption ) + ( 95 * 1.6667 * CaResorption ) </val></def>
   <def><name> DailyCaResorption </name><val> CaResorption * 1440 </val></def>
   <def><name> DailyPO4Resorption </name><val> PO4Resorption * 1440 </val></def>
+  <def><name> DailyOstRes </name><val> OsteoidResorption * 1440 </val></def>
 
  </block>
 </definitions>

@@ -15,7 +15,7 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 1.0 </row><col> 1 </col>
-   <name> TalmageCalcitonin.[CTNwt]</name>
+   <name> Calcitonin.[CTNwt]</name>
    <format><decimal> 3 </decimal></format>
    <label> CTN wt </label>
  </showvalue>
@@ -26,14 +26,14 @@ Solver : Digital Human (V1.0)
 
  <showvalue>
    <row> 2.0 </row><col> 1 </col>
-   <name> TalmageCalcitonin.Gain</name>
+   <name> Calcitonin.Gain</name>
    <format><decimal> 3 </decimal></format>
    <label> CTN secretion </label>
  </showvalue>
 
  <showvalue>
    <row> 3.0 </row><col> 1 </col>
-   <name> TalmageCalcitonin.Loss</name>
+   <name> Calcitonin.Loss</name>
    <format><decimal> 3 </decimal></format>
    <label> CTN degredation </label>
  </showvalue>
@@ -49,7 +49,7 @@ Solver : Digital Human (V1.0)
   </xaxis>
   <yaxis>
    <yvar>
-     <name> TalmageCalcitonin.[CTNwt]</name>
+     <name> Calcitonin.[CTNwt]</name>
      <label> serum [CTwt] </label>
      <linecolor> BLUE </linecolor>
     </yvar>

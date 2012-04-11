@@ -80,7 +80,7 @@ Schema : DES V1.0
     <case>
     <test> TherapyType EQ 2 </test>
      <andif>
-       <test> ( ( 360 LT ( System.X REM 1440 ) ) AND ( ( System.X REM 1440 ) LE 375 ) ) OR ( ( 1080 LT ( System.X REM 1440 ) ) AND ( ( System.X REM 1440 ) LE 1095 ) ) </test>
+       <test> ( ( 360 LT ( System.X REM 1440 ) ) AND ( ( System.X REM 1440 ) LE 390 ) ) OR ( ( 1080 LT ( System.X REM 1440 ) ) AND ( ( System.X REM 1440 ) LE 1110 ) ) </test>
        <true> 
          <def><name> PTHpumpRate </name><val> PTHDripValue  </val></def>
           <def><name> testval </name><val> 1 </val></def>
