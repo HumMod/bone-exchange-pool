@@ -147,6 +147,30 @@ Solver : Digital Human (V1.0)
 </yaxis>
 </showgraph>
 
+
+<showgraph>
+  <row> 30.0 </row><col> 1 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 12 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+  </xaxis>
+  <yaxis>
+    <yvar>
+     <name> NewBone.BoneOsteoid  </name>
+     <label> osteoid </label>
+     <linecolor> BLACK </linecolor>
+    </yvar>
+    <yvar>
+     <name> NewBone.BoneCa  </name>
+     <label> ca</label>
+     <linecolor> BLUE </linecolor>
+    </yvar>
+</yaxis>
+</showgraph>
+
+
 </groupbox>
 
 <groupbox>
