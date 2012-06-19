@@ -9,9 +9,9 @@ Solver : DES 2005
 Schema : 
 
 <groupbox>
-   <row> 32.0 </row>
+   <row> 30.75 </row>
    <col> 92.0 </col>
-   <high> 9.5 </high>
+   <high> 12.75 </high>
    <wide> 45.0 </wide>
    <title> Bolus </title>
 
@@ -74,5 +74,42 @@ Schema :
    <format><decimal> 0 </decimal></format>
    <label> Start </label>
  </showvalue>
+
+
+<repeatlist>
+  <name> TimesDay </name>
+  <repeat>
+    <reps> 15 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
+
+<repeatlist>
+  <name> Dose </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 250 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 9.5 </row><col> 1 </col>
+  <name> VitaminD.DDose </name>
+  <listname> Dose </listname>
+  <label> Calcitriol Dose </label>
+</slidebar>
+
+ <infobutton>
+  <row> 9.5 </row><col> 30 </col>
+  <line>  </line>
+  <line>  ng </line>
+ </infobutton>
+
+<slidebar>
+  <row> 11.0 </row><col> 1 </col>
+  <name> VitaminD.TimesDay </name>
+  <listname> TimesDay </listname>
+  <label> Times / Day </label>
+</slidebar>
 
 </groupbox>
