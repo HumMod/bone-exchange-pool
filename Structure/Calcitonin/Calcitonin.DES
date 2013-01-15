@@ -30,7 +30,6 @@ This is evidently a simple structure; we are not keeping track of pool size, onl
   <var><name> Gain </name></var>
   <var><name> Loss </name></var>
 
-<!-- concentration parms -->
   <var><name>[CTNwt]</name><val>15</val></var>
   <var><name>[CTN]</name><val>5</val></var>
   <var><name> Vol </name><val>3</val></var><!-- plasma volume-->
