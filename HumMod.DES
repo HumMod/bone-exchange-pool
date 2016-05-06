@@ -19,7 +19,7 @@ Schema : DES V1.0
 <?include Structure\Structure.DES ?>
 
 <math>
-
+  <context> Structure.Context </context>
   <parms> Structure.Parms </parms>
   <dervs> Structure.Dervs </dervs>
   <wrapup> Structure.Wrapup </wrapup>

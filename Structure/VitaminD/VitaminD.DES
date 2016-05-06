@@ -139,6 +139,12 @@ Schema : DES V1.0
 <block><name>Dervs</name>===================================
 
 <def>
+  <name> Ovaries-Estradiol </name>
+  <val> Estradiol.[Conc(pg/mL)] </val> 
+</def>
+
+
+<def>
   <name> [Calcifediol->ug/L] </name>
   <val> Calcifediol / 3  </val> 
 </def>
@@ -306,3 +312,5 @@ Schema : DES V1.0
  </definitions>
 
 </structure>
+
+

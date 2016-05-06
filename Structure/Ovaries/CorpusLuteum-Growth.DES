@@ -1,0 +1,62 @@
+HumMod / CorpusLuteum-Growth
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<structure><name> CorpusLuteum-Growth </name>
+
+<variables>
+
+<var><name> Growth </name></var>
+<parm><name> K </name><val> 9.5 </val></parm>
+<parm><name> h </name><val> 0.000003 </val></parm>
+
+</variables>
+
+
+<equations>
+
+<diffeq>
+  <name> Signal(hCG) </name>
+  <integralname> Signal(hCG) </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change(hCG) </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Signal(LH) </name>
+  <integralname> Signal(LH) </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change(LH) </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def><name> Change(hCG) </name><val> ( hCG.[Conc(IU/L)] - ( K * Signal(hCG) ) ) * h </val></def>
+<def><name> Change(LH) </name><val> ( ( 10 * LH-Circulating.[Conc(IU/L)] ) - ( K * Signal(LH) ) ) * h </val></def>
+
+<if><test> Gender.IsFemale </test>
+  <true>
+    <def><name> Growth </name><val> Ovaries-Follicle.Atresia + Change(hCG) + Change(LH) </val></def>
+  </true>
+  <false>
+    <def><name> Growth </name><val> 0.0 </val></def>
+  </false>
+</if>
+
+</block>
+
+</definitions>
+</structure>
+
+End

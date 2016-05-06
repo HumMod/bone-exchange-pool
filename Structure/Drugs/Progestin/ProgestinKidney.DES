@@ -1,0 +1,28 @@
+<structure><name> ProgestinKidney </name>
+
+<variables>
+
+<var><name> OralUrineLoss </name></var>
+<var><name> DepotUrineLoss </name></var>
+<var><name> UrineLoss </name></var>
+
+<constant><name> K(depot) </name><val> 0.5 </val></constant>
+<constant><name> K(oral) </name><val> 0.008 </val></constant>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<def><name> OralUrineLoss </name><val> K(oral) * ProgestinPool.Mass(oral) </val></def>
+<def><name> DepotUrineLoss </name><val> K(depot) * ProgestinPool.[Progestin(depot)] </val></def>
+
+<def><name> UrineLoss </name><val> OralUrineLoss + DepotUrineLoss </val></def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

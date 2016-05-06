@@ -1,0 +1,48 @@
+<structure><name> ProgestinGILumen </name>
+
+<variables>
+
+<constant><name> GutDegrade </name><val> 0.004 </val></constant>
+<constant><name> PERM </name><val> 0.0085 </val></constant>
+
+<var><name> [Progestin] </name></var>
+<var><name> Loss </name></var>
+<var><name> Absorption </name></var>
+
+<parm><name> GILumenH2OMass(L) </name><val> 0.988 </val></parm>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def><name> [Progestin] </name><val> Mass / GILumenH2OMass(L) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Absorption </name><val> PERM * Mass </val></def>
+<def><name> Loss </name><val> GutDegrade * Mass </val></def>
+
+<def><name> Change </name><val> - Absorption - Loss </val></def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

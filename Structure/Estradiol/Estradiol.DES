@@ -1,0 +1,138 @@
+<structure><name> Estradiol </name>
+
+<variables>
+
+<var><name> Gain </name></var>
+<var><name> Loss </name></var>
+
+<parm><name> Clamp </name><val> 0 </val></parm>
+<parm><name> Level </name><val> 0 </val></parm>
+
+
+<var><name> AndGain </name></var>
+<var><name> AndLoss </name></var>
+
+<parm><name> ExogenousAndrogen </name><val> 0 </val></parm>
+<var><name> Secretion </name></var>
+<var><name> Conversion </name></var>
+<var><name> Degradation </name></var>
+
+<var><name> AndrogenSecretion </name></var>
+<var><name> AndrogenDegradation </name></var>
+
+<parm><name> TargetConcFemale </name><val> 30.94 </val></parm>
+<parm><name> TargetConcMale </name><val> 0.01 </val></parm>
+<parm><name> AndrogenTargetConcFemale </name><val> 0.5 </val></parm>
+<parm><name> AndrogenTargetConcMale </name><val> 20.5 </val></parm>
+
+<var><name> TargetConc </name></var>
+<var><name> AndrogenTargetConc </name></var>
+<var><name> InitialMass </name></var>
+<var><name> AndrogenInitialMass </name></var>
+
+<var><name> [Conc(nMol/L)] </name></var>
+<var><name> [Conc(nMol/L)-Initial] </name></var>
+<var><name> [Conc(nG/mL)] </name></var>
+<var><name> [Conc(pg/mL)] </name><val> 30.94 </val></var>
+
+<var><name> [And(nMol/L)] </name></var>
+<var><name> [And(nMol/L)-Initial] </name></var>
+<var><name> [And(nG/mL)] </name></var>
+<var><name> [And(pg/mL)] </name><val> 0.5 </val></var>
+
+<constant><name> NMOL/L_TO_NG/ML </name><val> 0.2724 </val></constant>
+<constant><name> NMOL/L_TO_PG/ML </name><val> 272.4 </val></constant>
+
+<parm><name> PumpSwitch </name><val> FALSE </val></parm>
+<parm><name> PumpSetting </name><val> 0.0 </val></parm>
+
+<parm><name> K </name><val> 0.00364 </val></parm>
+<parm><name> kf </name><val> 0.05 </val></parm>
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+
+<diffeq>
+  <name> AndrogenMass </name>
+  <integralname> AndrogenMass </integralname>
+  <dervname> AndrogenChange </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Init </name>
+
+<if>
+  <test> Gender.IsFemale </test>
+  <true> 
+    <def><name> TargetConc </name><val>TargetConcFemale </val></def>
+    <def><name> AndrogenTargetConc </name><val>AndrogenTargetConcFemale </val></def>
+   </true>
+   <false>
+     <def><name> TargetConc </name><val>TargetConcMale </val></def>
+     <def><name> AndrogenTargetConc </name><val>AndrogenTargetConcMale </val></def>
+   </false>
+</if>
+
+<def><name> AndrogenInitialMass </name><val> AndrogenTargetConc * BloodVol.Vol(L) </val></def>
+<def><name> InitialMass </name><val> TargetConc * BloodVol.Vol(L) </val></def>
+<def><name> Mass </name><val> InitialMass </val></def>
+<def><name> AndrogenMass </name><val> AndrogenInitialMass </val></def>
+
+<def><name> [And(nMol/L)-Initial] </name><val> AndrogenTargetConc </val></def>
+<def><name> [Conc(nMol/L)-Initial] </name><val> TargetConc </val></def>
+
+</block>
+
+<block><name> Conc </name>
+  <def><name> [Conc(nG/mL)] </name><val> Mass / BloodVol.Vol(mL)  </val></def>
+  <def><name> [Conc(nMol/L)] </name><val> [Conc(nG/mL)] / NMOL/L_TO_NG/ML </val></def>
+  <def><name> [Conc(pg/mL)] </name><val> [Conc(nMol/L)] * NMOL/L_TO_PG/ML </val></def>
+
+  <def><name> [And(nG/mL)] </name><val> AndrogenMass / BloodVol.Vol(mL)  </val></def>
+  <def><name> [And(nMol/L)] </name><val> [And(nG/mL)] / NMOL/L_TO_NG/ML </val></def>
+  <def><name> [And(pg/mL)] </name><val> [And(nMol/L)] * NMOL/L_TO_PG/ML </val></def>
+</block>
+
+<block><name> Dervs </name>
+
+  <conditional><name> Secretion </name>
+  <test> Gender.IsFemale </test>
+  <true> Ovaries-Estradiol.Secretion </true>
+  </conditional>
+
+  <def><name> AndGain </name><val> Follicle-Estradiol.AndrogenSecretion +  CorpusLuteum-Estradiol.AndrogenSecretion + ExogenousAndrogen</val></def>
+  <def><name> Conversion </name><val> kf * [And(nG/mL)] </val></def>
+  <def><name> AndLoss </name><val> K * AndrogenMass + Conversion </val></def>
+  <def><name> AndrogenChange </name><val> AndGain - AndLoss </val></def>
+
+
+  <def><name> Gain </name><val> Secretion + Conversion + ( PumpSetting * PumpSwitch ) </val></def>
+  <def><name> Loss </name><val> K * Mass </val></def>
+
+<if><test> Clamp </test>
+<true>
+  <def><name> Change </name><val>0</val></def>
+  <def><name> Mass </name><val> Level * BloodVol.Vol(mL) / NMOL/L_TO_PG/ML  </val></def>
+</true>
+<false>
+  <def><name> Change </name><val> Gain - Loss </val></def>
+</false>
+</if>
+</block>
+
+</definitions>
+</structure>
+
+End

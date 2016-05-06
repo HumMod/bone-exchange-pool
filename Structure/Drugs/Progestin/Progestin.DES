@@ -1,0 +1,36 @@
+<?path Structure\Drugs\Progestin\ ?>
+
+<?include ProgestinPool.DES ?>
+<?include ProgestinKidney.DES ?>
+<?include ProgestinSingleDose.DES ?>
+<?include ProgestinDailyDose.DES ?>
+<?include ProgestinGILumen.DES ?>
+
+<structure><name> Progestin </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> ProgestinDailyDose.Parms</call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> ProgestinPool.CalcConc </call>
+  <call> ProgestinGILumen.CalcConc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> ProgestinSingleDose.Dervs </call>
+  <call> ProgestinGILumen.Dervs </call>
+  <call> ProgestinKidney.Dervs </call>
+  <call> ProgestinPool.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+  <call> ProgestinDailyDose.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+
+End

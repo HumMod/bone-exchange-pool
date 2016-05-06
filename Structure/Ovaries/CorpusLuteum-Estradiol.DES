@@ -1,0 +1,48 @@
+<structure><name> CorpusLuteum-Estradiol </name>
+
+<variables>
+
+<var><name> Secretion </name></var>
+<var><name> AndrogenSecretion </name></var>
+
+<parm><name> k_Lut1(E2) </name><val> 0.714 </val></parm>
+<parm><name> k_Lut4(E2) </name><val> 6.0244 </val></parm>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<if><test> Gender.IsFemale </test>
+
+<true>
+<def>
+  <name> Secretion </name>
+  <val> ( (  k_Lut1(E2) * Ovaries-New.[Lut1] )
+           + (  k_Lut4(E2) * Ovaries-New.[Lut4] ) ) * BloodVol.Vol(L) * Follicle-Estradiol.Aromatase </val>
+</def>
+
+<def>
+  <name> AndrogenSecretion </name>
+  <val> ( (  k_Lut1(E2) * Ovaries-New.[Lut1] )
+           + (  k_Lut4(E2) * Ovaries-New.[Lut4] ) ) * BloodVol.Vol(L) * ( 1 - Follicle-Estradiol.Aromatase )</val>
+</def>
+
+</true>
+
+<false>
+<def>
+  <name> Secretion </name>
+  <val> 0.0 </val>
+</def>
+</false>
+
+</if>
+
+</block>
+
+</definitions>
+</structure>
+
+End

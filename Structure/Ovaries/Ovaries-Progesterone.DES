@@ -1,0 +1,40 @@
+<structure><name> Ovaries-Progesterone </name>
+
+<variables>
+
+<parm><name> b_P4 </name><val> 0.0006549 </val></parm>
+<parm><name> k_Lut4(P4) </name><val> 0.5289 </val></parm>
+
+<var><name> Secretion </name></var>
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<if><test> Gender.IsFemale </test>
+
+<true>
+<def>
+  <name> Secretion </name>
+  <val> ( b_P4
+           + ( k_Lut4(P4) * Ovaries-New.[Lut4] ) ) * BloodVol.Vol(mL) </val>
+</def>
+</true>
+
+<false>
+<def>
+  <name> Secretion </name>
+  <val> 0.0 </val>
+</def>
+</false>
+
+</if>
+
+</block>
+
+</definitions>
+</structure>
+
+End

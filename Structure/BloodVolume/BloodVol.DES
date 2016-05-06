@@ -1,0 +1,23 @@
+<structure><name> BloodVol </name>
+
+<variables>
+
+<var><name> Vol(L) </name><val> 5.504 </val></var>
+<var><name> Vol(mL) </name><val> 5504 </val></var>
+
+<parm><name> Mult </name><val> 1 </val></parm>
+
+</variables>
+
+<definitions>
+
+<block><name> CalcVol </name>
+
+<def><name> Vol(mL) </name><val> Mult * Vol(mL) </val></def>
+<def><name> Vol(L) </name><val> Vol(mL) / 1000 </val></def>
+
+</block>
+
+</definitions>
+
+</structure>

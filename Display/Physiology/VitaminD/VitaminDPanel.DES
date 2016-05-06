@@ -120,7 +120,7 @@ Solver : Digital Human (V1.0)
  </yaxis>
 </showgraph>
 
-<showgraph>
+<!-- <showgraph>
   <row> 25 </row><col> 45 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 10 </leftmargin>
@@ -137,7 +137,7 @@ Solver : Digital Human (V1.0)
   </yvar>
   <scale><min> 0 </min><max> 1.0 </max></scale>
  </yaxis>
-</showgraph>
+</showgraph> -->
 
 <showvalue>
    <row> 24.0 </row><col> 1.0 </col>
@@ -284,15 +284,21 @@ Solver : Digital Human (V1.0)
 <repeatlist>
   <name> Ovaries-Estradiol  </name>
   <repeat>
-    <reps> 20 </reps>
+    <reps> 30 </reps>
     <stepsize> 5 </stepsize>
   </repeat>
 </repeatlist>
 
+<radiobuttons>
+ <row> 2.0 </row><col> 1 </col>
+ <name> Estradiol.Clamp </name>
+  <listname> Common.Switch </listname>
+  <label> Clamp E2? </label>
+</radiobuttons>
 
 <slidebar>
   <row> 3.0 </row><col> 1 </col>
-  <name> Ovaries-Estradiol  </name>
+  <name> Estradiol.Level </name>
   <listname> Ovaries-Estradiol  </listname>
   <label> Estrogen </label>
 </slidebar>
@@ -303,6 +309,7 @@ Solver : Digital Human (V1.0)
   <line>  </line>
   <line>  ng </line>
  </infobutton>
+
 <!--
 <repeatlist>
   <name> TimesDay </name>
@@ -322,12 +329,12 @@ Solver : Digital Human (V1.0)
 
 -->
 
-
 </groupbox>
 
-
-
-
 </panel>
+
+
+
+
 
 End

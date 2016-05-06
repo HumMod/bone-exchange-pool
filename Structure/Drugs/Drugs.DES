@@ -1,0 +1,28 @@
+<?path Structure\Drugs\ ?>
+
+<?include Progestin\Progestin.DES ?>
+
+<structure><name> Drugs </name>
+
+<definitions>
+
+<block><name> Parms </name>
+  <call> Progestin.Parms </call>
+</block>
+
+<block><name> CalcConc </name>
+  <call> Progestin.CalcConc </call>
+</block>
+
+<block><name> Dervs </name>
+  <call> Progestin.Dervs </call>
+</block>
+
+<block><name> Wrapup </name>
+  <call> Progestin.Wrapup </call>
+</block>
+
+</definitions>
+</structure>
+
+End

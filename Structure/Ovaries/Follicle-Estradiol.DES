@@ -1,0 +1,70 @@
+<structure><name> Follicle-Estradiol </name>
+
+<variables>
+
+<parm><name> b_E2 </name><val> 0.0358 </val></parm>
+<parm><name> k_AF2(E2) </name><val> 0.00218 </val></parm>
+<parm><name> k_AF3(E2) </name><val> 0.0967 </val></parm>
+<parm><name> k_AF4(E2) </name><val> 12.084 </val></parm>
+<parm><name> k_PrF(E2) </name><val> 0.000945 </val></parm>
+
+<var><name> AF2Source </name></var>
+<var><name> AF3Source </name></var>
+<var><name> AF4Source </name></var>
+<var><name> PrFSource </name></var>
+
+<var><name> Secretion </name></var>
+<var><name> AndrogenSecretion </name></var>
+
+<parm><name> Aromatase </name><val> 0.95 </val></parm>
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<if><test> Gender.IsFemale </test>
+
+<true>
+<def><name> AF2Source </name><val> ( 0.5 * k_AF2(E2) * Ovaries-New.[AF2] )   </val></def>
+<def><name> AF3Source </name><val> ( 15 * k_AF3(E2) * LH-Circulating.[LH_R] * Ovaries-New.[AF3] )</val></def>
+<def><name> AF4Source </name><val> ( k_AF4(E2) * Ovaries-New.[AF4] )</val></def>
+<def><name> PrFSource </name><val> ( 0.1 * k_PrF(E2) * LH-Circulating.[LH_R]  * Ovaries-New.[PrF] ) </val></def>
+
+<def>
+  <name> AndrogenSecretion </name>
+  <val>  k_AF2(E2) * Ovaries-New.[AF2]
+            + ( ( 1 - Aromatase ) * 
+           ( ( k_AF3(E2) * LH-Circulating.[LH_R] * Ovaries-New.[AF3] )
+           + ( k_AF4(E2) * Ovaries-New.[AF4] )
+           + ( k_PrF(E2) * LH-Circulating.[LH_R]  * Ovaries-New.[PrF] ) ) ) * BloodVol.Vol(L) 
+  </val>
+</def>
+
+<def>
+  <name> Secretion </name>
+  <val> ( b_E2 
+           + ( Aromatase *
+            ( ( k_AF3(E2) * LH-Circulating.[LH_R] * Ovaries-New.[AF3] )
+           + ( k_AF4(E2) * Ovaries-New.[AF4] )
+           + ( k_PrF(E2) * LH-Circulating.[LH_R]  * Ovaries-New.[PrF] ) ) ) ) * BloodVol.Vol(L) 
+  </val>
+</def>
+
+</true>
+
+<false>
+<def>
+  <name> Secretion </name>
+  <val> 0.0 </val>
+</def>
+</false>
+
+</if>
+
+</block>
+
+</definitions>
+</structure>
+
+End

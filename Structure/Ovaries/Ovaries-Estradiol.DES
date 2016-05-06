@@ -1,0 +1,34 @@
+<?path Structure\Ovaries\ ?>
+
+<?include Follicle-Estradiol.DES ?>
+<?include CorpusLuteum-Estradiol.DES ?>
+
+<structure><name> Ovaries-Estradiol </name>
+
+<variables>
+
+<var><name> Secretion </name></var>
+<parm><name> excess </name><val> 0 </val></parm>
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<call> Follicle-Estradiol.Dervs </call>
+<call> CorpusLuteum-Estradiol.Dervs </call>
+
+<def>
+  <name> Secretion </name>
+  <val>
+      Follicle-Estradiol.Secretion
+    + CorpusLuteum-Estradiol.Secretion + excess
+  </val>
+</def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

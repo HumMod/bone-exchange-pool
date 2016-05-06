@@ -1,0 +1,91 @@
+<structure><name> LH-Circulating </name>
+
+<variables>
+
+<parm><name> k_on </name><val> 0.001488 </val></parm>
+<parm><name> k_cl </name><val> 0.05198 </val></parm>
+<parm><name> k_recy </name><val> 0.04788 </val></parm>
+<parm><name> k_des </name><val> 0.1273 </val></parm>
+
+<var><name> [Conc(IU/L)] </name><val> 3.487 </val></var>
+<var><name> [R] </name><val> 8.157 </val></var>
+<var><name> [LH_R] </name><val> 0.332 </val></var>
+<var><name> [R_des] </name><val> 0.882 </val></var>
+
+<var><name> flag </name><val> 1 </val> </var>
+<var><name> Period </name><val> 0 </val></var>
+<var><name> LastTime </name><val> 0 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> LH_blood </name>
+  <integralname> LH_blood </integralname>
+  <initialval> 20.922 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.6 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> R </name>
+  <integralname> R </integralname>
+  <initialval> 48.942 </initialval>
+  <dervname> dRdt </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> LH_R </name>
+  <integralname> LH_R </integralname>
+  <initialval> 1.992 </initialval>
+  <dervname> dLH_Rdt </dervname>
+  <errorlim> 0.05 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> R_des </name>
+  <integralname> R_des </integralname>
+  <initialval> 5.292 </initialval>
+  <dervname> dR_desdt </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Conc </name>
+
+<def><name> [Conc(IU/L)] </name><val> LH_blood / BloodVol.Vol(L) </val></def>
+<def><name> [R] </name><val> R / BloodVol.Vol(L) </val></def>
+<def><name> [LH_R] </name><val> LH_R / BloodVol.Vol(L) </val></def>
+<def><name> [R_des] </name><val> R_des / BloodVol.Vol(L) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> [Conc(IU/L)] </name><val> LH_blood / BloodVol.Vol(L) </val></def>
+
+<def><name> dRdt </name><val> ( ( k_recy * [R_des] ) - ( k_on * [Conc(IU/L)] * [R]   )  ) * BloodVol.Vol(L) </val></def>
+
+<def><name> dLH_Rdt </name><val> ( ( k_on * [Conc(IU/L)] * [R]  ) - ( k_des * [LH_R] ) ) * BloodVol.Vol(L)</val></def>
+
+<!--<def><name> dR_desdt </name><val> ( ( k_des * [LH_R] ) - ( k_recy * [R_des] ) + ( Ovaries-New.Change / 375 ) ) * BloodVol.Vol(L) </val></def>-->
+
+<def><name> dR_desdt </name><val> ( ( k_des * [LH_R] ) - ( k_recy * [R_des] ) ) * BloodVol.Vol(L) </val></def>
+
+<def><name> Change </name><val> LH-AnteriorPituitary.Release - ( ( ( k_on * R + k_cl ) * LH_blood ) ) </val></def>
+
+</block>
+
+<block><name> Wrapup </name>
+
+
+</block>
+</definitions>
+</structure>
+
+End

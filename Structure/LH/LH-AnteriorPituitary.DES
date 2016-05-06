@@ -1,0 +1,62 @@
+<structure><name> LH-AnteriorPituitary </name>
+
+<variables>
+
+<var><name> Synthesis </name></var>
+<var><name> Release </name></var>
+
+<var><name> H(+)_syn </name></var>
+<var><name> H(-)_syn </name></var>
+<var><name> H(+)_rel </name></var>
+
+<parm><name> b_syn </name><val> 5.0763 </val></parm>
+<parm><name> k_E2 </name><val> 5.0763 </val></parm>
+<parm><name> T_E2 </name><val> 192.2 </val></parm>
+<parm><name> n_E2 </name><val> 10 </val></parm>
+<parm><name> T_P4 </name><val> 1.3 </val></parm>2.371
+<parm><name> n_P4  </name><val> 1 </val></parm>
+<parm><name> b_rel </name><val> 0.00000331</val></parm>
+<parm><name> T_GR </name><val> 0.0003 </val></parm>0.0003
+<parm><name> n_GR  </name><val> 5 </val></parm>
+<parm><name> k_GR </name><val> 0.000132 </val></parm>
+
+<var><name> [LH_pit] </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> LH_pit </name>
+<integralname> LH_pit </integralname>
+<initialval> 314100 </initialval>
+<dervname> Change </dervname>
+<errorlim> 1000 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Parms </name>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> H(+)_syn </name><val> ( ( Estradiol.[Conc(pg/mL)] / T_E2 ) ^ n_E2 ) / ( 1 + ( ( Estradiol.[Conc(pg/mL)] / T_E2 ) ^ n_E2 ) ) </val></def>
+<def><name> H(-)_syn </name><val> 1 / ( 1 + ( ( Progesterone.[Conc(nG/mL)]  / T_P4 ) ^ n_P4 ) ) </val></def>
+
+<def><name> H(+)_rel </name><val> ( ( GnRH.[GRa] / T_GR ) ^ n_GR ) / ( 1 + ( ( GnRH.[GRa] / T_GR ) ^ n_GR ) ) </val></def>
+
+<def><name> Synthesis </name><val> ( ( b_syn + ( k_E2 * H(+)_syn ) ) * H(-)_syn ) </val></def>
+<def><name> Release </name><val> ( ( b_rel + ( k_GR * H(+)_rel ) ) * LH_pit ) </val></def>
+
+<def><name> Change </name><val> Synthesis - Release </val></def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

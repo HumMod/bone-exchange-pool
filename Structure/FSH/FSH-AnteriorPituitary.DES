@@ -1,0 +1,60 @@
+<structure><name> FSH-AnteriorPituitary </name>
+
+<variables>
+
+<parm><name> k_Ih </name><val> 10.368 </val></parm>15.368
+<parm><name> T_freq </name><val> 3 </val></parm>12.8
+<parm><name> n_freq </name><val> 5 </val></parm>
+<parm><name> b_rel </name><val> 0.00003958 </val></parm>
+<parm><name> k_GR </name><val> 0.0001889 </val></parm>
+<parm><name> T_GR </name><val> 0.0003 </val></parm>
+<parm><name> n_GR </name><val> 2 </val></parm>
+<parm><name> n_IhA </name><val> 5 </val></parm>
+<parm><name> n_IhB </name><val> 2 </val></parm>
+<parm><name> T_IhA </name><val> 95.81 </val></parm>
+<parm><name> T_IhB </name><val> 70 </val></parm>
+
+<var><name> H(+)_rel </name></var>
+<var><name> H(-)_syn </name></var>
+
+<var><name> Synthesis </name></var>
+<var><name> Release </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+<name> FSH_pit </name>
+<integralname> FSH_pit </integralname>
+<initialval> 69280 </initialval>
+<dervname> Change </dervname>
+<errorlim> 150 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Parms </name>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> H(-)_syn </name><val> 1 / ( 1 + ( ( GnRH.freq / T_freq ) ^ n_freq ) ) </val></def>
+<def><name> H(+)_rel </name><val> ( ( GnRH.[GRa] / T_GR ) ^ n_GR ) / ( 1 + ( ( GnRH.[GRa] / T_GR ) ^ n_GR ) ) </val></def>
+<def><name> Synthesis </name><val> ( k_Ih / ( 1 + ( ( Ovaries-New.[IhAe] / T_IhA ) ^ n_IhA ) + ( ( Ovaries-New.[IhB] / T_IhB ) ^ n_IhB ) ) ) * H(-)_syn </val></def>
+<def><name> Release </name><val> ( b_rel + ( k_GR * H(+)_rel ) ) * FSH_pit </val></def>
+<def><name> Change </name><val> Synthesis - Release </val></def>
+
+<!--
+<def><name> FSH_pit </name><val> FSH_pit MAX 0 </val></def>
+-->
+
+</block>
+
+</definitions>
+</structure>
+
+End

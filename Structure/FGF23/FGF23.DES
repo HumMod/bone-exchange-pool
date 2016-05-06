@@ -29,6 +29,7 @@ Schema : DES V1.0
   <var><name> PTHeffect </name></var> 
   <var><name> PO4 </name></var>
   <var><name> PO4effect</name></var>
+  <var><name> Estrogen</name></var>
 
 <parm>
   <name> InactivationMult </name>
@@ -79,6 +80,11 @@ Schema : DES V1.0
 
   <block>
    <name> Dervs </name>    
+
+<def>
+  <name> Estrogen </name>
+  <val> Estradiol.[Conc(pg/mL)]  </val>
+</def>
 
 <def>
   <name> VitD </name>

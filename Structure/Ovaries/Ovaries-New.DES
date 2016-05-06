@@ -1,0 +1,345 @@
+<structure><name> Ovaries-New </name>
+
+<variables>
+
+<parm><name> k_AF1 </name><val> 0.000254 </val></parm>0.000254
+<parm><name> T_FSHR(AF1) </name><val> 0.608 </val></parm>
+<parm><name> n_FSHR(AF1) </name><val> 5 </val></parm>
+<parm><name> k_AF1(AF2) </name><val> 0.0000848 </val></parm>1.221
+<parm><name> k_AF2 </name><val> 0.000424 </val></parm> 1.221
+<parm><name> k_AF2(AF3) </name><val> 0.005085 </val></parm>4.882
+<parm><name> SF_LHR </name><val> 2.26 </val></parm>2.726
+
+
+<parm><name> n_AF2(AF3) </name><val> 3.689 </val></parm>
+
+
+<parm><name> k_AF3 </name><val> 0.000339 </val></parm>4.882
+<parm><name> k_AF3(AF3) </name><val> 0.0002118 </val></parm>0.122
+<parm><name> SeFmax3 </name><val> 10 </val></parm>10
+<parm><name> k_AF3(AF4) </name><val> 0.08476 </val></parm>122.06
+
+<parm><name> n_AF3(AF4) </name><val> 5 </val></parm>
+
+
+<parm><name> k_AF4 </name><val> 0.33904 </val></parm> 122.06
+<parm><name> k_AF4(AF4) </name><val> 0.029666 </val></parm>12.206
+
+<parm><name> n_AF4 </name><val> 2 </val></parm>
+
+
+<parm><name> SeFmax4 </name><val> 1.0 </val></parm>10
+<parm><name> k_AF4(PrF) </name><val> 1.155 </val></parm>332.75
+<parm><name> k_PrF </name><val> 0.693 </val></parm>332.75
+<parm><name> k_cl(PrF) </name><val> 0.08476 </val></parm>122.06
+<parm><name> n_OvF </name><val> 6 </val></parm>
+<parm><name> k_OvF </name><val> 0.0005544</val></parm>7.984;0.005544
+<parm><name> k_cl(OvF) </name><val> 0.008476 </val></parm>12.206
+<parm><name> k_Sc1 </name><val> 0.00127 </val></parm>1.208
+<parm><name> T_OvF(Sc1) </name><val> 0.02 </val></parm>
+<parm><name> n_OvF(Sc1) </name><val> 10 </val></parm>
+<parm><name> k_Sc1(Sc2) </name><val> 0.0008479 </val></parm>1.221
+<parm><name> k_Sc2(Lut1) </name><val> 0.001 </val></parm>0.958
+<parm><name> k_Lut1(Lut2) </name><val> 0.00096 </val></parm>0.925
+<parm><name> m_GR(Lut) </name><val> 20 </val></parm>
+<parm><name> T_GR(Lut) </name><val> 0.0008 </val></parm>
+<parm><name> n_GR(Lut) </name><val> 5 </val></parm>
+<parm><name> k_Lut2 </name><val> 0.00067 </val></parm>0.925
+<parm><name> k_Lut2(Lut3) </name><val> 0.0005254 </val></parm>0.7567
+<parm><name> k_Lut3 </name><val> 0.00055 </val></parm>0.925
+<parm><name> k_Lut3(Lut4) </name><val> 0.0004236 </val></parm>0.610
+<parm><name> k_Lut4 </name><val> 0.00044 </val></parm>0.610
+<parm><name> k_cl(Lut4) </name><val> 0.0003771 </val></parm>0.543
+<parm><name> b_IhA </name><val> 0.001003 </val></parm>1.445
+<parm><name> k_PrF(IhA) </name><val> 0.0015868 </val></parm>2.285
+<parm><name> k_Sc1(IhA) </name><val> 0.04167 </val></parm>60
+<parm><name> k_Lut1(IhA) </name><val> 0.1875 </val></parm>180
+<parm><name> k_Lut2(IhA) </name><val> 0.01959 </val></parm>28.211
+<parm><name> k_Lut3(IhA) </name><val> 0.15059 </val></parm>216.85
+<parm><name> k_Lut4(IhA) </name><val> 0.07934 </val></parm>114.25
+<parm><name> k_IhA </name><val> 0.002977 </val></parm>4.287
+<parm><name> b_IhB </name><val> 0.06215 </val></parm>89.493
+<parm><name> k_AF2(IhB) </name><val> 0.3107 </val></parm>447.47
+<parm><name> k_Sc2(IhB) </name><val> 111.84  </val></parm>134240.2
+<parm><name> k_cl(IhB) </name><val> 0.11976 </val></parm>172.45
+<parm><name> k_cl(IhAe) </name><val> 0.0001382 </val></parm>0.199
+<parm><name> k_s </name><val> 0.00152 </val></parm>
+<parm><name> T_FSH(s) </name><val> 2.5 </val></parm>3
+
+
+<parm><name> n_FSH(s) </name><val> 5 </val></parm>
+<parm><name> T_P4(s) </name><val> 1.235 </val></parm>1.235
+<parm><name> n_P4(s) </name><val> 3.5 </val></parm>5
+<parm><name> k_cl(s) </name><val> 0.000933 </val></parm>1.343
+
+<var><name> H(+)_FSH(s) </name></var>
+<var><name> H(+)_P4(s) </name></var>
+<var><name> H(+)_AF1 </name></var>
+<var><name> H(+)_PrF </name></var>
+<var><name> H(+)_OvF </name></var>
+<var><name> H(+)_GR </name></var>
+<var><name> [Sensitivity] </name><val> 0.417 </val></var>
+<var><name> [AF1] </name><val> 2.811 </val></var>
+<var><name> [AF2] </name><val> 1 </val></var> 
+<var><name> [AF3] </name><val> 0.801 </val></var> 
+<var><name> [AF4] </name><val> 0.000006345 </val></var>
+<var><name> [PrF] </name><val> 0.336 </val></var>
+<var><name> [OvF] </name><val> 0.0000000000000001313 </val></var>
+<var><name> [Sc1] </name><val> 0.0000000001433 </val></var>
+<var><name> [Sc2] </name><val> 0.00000007278 </val></var>
+<var><name> [Lut1] </name><val> 0.000001293 </val></var>
+<var><name> [Lut2] </name><val> 0.00003093 </val></var>
+<var><name> [Lut3] </name><val> 0.0004853 </val></var>
+<var><name> [Lut4] </name><val> 0.003103 </val></var>
+<var><name> [IhA] </name><val> 0.637  </val></var>
+<var><name> [IhAe] </name><val> 52.43 </val></var>
+<var><name> [IhB] </name><val> 72.17 </val></var>
+<var><name> FlagAF2 </name><val> FALSE </val></var>
+<var><name> FlagAF3 </name><val> FALSE </val></var>
+<var><name> Flag </name><val> FALSE </val></var>
+
+<var><name> FollicleMass </name></var>
+<var><name> LutealMass </name></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Sensitivity </name>
+  <integralname> Sensitivity </integralname>
+  <initialval> 3254 </initialval>2254
+  <dervname> Change </dervname>
+  <errorlim> 50 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> AF1 </name>
+  <integralname> AF1 </integralname>
+  <initialval> 15196 </initialval>
+  <dervname> dAF1dt </dervname>
+  <errorlim> 500 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> AF2 </name>
+  <integralname> AF2 </integralname>
+  <initialval> 5000 </initialval>149427
+  <dervname> dAF2dt </dervname>
+  <errorlim> 4900 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> AF3 </name>
+  <integralname> AF3 </integralname>
+  <initialval> 4330 </initialval>
+  <dervname> dAF3dt </dervname>
+  <errorlim> 140 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> AF4 </name>
+  <integralname> AF4 </integralname>
+  <initialval> 0.3807 </initialval>
+  <dervname> dAF4dt </dervname>
+  <errorlim> 0.011421 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> PrF </name>
+  <integralname> PrF </integralname>
+  <initialval> 2016 </initialval>
+  <dervname> dPrFdt </dervname>
+  <errorlim> 60.48 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> OvF </name>
+  <integralname> OvF </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> dOvFdt </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Sc1 </name>
+  <integralname> Sc1 </integralname>
+  <initialval> 0.00000006 </initialval>
+  <dervname> dSc1dt </dervname>
+  <errorlim> 0.0000000018 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Sc2 </name>
+  <integralname> Sc2 </integralname>
+  <initialval> 0.00034668 </initialval>
+  <dervname> dSc2dt </dervname>
+  <errorlim>  0.0000104 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Lut1 </name>
+  <integralname> Lut1 </integralname>
+  <initialval> 0.007758 </initialval>
+  <dervname> dLut1dt </dervname>
+  <errorlim> 0.0002 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Lut2 </name>
+  <integralname> Lut2 </integralname>
+  <initialval> 0.18558 </initialval>
+  <dervname> dLut2dt </dervname>
+  <errorlim> 0.0056 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Lut3 </name>
+  <integralname> Lut3 </integralname>
+  <initialval> 2.9118 </initialval>
+  <dervname> dLut3dt </dervname>
+  <errorlim> 0.087 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Lut4 </name>
+  <integralname> Lut4 </integralname>
+  <initialval> 18.618 </initialval>
+  <dervname> dLut4dt </dervname>
+  <errorlim> 0.558 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> IhA </name>
+  <integralname> IhA </integralname>
+  <initialval> 3439.8 </initialval>
+  <dervname> dIhAdt </dervname>
+  <errorlim> 100 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> IhB </name>
+  <integralname> IhB </integralname>
+  <initialval> 389718 </initialval>
+  <dervname> dIhBdt </dervname>
+  <errorlim> 12000 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> IhAe </name>
+  <integralname> IhAe </integralname>
+  <initialval> 283122 </initialval>
+  <dervname> dIhAedt </dervname>
+  <errorlim> 9000 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Parms </name>
+
+</block>
+
+<block><name> Conc </name>
+
+<def><name> [Sensitivity] </name><val> Sensitivity / BloodVol.Vol(mL) </val></def>
+<def><name> [AF1] </name><val> AF1 / BloodVol.Vol(mL) </val></def>
+<def><name> [AF2] </name><val> AF2 / BloodVol.Vol(mL) </val></def>
+<def><name> [AF3] </name><val> AF3 / BloodVol.Vol(mL) </val></def>
+<def><name> [AF4] </name><val> AF4 / BloodVol.Vol(mL) </val></def>
+<def><name> [PrF] </name><val> PrF / BloodVol.Vol(mL) </val></def>
+<def><name> [OvF] </name><val> OvF / BloodVol.Vol(mL) </val></def>
+<def><name> [Sc1] </name><val> Sc1 / BloodVol.Vol(mL) </val></def>
+<def><name> [Sc2] </name><val> Sc2 / BloodVol.Vol(mL) </val></def>
+<def><name> [Lut1] </name><val> Lut1 / BloodVol.Vol(mL) </val></def>
+<def><name> [Lut2] </name><val> Lut2 / BloodVol.Vol(mL) </val></def>
+<def><name> [Lut3] </name><val> Lut3 / BloodVol.Vol(mL) </val></def>
+<def><name> [Lut4] </name><val> Lut4 / BloodVol.Vol(mL) </val></def>
+<def><name> [IhA] </name><val> IhA / BloodVol.Vol(mL) </val></def>
+<def><name> [IhB] </name><val> IhB / BloodVol.Vol(mL) </val></def>
+<def><name> [IhAe] </name><val> IhAe / BloodVol.Vol(mL) </val></def>
+
+
+<def><name> FlagAF2 </name><val> ( ( 1 - FlagAF2 ) AND ( [AF2] GT 45 ) ) OR ( FlagAF2 AND ( FSH-Circulating.[FSH_R] GT 0.5 ) AND ( [AF2] GT 1 ) ) </val></def>
+<def><name> FlagAF3 </name><val> ( ( 1 - FlagAF3 ) AND ( [AF3] GT 9.09 ) ) OR ( FlagAF3 AND ( FSH-Circulating.[FSH_R] GT 0.5 ) AND ( [AF3] GT 1 ) ) </val></def>
+<def><name> Flag </name><val> FlagAF2 AND FlagAF3 AND 0 </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> H(+)_FSH(s) </name><val> ( ( FSH-Circulating.[FSH_R] / T_FSH(s) ) ^ n_FSH(s) ) / ( 1 + ( ( FSH-Circulating.[FSH_R] / T_FSH(s) ) ^ n_FSH(s) ) ) </val></def>
+<def><name> H(+)_P4(s) </name><val> ( ( Progesterone.[Conc(nG/mL)] / T_P4(s) ) ^ n_P4(s) ) / ( 1 + ( ( Progesterone.[Conc(nG/mL)] / T_P4(s) ) ^ n_P4(s) ) ) </val></def>
+<def><name> H(+)_AF1 </name><val> ( ( FSH-Circulating.[FSH_R] / T_FSHR(AF1) ) ^ n_FSHR(AF1) ) / ( 1 + ( ( FSH-Circulating.[FSH_R] / T_FSHR(AF1) ) ^ n_FSHR(AF1) ) ) </val></def>
+<def><name> H(+)_OvF </name><val> ( ( [OvF] / T_OvF(Sc1) ) ^ n_OvF(Sc1) ) / ( 1 + ( ( [OvF] / T_OvF(Sc1) ) ^ n_OvF(Sc1) ) ) </val></def>
+<def><name> H(+)_GR </name><val> ( ( GnRH.[GRa] / T_GR(Lut) ) ^ n_GR(Lut) ) / ( 1 + ( ( GnRH.[GRa] / T_GR(Lut) ) ^ n_GR(Lut) ) ) </val></def>
+<def><name> Change </name><val>  ( ( ( ( 0.1 * [AF2] ) + ( 0.1 * [AF3] ) + ( 10 * [AF4] ) ) *  k_s * H(+)_FSH(s) ) - ( k_cl(s) * H(+)_P4(s) * [Sensitivity]  ) ) * BloodVol.Vol(mL) </val></def>
+
+
+<def><name> dAF1dt </name><val> ( ( k_AF1 * H(+)_AF1 ) - ( k_AF1(AF2) * FSH-Circulating.[FSH_R] * [AF1] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dAF2dt </name><val> ( k_AF2 * FSH-Circulating.[FSH_R] * [AF1] )
+ - ( ( ( 1 - Flag ) * k_AF2(AF3) * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_AF2(AF3) ) + ( Flag * 0.1 ) ) * [Sensitivity] * [AF2] ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dAF3dt </name><val> ( ( k_AF3 * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_AF2(AF3) ) * [Sensitivity] * [AF2] ) + ( k_AF3(AF3) * FSH-Circulating.[FSH_R] * [AF3] * ( 1 - ( [AF3] / SeFmax3 ) ) ) ) 
+- ( ( ( ( 1 - Flag ) * k_AF3(AF4) * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_AF3(AF4) ) ) + ( Flag * 0.1 ) ) * [Sensitivity] * [AF3] ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dAF4dt </name><val> ( ( k_AF4 * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_AF3(AF4) ) * [Sensitivity]  *  [AF3] ) + (  k_AF4(AF4) * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_AF4 ) * [AF4] * ( 1 - ( [AF4] / SeFmax4 ) ) )
+ - ( ( ( ( 1 - Flag ) * k_AF4(PrF) * ( LH-Circulating.[LH_R] / SF_LHR ) ) + ( Flag * 0.1 ) ) * [Sensitivity] * [AF4] ) ) * BloodVol.Vol(mL) </val></def>
+
+
+
+
+
+
+
+<def><name> dPrFdt </name><val> ( ( k_PrF * ( LH-Circulating.[LH_R] / SF_LHR ) * [Sensitivity]  * [AF4] )
+ - ( ( ( ( 1 - Flag ) *  k_cl(PrF) * ( ( LH-Circulating.[LH_R] / SF_LHR ) ^ n_OvF ) ) + ( Flag * 0.1 ) ) * [Sensitivity] * [PrF] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dOvFdt </name><val> ( ( k_OvF * ( LH-Circulating.[LH_R] / SF_LHR ^ n_OvF ) * [Sensitivity] * [PrF] ) - ( k_cl(OvF) * [OvF] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dSc1dt </name><val> ( ( k_Sc1 * H(+)_OvF ) - ( k_Sc1(Sc2) * [Sc1] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dSc2dt </name><val> ( ( k_Sc1(Sc2) * [Sc1] ) - ( k_Sc2(Lut1) * [Sc2] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dLut1dt </name><val> ( ( k_Sc2(Lut1) * [Sc2] ) - ( k_Lut1(Lut2) * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut1] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dLut2dt </name><val> ( (  k_Lut2 * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut1] ) - ( k_Lut2(Lut3) * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut2] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dLut3dt </name><val> ( ( k_Lut2(Lut3) * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut2] ) - ( k_Lut3(Lut4) * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut3] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dLut4dt </name><val> ( (  k_Lut4 * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut3] ) - ( k_cl(Lut4) * ( 1 + ( m_GR(Lut) * H(+)_GR ) ) * [Lut4] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dIhAdt </name><val> ( b_IhA + ( k_PrF(IhA) * [PrF] ) + ( k_Sc1(IhA) * [Sc1] ) + ( k_Lut1(IhA) * [Lut1] ) + ( k_Lut2(IhA) * [Lut2] ) + ( k_Lut3(IhA) * [Lut3] ) + ( k_Lut4(IhA) * [Lut4] ) - ( k_IhA * [IhA] ) ) * BloodVol.Vol(mL) </val></def>
+
+<def><name> dIhBdt </name><val> ( b_IhB + ( k_AF2(IhB) * [AF2] ) + ( k_Sc2(IhB) * [Sc2] )   - ( k_cl(IhB) * [IhB] ) ) * BloodVol.Vol(mL) </val></def> 
+
+<def><name> dIhAedt </name><val> ( ( k_IhA * [IhA] ) - ( k_cl(IhAe) * [IhAe] ) ) * BloodVol.Vol(mL) </val></def>
+
+</block>
+
+<block><name> WrapUp </name>
+<def><name> FollicleMass </name><val> AF1 + AF2 + AF3 + AF4 </val></def>
+<def><name> LutealMass </name><val> Lut1 + Lut2 + Lut3 + Lut4 </val></def>
+
+<!--
+<def><name> AF1 </name><val> AF1 MAX 0 </val></def>
+<def><name> AF2 </name><val> AF2 MAX 0 </val></def>
+<def><name> AF3 </name><val> AF3 MAX 0 </val></def>
+<def><name> AF4 </name><val> AF4 MAX 0 </val></def>
+<def><name> AF4 </name><val> AF4 MAX 0 </val></def>
+<def><name> PrF </name><val> PrF MAX 0 </val></def>
+<def><name> OvF </name><val> OvF MAX 0 </val></def>
+<def><name> Sc1 </name><val> Sc1 MAX 0 </val></def>
+<def><name> Sc2 </name><val> Sc2 MAX 0 </val></def>
+<def><name> Lut1 </name><val> Lut1 MAX 0 </val></def>
+<def><name> Lut2 </name><val> Lut2 MAX 0 </val></def>
+<def><name> Lut3 </name><val> Lut3 MAX 0 </val></def>
+<def><name> Lut4 </name><val> Lut4 MAX 0 </val></def>
+-->
+</block>
+
+</definitions>
+
+</structure>

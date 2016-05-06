@@ -1,0 +1,132 @@
+<structure><name> GnRH </name>
+
+<variables>
+
+<parm><name> f0 </name><val> 0.0111 </val></parm>0.111
+<parm><name> T_P4(freq) </name><val> 0.5 </val></parm>1.2
+<parm><name> n_P4(freq) </name><val> 2 </val></parm>
+<parm><name> m_E2(freq) </name><val> 1 </val></parm>
+<parm><name> T_E2(freq) </name><val> 220 </val></parm>220
+<parm><name> n_E2(freq) </name><val> 10 </val></parm>10
+<parm><name> a0 </name><val> 0.005593 </val></parm>
+<parm><name> T_E2(mass1) </name><val> 160 </val></parm>220
+<parm><name> n_E2(mass1) </name><val> 2 </val></parm>
+<parm><name> T_E2(mass2) </name><val> 9.6 </val></parm>9.6
+<parm><name> n_E2(mass2) </name><val> 1 </val></parm>
+<parm><name> k_degr(G) </name><val> 0.0003104 </val></parm>
+<parm><name> k_on(G) </name><val> 0.2237 </val></parm>
+<parm><name> k_off(G) </name><val> 0.4475 </val></parm>
+<parm><name> k_degr(GR) </name><val> 0.000006215 </val></parm>
+<parm><name> k_diss(GR) </name><val> 0.02237 </val></parm>
+<parm><name> k_inter(R) </name><val> 0.00224 </val></parm>
+<parm><name> k_recy(R) </name><val> 0.02237 </val></parm>
+<parm><name> k_degr(R) </name><val> 0.00006215 </val></parm>
+<parm><name> k_inact(GR) </name><val> 0.02237 </val></parm>
+<parm><name> k_act(GR) </name><val> 0.00224 </val></parm>
+<parm><name> k_syn(R) </name><val> 0.0000000621 </val></parm>
+
+<var><name> freq </name></var>
+<var><name> mass </name></var>
+<var><name> H(-)_freq </name></var>
+<var><name> H(+)_freq </name></var>
+<var><name> H(-)_mass </name></var>
+<var><name> H(+)_mass </name></var>
+
+<var><name> [G] </name><val> 0.01976 </val></var>
+<var><name> [Ra] </name><val> 0.009121 </val></var>
+<var><name> [Ri] </name><val> 0.0009893 </val></var>
+<var><name> [GRa] </name><val> 0.00008618 </val></var>
+<var><name> [GRi] </name><val> 0.00007768 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> G </name>
+  <integralname> G </integralname>
+  <initialval> 0.11856 </initialval>
+  <dervname> dGdt </dervname>
+  <errorlim> 0.003 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Ra </name>
+  <integralname> Ra </integralname>
+  <initialval> 0.054726 </initialval>
+  <dervname> dRadt </dervname>
+  <errorlim> 0.001 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Ri </name>
+  <integralname> Ri </integralname>
+  <initialval> 0.0019893 </initialval>
+  <dervname> dRidt </dervname>
+  <errorlim> 0.00003 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> GRa </name>
+  <integralname> GRa </integralname>
+  <initialval> 0.00059358 </initialval>
+  <dervname> dGRadt </dervname>
+  <errorlim> 0.0000178 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> GRi </name>
+  <integralname> GRi </integralname>
+  <initialval> 0.00046608 </initialval>
+  <dervname> dGRidt </dervname>
+  <errorlim> 0.000014 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Parms </name>
+
+</block>
+
+<block><name> Conc </name>
+
+<def><name> [Ra] </name><val> Ra / BloodVol.Vol(L) </val></def>
+<def><name> [Ri] </name><val> Ri / BloodVol.Vol(L) </val></def>
+<def><name> [GRa] </name><val> GRa / BloodVol.Vol(L) </val></def>
+<def><name> [GRi] </name><val> GRi / BloodVol.Vol(L) </val></def>
+<def><name> [G] </name><val> G / BloodVol.Vol(L) </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> H(-)_freq </name><val> 1 / ( 1 + ( ( Progesterone.[Conc(nG/mL)] / T_P4(freq) ) ^ n_P4(freq) ) ) </val></def> 
+<def><name> H(-)_mass </name><val> 1 / ( 1 + ( ( Estradiol.[Conc(pg/mL)] / T_E2(mass2) ) ^ n_E2(mass2) ) ) </val></def>
+
+<def><name> H(+)_freq </name><val> ( ( Estradiol.[Conc(pg/mL)] / T_E2(freq) ) ^ n_E2(freq) ) / ( 1 + ( ( Estradiol.[Conc(pg/mL)] / T_E2(freq) ) ^ n_E2(freq) ) ) </val></def>
+<def><name> H(+)_mass </name><val> ( ( Estradiol.[Conc(pg/mL)] / T_E2(mass1) ) ^ n_E2(mass1) ) / ( 1 + ( ( Estradiol.[Conc(pg/mL)] / T_E2(mass1) ) ^ n_E2(mass1) ) ) </val></def>
+
+<def><name> freq </name><val> f0 * H(-)_freq * ( 1 + ( m_E2(freq) * H(+)_freq ) ) </val></def>
+<def><name> mass </name><val> a0 * ( H(+)_mass + H(-)_mass ) </val></def>
+
+<def><name> dRadt </name><val> ( ( k_off(G) * [GRa] ) - ( k_on(G) * [G] * [Ra] ) - ( k_inter(R) * [Ra] ) + ( k_recy(R) * [Ri] ) ) * BloodVol.Vol(L) </val></def>
+<def><name> dRidt </name><val> ( ( k_diss(GR) * [GRi] ) + ( k_inter(R) * [Ra] ) - ( k_recy(R) * [Ri] ) + k_syn(R) - ( k_degr(R) * [Ri] ) ) * BloodVol.Vol(L) </val></def>
+<def><name> dGRadt </name><val> ( ( k_on(G) * [G] * [Ra] ) - ( k_off(G) * [GRa] ) - ( k_inact(GR) * [GRa] ) + ( k_act(GR) * [GRi] ) ) * BloodVol.Vol(L) </val></def>
+<def><name> dGRidt </name><val> ( ( k_inact(GR) * [GRa] ) - ( k_act(GR) * [GRi] ) - ( k_degr(GR) * [GRi] ) - ( k_diss(GR) * [GRi] ) ) * BloodVol.Vol(L) </val></def>
+<def><name> dGdt </name><val> ( ( mass * freq ) - ( k_on(G) * [G] * [Ra] ) + ( k_off(G) * [GRa] ) - ( k_degr(G) * [G] ) ) * BloodVol.Vol(L) </val></def>
+
+<!--
+<def><name> Ra </name><val> Ra MAX 0 </val></def>
+<def><name> Ri </name><val> Ri MAX 0  </val></def>
+<def><name> GRa </name><val> GRa MAX 0  </val></def>
+<def><name> GRi </name><val> GRi MAX 0 </val></def>
+<def><name> G </name><val> G MAX 0  </val></def>
+-->
+</block>
+
+</definitions>
+</structure>
+
+End

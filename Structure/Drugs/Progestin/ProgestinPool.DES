@@ -1,0 +1,83 @@
+<structure><name> ProgestinPool </name>
+
+<variables>
+
+<var><name> [Progestin] </name><val> 0 </val></var>
+<var><name> [Progestin(oral)] </name><val> 0 </val></var>
+<var><name> [Progestin(depot)] </name><val> 0 </val></var>
+<var><name> Gain </name></var>
+<var><name> Gain(oral) </name></var>
+<var><name> Gain(depot) </name></var>
+<var><name> Loss </name></var>
+<var><name> Loss(oral) </name></var>
+<var><name> Loss(depot) </name></var>
+<var><name> VolDist </name></var>
+
+<var><name> Mass(nG) </name><val> 0 </val></var>
+<var><name> [Progestin(ng/mL)] </name><val> 0 </val></var>
+
+<constant><name> VOLDISTK </name><val> 1.5 </val></constant>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> Mass </name>
+  <integralname> Mass </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Mass(oral) </name>
+  <integralname> Mass(oral) </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change(oral) </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> Mass(depot) </name>
+  <integralname> Mass(depot) </integralname>
+  <initialval> 0.0 </initialval>
+  <dervname> Change(depot) </dervname>
+  <errorlim> 0.01 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> CalcConc </name>
+
+<def><name> VolDist </name><val> VOLDISTK * 15 </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> Gain(oral) </name><val> ProgestinGILumen.Absorption </val></def>
+<def><name> Loss(oral) </name><val> ProgestinKidney.OralUrineLoss </val></def>
+<def><name> Change(oral) </name><val> Gain(oral) - Loss(oral) </val></def>
+<def><name> [Progestin(oral)] </name><val> Mass(oral) / VolDist </val></def>
+
+<def><name> Gain(depot) </name><val> ProgestinSingleDose.Loss </val></def>
+<def><name> Loss(depot) </name><val> ProgestinKidney.DepotUrineLoss </val></def>
+<def><name> Change(depot) </name><val> Gain(depot) - Loss(depot) </val></def>
+<def><name> [Progestin(depot)] </name><val> Mass(depot) / VolDist </val></def>
+
+<def><name> Gain </name><val> Gain(oral) + Gain(depot) </val></def>
+<def><name> Loss </name><val> Loss(oral) + Loss(depot) </val></def>
+<def><name> Change </name><val> Gain - Loss </val></def>
+<def><name> Mass(nG) </name><val> Mass * 386.52 </val></def>
+<def><name> [Progestin] </name><val> Mass / VolDist </val></def>
+<def><name> [Progestin(ng/mL)] </name><val> Mass(nG) / ( VolDist * 1000 ) </val></def>
+
+</block>
+
+</definitions>
+</structure>
+
+End

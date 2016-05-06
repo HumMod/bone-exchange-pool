@@ -1,0 +1,84 @@
+<structure><name> FSH-Circulating </name>
+
+<variables>
+
+<parm><name> k_on </name><val> 0.00245 </val></parm>
+<parm><name> k_cl </name><val> 0.07934 </val></parm>
+<parm><name> k_recy </name><val> 0.04238 </val></parm>
+<parm><name> k_des </name><val> 0.0960 </val></parm>
+
+<var><name> [Conc(IU/L)] </name><val> 6.286 </val></var>
+<var><name> [R] </name><val> 5.141 </val></var>
+<var><name> [FSH_R] </name><val> 1.030 </val></var>
+<var><name> [R_des] </name><val> 2.330 </val></var>
+
+</variables>
+
+<equations>
+
+<diffeq>
+  <name> FSH_blood </name>
+  <integralname> FSH_blood </integralname>
+  <initialval> 37.716 </initialval>
+  <dervname> Change </dervname>
+  <errorlim> 1.0 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> R </name>
+  <integralname> R </integralname>
+  <initialval> 30.846 </initialval>
+  <dervname> dRdt </dervname>
+  <errorlim> 0.9 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> FSH_R </name>
+  <integralname> FSH_R </integralname>
+  <initialval> 6.18 </initialval>
+  <dervname> dFSH_Rdt </dervname>
+  <errorlim> 0.1 </errorlim>
+</diffeq>
+
+<diffeq>
+  <name> R_des </name>
+  <integralname> R_des </integralname>
+  <initialval> 13.98 </initialval>
+  <dervname> dR_desdt </dervname>
+  <errorlim> 0.4 </errorlim>
+</diffeq>
+
+</equations>
+
+<definitions>
+
+<block><name> Conc </name>
+
+<def><name> [Conc(IU/L)] </name><val> FSH_blood / BloodVol.Vol(L) </val></def>
+<def><name> [R] </name><val> R /  BloodVol.Vol(L)  </val></def>
+<def><name> [FSH_R] </name><val> FSH_R /  BloodVol.Vol(L)  </val></def>
+<def><name> [R_des] </name><val> R_des /  BloodVol.Vol(L)  </val></def>
+
+</block>
+
+<block><name> Dervs </name>
+
+<def><name> dRdt </name><val> ( ( k_recy * [R_des] ) - ( k_on * [Conc(IU/L)] * [R] ) ) * BloodVol.Vol(L) </val></def>
+
+<def><name> dFSH_Rdt </name><val> ( ( k_on * [Conc(IU/L)] * [R] ) - ( k_des * [FSH_R] ) ) * BloodVol.Vol(L)  </val></def>
+
+<def><name> dR_desdt </name><val> ( ( k_des * [FSH_R] ) - ( k_recy * [R_des] ) ) * BloodVol.Vol(L) </val></def>
+
+<def><name> Change </name><val> FSH-AnteriorPituitary.Release - ( ( k_on * R + k_cl ) * FSH_blood ) </val></def>
+
+<!--
+<def><name> R </name><val> R MAX 0  </val></def>
+<def><name> FSH_R </name><val> FSH_R MAX 0  </val></def>
+<def><name> R_des </name><val> R_des MAX 0   </val></def>
+-->
+</block>
+
+</definitions>
+</structure>
+
+End

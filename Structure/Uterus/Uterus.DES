@@ -1,0 +1,58 @@
+HumMod / Uterus
+
+Created : 05-Oct-08
+Last Modified : 26-Jan-10
+Author : Tom Coleman
+Copyright : 2008-2010
+By : University of Mississippi Medical Center
+Schema : DES V1.0
+
+<?path Structure\Uterus\ ?>
+<!-- <?include Fetus\Fetus.DES ?> 
+<?include Placenta\Placenta.DES ?>-->
+<?include Endometrium\Endometrium.DES ?>
+
+<structure><name> Uterus </name>
+
+<variables>
+
+<!--
+<var><name>  </name></var>
+-->
+
+</variables>
+
+<definitions>
+
+<block><name> Dervs </name>
+
+<!--
+<def><name>  </name><val> 0.0 </val></def>
+-->
+
+</block>
+
+<block><name> Gender </name>
+
+<if><test> Context-Gender.HasUterus </test>
+
+<true>
+</true>
+
+<false>
+<def><name> Uterus-Lactate.Change </name><val> 0 </val></def>
+<def><name> Uterus-Fuel.Adequacy </name><val> 0 </val></def>
+<def><name> Uterus-Fuel.K </name><val> 1 </val></def>
+<def><name> Uterus-Fuel.DxMax </name><val> 10000 </val></def>
+<def><name> Uterus-Structure.F1 </name><val> 1 </val></def>
+<def><name> Uterus-Structure.F2 </name><val> 1 </val></def>
+<def><name> Uterus-Vasculature.Stimulus </name><val> 0 </val></def>
+<def><name> Uterus-Vasculature.K </name><val> 1 </val></def>
+</false>
+</if>
+</block>
+
+</definitions>
+</structure>
+
+End
