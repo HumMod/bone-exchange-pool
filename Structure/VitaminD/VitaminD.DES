@@ -12,6 +12,13 @@ Schema : DES V1.0
 
  <variables>
 
+  <var><name> PTHrExpression </name><val> 30 </val></var>
+  <var><name> FGF23 </name><val> 160 </val></var>
+  <var><name> RenalParmsNephronMult  </name><val> 1 </val></var>
+  <parm><name> Ovaries-Estradiol </name><val> 1 </val></parm>
+ 
+
+ 
 <var><name>PTH</name></var>
 <var><name> FGF </name></var>
 <var><name> Deffect </name></var>
@@ -36,8 +43,9 @@ Schema : DES V1.0
 <var><name> MaxFGF </name><val> 30 </val></var>
 <var><name> Ftimer </name>  <val> 0 </val></var>
 <var><name> Eff_T1/2 </name></var>
-<var>  <name> CalcitriolLoss </name></var>
+<var><name> CalcitriolLoss </name></var>
 <var><name> PTHeffect </name></var>
+<var><name> FGFeffectPTH </name></var>
  </variables>
 
  <equations>
@@ -50,7 +58,6 @@ Schema : DES V1.0
      <errorlim> .005 </errorlim>
   </diffeq>
 
-
   <diffeq>
     <name>mRNA24</name>  
      <integralname>mRNA24</integralname>
@@ -59,21 +66,6 @@ Schema : DES V1.0
      <errorlim> .01 </errorlim>
   </diffeq>
 
-  <diffeq>
-    <name> Calcifediol </name>  
-     <integralname> Calcifediol </integralname>
-     <initialval> 10    </initialval>  <!-- ug : Omdahl et al 2002-->
-     <dervname> dCalcifediol </dervname>
-     <errorlim> .75 </errorlim>
-  </diffeq>
-
-  <diffeq>
-    <name> Calcitriol </name>  
-     <integralname> Calcitriol </integralname>
-     <initialval> 76.5 </initialval>  <!-- ng: Omdahl et al 2002 -->
-     <dervname> dCalcitriol </dervname>
-     <errorlim> .6 </errorlim>
-  </diffeq>
 
   <diffeq>
     <name> FGFeffect24 </name>  
@@ -97,6 +89,23 @@ Schema : DES V1.0
      <initialval> 10    </initialval>
      <dervname> dCYP24 </dervname>
      <errorlim> .055 </errorlim>
+  </diffeq>
+
+
+  <diffeq>
+    <name> Calcifediol </name>  
+     <integralname> Calcifediol </integralname>
+     <initialval> 10    </initialval>  <!-- ug : Omdahl et al 2002-->
+     <dervname> dCalcifediol </dervname>
+     <errorlim> .75 </errorlim>
+  </diffeq>
+
+  <diffeq>
+    <name> Calcitriol </name>  
+     <integralname> Calcitriol </integralname>
+     <initialval> 76.5 </initialval>  <!-- ng: Omdahl et al 2002 -->
+     <dervname> dCalcitriol </dervname>
+     <errorlim> .6 </errorlim>
   </diffeq>
 
  </equations>
@@ -151,12 +160,12 @@ Schema : DES V1.0
 
 <def>
   <name> PTH </name>
-  <val> PTH_pool.[PTHwt] * PTHReceptor.PTHrExpression </val>
+  <val> PTH_pool.[PTHwt]  </val>
 </def>
 
 <def>
   <name> FGF </name>
-  <val> FGF23.[FGF]  </val>
+  <val> FGF23  </val>
 </def>
 
 <def>
@@ -169,10 +178,12 @@ Schema : DES V1.0
  <true>
    <def><name> CYP27B1 </name><val> 10 </val></def>
    <def><name> CYP24 </name><val> 10 </val></def>
-  <def><name> mRNA24 </name><val> 1 </val></def>
+  <def><name> mRNA24 </name><val> 1 </val></def> 
    <def><name> Calcitriol </name><val> 90 </val></def>
   <def><name> MaxFGF </name><val> 0 </val></def>
   <def><name> FGFeffect24 </name><val> 1.0 </val></def>
+  <def><name> FGFeffectPTH </name><val> 1.0 </val></def>
+  <!--<def><name> dCalcifediol </name><val>  0 </val></def> -->
 
  </true>
 </if>
@@ -218,7 +229,7 @@ Schema : DES V1.0
 </def> <!-- good -->
 
 <def>
-  <name>dCYP24 </name>
+  <name> dCYP24 </name>
 <!--  <val> 0 </val>-->
   <val> ( mRNA24 * 1 ) - ( .13 * CYP24 )   </val>
 </def>

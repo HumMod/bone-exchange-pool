@@ -18,22 +18,22 @@ Solver : Digital Human (V1.0)
    <name> TalmageCaPool.[Ca++] </name>
    <format><decimal> 3 </decimal></format>
    <label> Serum ionized Ca (mmol/L) </label>
- </showvalue>
+ </showvalue> -->
 
- <showvalue>
+<!-- <showvalue>
    <row> 2.0 </row><col> 1 </col>
    <name> TalmagePO4Pool.[PO4] </name>
    <format><decimal> 3 </decimal></format>
    <label> PO4 (mmol/L) </label>
- </showvalue>
+ </showvalue> -->
 
- <showvalue>
+ <!--<showvalue>
    <row> 3.0 </row><col> 1 </col>
    <name> BoneExchange.Product </name>
    <format><decimal> 3 </decimal></format>
    <label> Ca x P </label>
- </showvalue>
-
+ </showvalue> 
+-->
  <showvalue>
    <row> 3.0 </row><col> 21 </col>
    <name> BoneExchange.H </name>
@@ -64,7 +64,7 @@ Solver : Digital Human (V1.0)
    <scale><min> 1</min><max> 1.5 </max></scale>
   </yaxis>
  </showgraph>
-</groupbox>
+</groupbox> 
 
 
 

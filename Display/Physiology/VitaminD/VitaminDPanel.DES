@@ -12,15 +12,16 @@ Solver : Digital Human (V1.0)
 <structurename> VitaminD </structurename>
 
 <showpanelname>
-  <row> 0.5 </row><col> 1.0 </col>
+  <row> 0.5 </row><col> 110.0 </col>
 </showpanelname>
 
 <groupbox>
-   <row> 2.0 </row>
-   <col> 2.0 </col>
-   <high> 19.0 </high>
-   <wide> 95.0 </wide>
+   <row> 1.0 </row>
+   <col> 1.0 </col>
+   <high> 25.0 </high>
+   <wide> 100.0 </wide>
    <title> Vitamin D metabolites </title>
+</groupbox>
 
 <showvalue>
    <row> 2 </row><col> 1 </col>
@@ -77,7 +78,7 @@ Solver : Digital Human (V1.0)
 
 
 <showgraph>
-  <row> 1.0 </row><col> 45 </col>
+  <row> 3.0 </row><col> 45 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 10 </leftmargin>
   <xaxis>
@@ -101,7 +102,7 @@ Solver : Digital Human (V1.0)
 
 
 <showgraph>
-  <row> 12.0 </row><col> 45.0 </col>
+  <row> 14.0 </row><col> 45.0 </col>
   <high> 9 </high><wide> 42 </wide>
   <leftmargin> 10 </leftmargin>
   <xaxis>
@@ -113,6 +114,25 @@ Solver : Digital Human (V1.0)
   <yvar>
      <name> mRNAalpha </name>
      <label> mRNAalpha </label>
+     <linecolor> BLUE </linecolor>
+  </yvar>
+  <scale><min> 0 </min><max> 1.0 </max></scale>
+ </yaxis>
+</showgraph>
+
+<showgraph>
+  <row> 25 </row><col> 45 </col>
+  <high> 9 </high><wide> 42 </wide>
+  <leftmargin> 10 </leftmargin>
+  <xaxis>
+     <name> System.X </name>
+     <label> Time </label>
+     <scale><min> 0 </min><max> 360 </max></scale>
+  </xaxis>
+  <yaxis>   
+  <yvar>
+     <name> FGFeffectPTH </name>
+     <label> FGFeffectPTH </label>
      <linecolor> BLUE </linecolor>
   </yvar>
   <scale><min> 0 </min><max> 1.0 </max></scale>
@@ -173,6 +193,13 @@ Solver : Digital Human (V1.0)
 </showvalue>
 
 <showvalue>
+   <row> 31.0 </row><col> 1.0 </col>
+   <name> FGFeffectPTH </name>
+   <format><decimal> 3 </decimal></format>
+   <label> FGFeffectPTH (.8)  </label>
+</showvalue>
+
+<showvalue>
    <row> 32.0 </row><col> 1.0 </col>
    <name> mRNAalpha </name>
    <format><decimal> 3 </decimal></format>
@@ -200,11 +227,107 @@ Solver : Digital Human (V1.0)
    <label> X </label>
 </showvalue>
 
+<groupbox>
+   <row> 5 </row>
+   <col> 110 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Vitamin D </title>
 
 
+<repeatlist>
+  <name> TimesDay </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
+
+<repeatlist>
+  <name> Dose </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 250 </stepsize>
+  </repeat>
+</repeatlist>
+
+<slidebar>
+  <row> 1.0 </row><col> 1 </col>
+  <name> VitaminD.DDose </name>
+  <listname> Dose </listname>
+  <label> Dose </label>
+</slidebar>
+
+ <infobutton>
+  <row> 1 </row><col> 30 </col>
+  <line>  </line>
+  <line>  ng </line>
+ </infobutton>
+
+<slidebar>
+  <row> 3</row><col> 1 </col>
+  <name> VitaminD.TimesDay </name>
+  <listname> TimesDay </listname>
+  <label> Times / Day </label>
+</slidebar>
+
+</groupbox>
+
+
+<groupbox>
+   <row> 15 </row>
+   <col> 110 </col>
+   <high> 7.5 </high>
+   <wide> 37.0 </wide>
+   <title> Estrogen </title>
+
+<repeatlist>
+  <name> Ovaries-Estradiol  </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 5 </stepsize>
+  </repeat>
+</repeatlist>
+
+
+<slidebar>
+  <row> 3.0 </row><col> 1 </col>
+  <name> Ovaries-Estradiol  </name>
+  <listname> Ovaries-Estradiol  </listname>
+  <label> Estrogen </label>
+</slidebar>
+
+
+ <infobutton>
+  <row> 1 </row><col> 30 </col>
+  <line>  </line>
+  <line>  ng </line>
+ </infobutton>
+<!--
+<repeatlist>
+  <name> TimesDay </name>
+  <repeat>
+    <reps> 20 </reps>
+    <stepsize> 1 </stepsize>
+  </repeat>
+</repeatlist>
+
+
+<slidebar>
+  <row> 5 </row><col> 1 </col>
+  <name> VitaminD.TimesDay </name>
+  <listname> TimesDay </listname>
+  <label> Times / Day </label>
+</slidebar>
+
+-->
 
 
 </groupbox>
+
+
+
+
 </panel>
 
 End

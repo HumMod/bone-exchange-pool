@@ -13,7 +13,7 @@ Schema : DES V1.0
 <variables>
   <var><name> RenalClearance</name></var>
   <var><name> HepaticClearance </name></var>
-  <parm><name> HepaticClearanceFraction </name><val> 0.30 </val></parm>
+  <parm><name> HepaticClearanceFraction </name><val> 0.10 </val></parm>
   <parm><name> HepaticFlowRate </name><val> 1.7 </val></parm>
   <var><name> Loss </name><val> 0 </val></var>
 </variables>
@@ -22,7 +22,7 @@ Schema : DES V1.0
 
   <block>
    <name> CalcLoss </name>
-     <def><name> RenalClearance </name><val> RenalParms.ModGFR * PTH_pool.[PTHwt] </val></def>
+     <def><name> RenalClearance </name><val> 0.33 * RenalParms.ModGFR * PTH_pool.[PTHwt] </val></def>
      <def><name> HepaticClearance </name><val> HepaticFlowRate * HepaticClearanceFraction * PTH_pool.[PTHwt] </val></def>
      <def><name> Loss </name><val> RenalClearance + HepaticClearance </val></def>
  </block>

@@ -6,7 +6,7 @@ Author : Pruett
 Copyright : 2011
 By : University of Mississippi Medical Center
 Schema : DES V1.0
-
+ 
 <?path Display ?>
 
 <display>
@@ -22,12 +22,12 @@ Schema : DES V1.0
 
 <?include Physiology\Physiology.DES ?>
 <?include Clinic\Dashboard\Dashboard.DES ?>
-<?include Organs\Organs.DES ?>
-
+<?include Organs\Organs.DES ?> 
+<!--
 <common>
   <displayfirst> Talmage Dashboard </displayfirst>
-</common>
-
-</display>
+</common> 
+-->
+</display> 
 
 End                 

@@ -8,18 +8,18 @@ By : University of Mississippi Medical Center
 
 <?path Structure\ ?>
 
-<?include Gut\TalmageSimpleGut.DES ?>
-<?include Calcium\TalmageCaPool.DES ?>
-<?include Calcium\CalciumReceptor.DES ?>
-<?include Kidney\TalmageSimpleKidney.DES ?>
-<?include Phosphates\TalmagePO4Pool.DES ?>
-<?include VitaminD\VitaminD.DES ?>
-<?include Parathyroid\Parathyroid.DES ?>
+ <?include Gut\TalmageSimpleGut.DES ?>
+ <?include Calcium\TalmageCaPool.DES ?>
+ <?include Calcium\CalciumReceptor.DES ?> 
+<?include Kidney\TalmageSimpleKidney.DES ?> 
+ <?include Phosphates\TalmagePO4Pool.DES ?> 
+<?include VitaminD\VitaminD.DES ?> 
+ <?include Parathyroid\Parathyroid.DES ?> 
 <?include Parathyroid\PTHReceptor.DES ?>
-<?include Calcitonin\Calcitonin.DES ?>
-<?include Bone\Bone.DES ?>
-<?include AUC\AUC.DES ?>
-<?include FGF23\FGF23.DES ?>
+ <?include Calcitonin\Calcitonin.DES ?> 
+ <?include Bone\Bone.DES ?> 
+<?include AUC\AUC.DES ?> 
+<?include FGF23\FGF23.DES ?> 
 
 <structure><name> Structure </name>
 
@@ -27,50 +27,50 @@ By : University of Mississippi Medical Center
 
 <block>
   <name> Parms </name>
-  <call> AUC.Parms </call>
-  <call> Calcitonin.Parms </call>
-  <call> CaSupplement.Parms </call>
-  <call> Stomach.Parms </call>
-  <call> StomachPO4.Parms </call>
-  <call> TalmageCaPool.Parms </call>
-  <call> TalmagePO4Pool.Parms </call>
+   <call> AUC.Parms </call> 
+<call> Calcitonin.Parms </call> 
+   <call> CaSupplement.Parms </call> 
+   <call> Stomach.Parms </call> 
+   <call> StomachPO4.Parms </call> 
+  <call> TalmageCaPool.Parms </call> 
+   <call> TalmagePO4Pool.Parms </call> 
   <call> VitaminD.Parms </call>
-  <call> FGF23.Parms </call>
+   <call> FGF23.Parms </call> 
 
 </block>
 
 <block>
  <name> Dervs </name>
-  <call> CaSupplement.Dervs </call>
-  <call> Stomach.Dervs </call>
-  <call> Duodenum.Dervs </call>
-  <call> DistalSmallIntestine.Dervs </call>
-  <call> GutPO4.Dervs </call>
-  <call> StomachPO4.Dervs </call>
-  <call> TalmageCaPool.Dervs </call>
-  <call> TalmagePO4Pool.Dervs </call>
-  <call> Calcitonin.Dervs </call>
-  <call> Parathyroid.Dervs </call>
-  <call> FGF23.Dervs </call>
+  <call> CaSupplement.Dervs </call> 
+  <call> Stomach.Dervs </call> 
+  <call> Duodenum.Dervs </call> 
+  <call> DistalSmallIntestine.Dervs </call> 
+  <call> GutPO4.Dervs </call> 
+   <call> StomachPO4.Dervs </call> 
+  <call> TalmageCaPool.Dervs </call> 
+  <call> TalmagePO4Pool.Dervs </call> 
+  <call> Calcitonin.Dervs </call> 
+  <call> Parathyroid.Dervs </call> 
+  <call> FGF23.Dervs </call> 
   <call> VitaminD.Dervs </call>
-  <call> BoneCells.Dervs </call>
-  <call> BoneCellDynamics.Dervs </call>
-  <call> Osteoid.Dervs </call>
-  <call> BoneExchange.Dervs </call>
-  <call> NewBone.Dervs </call>
-  <call> RenalParms.Dervs </call>
-  <call> RenalCa.Dervs </call>
-  <call> RenalPO4.Dervs </call>
-  <call> AUC.Dervs </call>
+   <call> BoneCells.Dervs </call> 
+  <call> BoneCellDynamics.Dervs </call> 
+  <call> Osteoid.Dervs </call> 
+   <call> BoneExchange.Dervs </call> 
+   <call> NewBone.Dervs </call> 
+  <call> RenalParms.Dervs </call> 
+  <call> RenalCa.Dervs </call> 
+  <call> RenalPO4.Dervs </call> 
+   <call> AUC.Dervs </call> 
 </block>
 
 
 <block>
   <name> Wrapup </name>
   <call> TalmageCaPool.CalcConc </call> 
-  <call> TalmagePO4Pool.CalcConc </call>
-  <call> CaSupplement.Wrapup </call>
- <call> VitaminD.Wrapup </call>
+   <call> TalmagePO4Pool.CalcConc </call> 
+ <call> CaSupplement.Wrapup </call> 
+   <call> VitaminD.Wrapup </call>
 </block>
 
 </definitions>

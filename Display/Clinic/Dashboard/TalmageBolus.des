@@ -8,27 +8,26 @@ By : University of Mississippi Medical Center
 Solver : DES 2005
 Schema : 
 
-<panel><name> TalmageBolus </name>
+<panel><name> TalmageBolus </name> 
 
 <structurename> TalmageBolus </structurename>
 
 <showpanelname>
   <row> 0.5 </row><col> 1.0 </col>
 </showpanelname>
-
- <showvalue>
+  <showvalue>
    <row> .5 </row><col> 20. </col>
    <name> TalmageCaPool.CalciumDripStart </name>
    <format><decimal> 0 </decimal></format>
    <label> system.x </label>
- </showvalue>
+ </showvalue> 
 
 <groupbox>
    <row> 2.0 </row>
    <col> 2.0 </col>
    <high> 7.5 </high>
    <wide> 37.0 </wide>
-   <title> Calcium </title>
+   <title> Calcium </title> 
 
  <editbox>
    <row> 1 </row><col> 1 </col>
@@ -70,9 +69,9 @@ Schema :
   <row> 5.0 </row><col> 30 </col>
   <line>  Time </line>
  </infobutton>
-
-
 </groupbox>
+
+
 
 <groupbox>
    <row> 10.0 </row>
@@ -112,9 +111,10 @@ Schema :
   <line>  Time </line>
  </infobutton>
 
-</groupbox>
-<!--
-<groupbox>
+</groupbox> 
+
+
+<!-- <groupbox>
    <row> 2.0 </row>
    <col> 40.0 </col>
    <high> 7.5 </high>
@@ -214,6 +214,8 @@ Schema :
  </infobutton>
 </groupbox>
 
+
+
 <groupbox>
    <row> 18.0 </row>
    <col> 2.0 </col>
@@ -258,13 +260,14 @@ Schema :
 </slidebar>
 </groupbox>
 
+
+
 <groupbox>
    <row> 18.0 </row>
    <col> 42.0 </col>
    <high> 7.5 </high>
    <wide> 37.0 </wide>
    <title> Calcium Supplement </title>
-
 
 <repeatlist>
   <name> CaDose </name>
@@ -302,11 +305,10 @@ Schema :
   <label> Times / Day </label>
 </slidebar>
 
-
 </groupbox>
 
 
-</panel>
+</panel> 
 
 
 

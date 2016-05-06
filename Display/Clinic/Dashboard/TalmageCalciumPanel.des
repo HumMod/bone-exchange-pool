@@ -24,13 +24,13 @@ Solver : Digital Human (V1.0)
 </showpanelname>
 
 <?path Display\Clinic\Dashboard\ ?>
-
-<!--<?include Pools.DES ?>
+<!--
+<?include Pools.DES ?>
 <?include Bone.DES ?>
 <?include Gut.DES ?>
 <?include Renal.DES ?>
-<?include Hormones.DES ?>-->
-
+<?include Hormones.DES ?>
+-->
 <?include NewPools.DES ?>
 <?include NewBone.DES?>
 <?include NewGut.DES ?>
@@ -39,9 +39,6 @@ Solver : Digital Human (V1.0)
 <?include NewAUC.DES ?> 
 <?include NewBolus.DES ?> 
 
-</panel>
+</panel> 
 
 End
-                                                                                                                                                                                                                                                                                                       
- 
-                                                                                                                                                                                                

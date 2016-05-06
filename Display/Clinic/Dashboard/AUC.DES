@@ -7,7 +7,7 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<panel><name> AUC </name>
+ <panel><name> AUC </name>
 
 <structurename> AUC </structurename>
 
@@ -121,7 +121,7 @@ Solver : Digital Human (V1.0)
 </showvalue>
 
 
-</panel>
+</panel> 
 
 End
                                                                                                                                                                                                                                                                                                        

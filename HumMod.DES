@@ -29,6 +29,6 @@ Schema : DES V1.0
 <?include Control\Control.DES ?>
 <?include Display\Display.DES ?>
 
-</model>
+</model> 
 
 End                      

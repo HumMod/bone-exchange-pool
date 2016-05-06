@@ -1,18 +1,32 @@
 
 <?path Structure\Parathyroid ?>
+
 <?include Parathyroid_Gland.DES ?>
 <?include PTH_clearance.DES ?>
 <?include PTH_pool.DES ?>
 <?include PTH_secretion.DES ?>
 
+
 <structure> <name> Parathyroid  </name>
 
 <definitions>
+
+<block><name> Parms </name>
+  <call> TalmagePTHormone.Parms</call>
+</block>
+
  <block><name> Dervs </name>
+
   <call> Parathyroid_Gland.CalcVPTH </call>
   <call> PTH_secretion.CalcSecretion </call>
   <call> PTH_clearance.CalcLoss </call>
   <call> PTH_pool.CalcPool </call>
+
+<!--
+  <call> TalmagePTpool.CalcSecretion</call>
+  <call> TalmagePTHormone.CalcPTH</call>
+-->
+
  </block>
 </definitions>
 

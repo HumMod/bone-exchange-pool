@@ -6,7 +6,6 @@ Author : W Pruett
 Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
-
 <structurename> AUC </structurename>
    
 
@@ -59,7 +58,7 @@ Solver : Digital Human (V1.0)
    <label> total Ca Mass (mmol) </label>
  </showvalue>
 
-</groupbox>
+</groupbox> 
 
 End
                                                                                                                                                                                                                                                                                                        

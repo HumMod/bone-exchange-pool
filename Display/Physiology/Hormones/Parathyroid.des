@@ -19,7 +19,7 @@ Solver : Digital Human (V1.0)
    <name> [PTHwt]</name>
    <format><decimal> 3 </decimal></format>
    <label> PTH wt </label>
- </showvalue>
+</showvalue> 
  <infobutton>
   <row> 1 </row><col> 25 </col>
   <line>  ng/L = pg/mL</line>
@@ -30,18 +30,18 @@ Solver : Digital Human (V1.0)
    <name> PTH_secretion.Gain </name>
    <format><decimal> 3 </decimal></format>
    <label> PTH secretion </label>
- </showvalue>
+ </showvalue> 
  <infobutton>
   <row> 2. </row><col> 25 </col>
   <line>  ng/minute</line>
  </infobutton>
 
- <showvalue>
+  <showvalue>
    <row> 3. </row><col> 1 </col>
    <name> Parathyroid_Gland.CellNumber </name>
    <format><integer/></format>
    <label> PT Cell number </label>
- </showvalue>
+ </showvalue> 
  <infobutton>
   <row> 3 </row><col> 25 </col>
   <line>  90e6 in normal </line>
@@ -57,24 +57,24 @@ Solver : Digital Human (V1.0)
      <scale><min> 0 </min><max> 360 </max></scale>
   </xaxis>
   <yaxis>
-    <yvar>
+     <yvar>
      <name> [PTHwt]</name>
      <label> serum [PTH] </label>
      <linecolor> RED </linecolor>
-    </yvar>
+    </yvar> 
     <scale><min> 30</min><max> 40 </max></scale>
   </yaxis>
- </showgraph>
+ </showgraph> 
 
 
- <radiobuttons>
+  <radiobuttons>
   <row> 16.0 </row><col> 1.0 </col>
   <name> Switch </name>
   <listname> Common.Switch </listname>
   <label> Parathyroidectomize </label>
- </radiobuttons>
+ </radiobuttons> 
 
-<showcurve>
+ <showcurve>
   <row> 17.5 </row><col> 1.0 </col><high> 6 </high><wide> 28 </wide>
   <leftmargin> 5 </leftmargin>
   <xaxis>
@@ -91,9 +91,9 @@ Solver : Digital Human (V1.0)
     </scale>
   </yaxis>
   <curvename> Parathyroid_Gland.PTGrowthRate </curvename>
-</showcurve>
+</showcurve> 
 
-<showcurve>
+ <showcurve>
   <row> 24.5 </row><col> 1.0 </col><high> 6 </high><wide> 28 </wide>
   <leftmargin> 5 </leftmargin>
   <xaxis>
@@ -110,23 +110,23 @@ Solver : Digital Human (V1.0)
     </scale>
   </yaxis>
   <curvename> Parathyroid_Gland.PTCellApopRate </curvename>
-</showcurve>
+</showcurve> 
 
-<showvalue>
+ <showvalue>
    <row> 31.5 </row><col> 1 </col>
    <name> Parathyroid_Gland.PTGrowthRate </name>
    <format><integer/></format>
    <label> Growth </label>
- </showvalue>
+ </showvalue> 
 
-<showvalue>
+ <showvalue>
    <row> 31.5 </row><col> 26 </col>
    <name> Parathyroid_Gland.PTCellApopRate </name>
    <format><integer/></format>
    <label> Apop </label>
- </showvalue>
+ </showvalue> 
 
-</groupbox>
+</groupbox> 
 
 End
                                                                                                                                                                                                                                 

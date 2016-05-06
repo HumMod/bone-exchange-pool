@@ -6,7 +6,7 @@ Copyright : 2010
 By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
-<structurename> NewBone </structurename>
+ <structurename> NewBone </structurename>
 <groupbox>
    <row> 2.0 </row>
    <col> 47.0 </col>
@@ -147,7 +147,7 @@ Solver : Digital Human (V1.0)
 </showvalue>
 
 
-</groupbox>
+</groupbox> 
 
 
 End

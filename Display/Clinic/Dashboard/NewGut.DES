@@ -7,7 +7,7 @@ By : University of Mississippi Medical Center
 Solver : Digital Human (V1.0)
 
 
-<groupbox>
+ <groupbox>
    <row> 2.0 </row>
    <col> 92.0 </col>
    <high> 14.5 </high>
@@ -74,7 +74,7 @@ Solver : Digital Human (V1.0)
   </yaxis>
  </showgraph>
 
-</groupbox>
+</groupbox> 
 
 End
                                                                                                                                                                                                                                                                                                        
